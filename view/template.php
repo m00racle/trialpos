@@ -51,18 +51,13 @@
 <div class="wrapper">
 
   <!-- header will be presented as modules -->
-
-  <!-- =============================================== -->
-
   <!-- Left side column. contains the sidebar -->
   <!-- aside left also in the modules -->
 
-  <!-- =============================================== -->
-
   <!-- Content Wrapper. Contains page content in modules-->
-
-  <!-- /.content-wrapper -->
-
+<?php
+  include 'view\module\header.php';
+ ?>
 
 
 </div>
