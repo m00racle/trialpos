@@ -1,1 +1,3 @@
-//this model the object: category
+<?php
+  //this model the object: category
+ ?>

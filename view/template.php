@@ -47,9 +47,7 @@
 
 </head>
 <!-- DOCUMENT BODY -->
-<body class="hold-transition skin-blue sidebar-collapse sidebar-mini">
-<!-- Site wrapper -->
-<div class="wrapper">
+<body class="hold-transition skin-blue sidebar-collapse sidebar-mini login-page">
 
   <!-- header will be presented as modules -->
   <!-- Left side column. contains the sidebar -->
@@ -57,39 +55,48 @@
 
   <!-- Content Wrapper. Contains page content in modules-->
 <?php
-  // HEADER MENU:
-  include 'view/module/header.php';
-  // SIDEBAR MENU:
-  include 'view/module/menu.php';
-  // DASHBOARD;
-  if (isset($_GET["route"])) {
-    // code...the reoute exist then confirm that it is goes to dashboard;
-    if ($_GET["route"]=="dashboard" ||
-        $_GET["route"]=="user" ||
-        $_GET["route"]=="category" ||
-        $_GET["route"]=="product" ||
-        $_GET["route"]=="supplier" ||
-        $_GET["route"]=="customer" ||
-        $_GET["route"]=="manage-sales" ||
-        $_GET["route"]=="create-sales" ||
-        $_GET["route"]=="sales-report") {
-      // code...includes all things related to dashboard
-        include 'view/module/'.$_GET["route"].'.php';
+  if (isset($_SESSION['startSession']) && $_SESSION['startSession']=='ok') {
+    // code...then the user is logged in;
+    echo "<div class='wrapper'>";
+    // HEADER MENU:
+    include 'view/module/header.php';
+    // SIDEBAR MENU:
+    include 'view/module/menu.php';
+    // DASHBOARD;
+    if (isset($_GET["route"])) {
+      // code...the reoute exist then confirm that it is goes to dashboard;
+      if ($_GET["route"]=="dashboard" ||
+          $_GET["route"]=="user" ||
+          $_GET["route"]=="category" ||
+          $_GET["route"]=="product" ||
+          $_GET["route"]=="supplier" ||
+          $_GET["route"]=="customer" ||
+          $_GET["route"]=="manage-sales" ||
+          $_GET["route"]=="create-sales" ||
+          $_GET["route"]=="sales-report") {
+        // code...includes all things related to dashboard
+          include 'view/module/'.$_GET["route"].'.php';
+      } else {
+        // code...if the url designated not in the list open the 404.php;
+        include 'view/module/404.php';
+      }
     } else {
-      // code...if the url designated not in the list open the 404.php;
-      include 'view/module/404.php';
+      // code...if not using the rule just go to index.php;
+      include 'view/module/dashboard.php';
     }
+
+    // FOOTER:
+    include 'view/module/footer.php';
+    echo "</div>";
   } else {
-    // code...if not using the rule just go to index.php;
-    include 'view/module/dashboard.php';
+    // code...the user is not yet logged in;
+    include 'view/module/login.php';
   }
 
-  // FOOTER:
-  include 'view/module/footer.php';
  ?>
 
 
-</div>
+<!-- </div> -->
 <!-- ./wrapper -->
 <script src="view/js/template.js"></script>
 

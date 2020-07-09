@@ -1,1 +1,2 @@
-//this model the object: product
+<?php //this model the object: product
+?>
