@@ -56,7 +56,14 @@
 
   <!-- Content Wrapper. Contains page content in modules-->
 <?php
+  // HEADER MENU:
   include 'view\module\header.php';
+  // SIDEBAR MENU:
+  include 'view\module\menu.php';
+  // CONTENT;
+  include 'view\module\content.php';
+  // FOOTER:
+  include 'view\module\footer.php';
  ?>
 
 

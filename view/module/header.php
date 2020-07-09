@@ -7,9 +7,7 @@
     </span>
     <!-- logo for regular state and mobile devices -->
     <span class="logo-lg">
-      <img src="view\img\template\cafe4.png"
-      class="img-responsive" style="padding:10px 10px; display:inline">
-      <p style="display:inline"><b>Omah</b>POS</p>
+      <b>OmahKampong</b>
     </span>
   </a>
   <nav class="navbar navbar-static-top" role="navigation">
