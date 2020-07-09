@@ -12,7 +12,7 @@
     public function ctrTemplate()
     {
       // code...this is control for templates
-      include 'view\template.php';
+      include 'view/template.php';
     }
   }
 

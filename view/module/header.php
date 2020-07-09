@@ -1,13 +1,13 @@
 <header class="main-header">
-  <a href="" class="logo">
+  <a href="dashboard" class="logo">
     <!-- mini logo for sidebar mini 50x50 pixels -->
     <span class="logo-mini">
-      <img src="view\img\template\cafe3.png"
+      <img src="view/img/template/logomini.png"
       class="img-responsive" style="padding:10px">
     </span>
     <!-- logo for regular state and mobile devices -->
     <span class="logo-lg">
-      <img src="view\img\template\cafe4.png"
+      <img src="view/img/template/logolong.png"
       class="img-responsive" style="padding:10px 0px">
     </span>
   </a>
@@ -22,7 +22,7 @@
       <ul class="nav navbar-nav">
         <li class="dropdown user user-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <img src="view\img\user\default\userdefault.png" class="user-image">
+            <img src="view/img/user/default/userdefault.png" class="user-image">
             <span class="hidden-xs">Admin</span>
           </a>
 

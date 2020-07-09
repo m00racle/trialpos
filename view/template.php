@@ -3,10 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AngkringPOS</title>
+  <title>Omah|POS</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
+  <link rel="icon" href="view/img/template/logomini.png">
   <!-- CSS PLUGINS -->
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="view/bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -57,19 +58,40 @@
   <!-- Content Wrapper. Contains page content in modules-->
 <?php
   // HEADER MENU:
-  include 'view\module\header.php';
+  include 'view/module/header.php';
   // SIDEBAR MENU:
-  include 'view\module\menu.php';
-  // CONTENT;
-  include 'view\module\content.php';
+  include 'view/module/menu.php';
+  // DASHBOARD;
+  if (isset($_GET["route"])) {
+    // code...the reoute exist then confirm that it is goes to dashboard;
+    if ($_GET["route"]=="dashboard" ||
+        $_GET["route"]=="user" ||
+        $_GET["route"]=="category" ||
+        $_GET["route"]=="product" ||
+        $_GET["route"]=="supplier" ||
+        $_GET["route"]=="customer" ||
+        $_GET["route"]=="manage-sales" ||
+        $_GET["route"]=="create-sales" ||
+        $_GET["route"]=="sales-report") {
+      // code...includes all things related to dashboard
+        include 'view/module/'.$_GET["route"].'.php';
+    } else {
+      // code...if the url designated not in the list open the 404.php;
+      include 'view/module/404.php';
+    }
+  } else {
+    // code...if not using the rule just go to index.php;
+    include 'view/module/dashboard.php';
+  }
+
   // FOOTER:
-  include 'view\module\footer.php';
+  include 'view/module/footer.php';
  ?>
 
 
 </div>
 <!-- ./wrapper -->
-<script src="view\js\template.js"></script>
+<script src="view/js/template.js"></script>
 
 </body>
 </html>
