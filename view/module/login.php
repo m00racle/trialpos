@@ -24,6 +24,12 @@
         </div>
 
       </div>
+      <?php
+        // instantiate new object of class UserController;
+        $login new UserController();
+        // access the method ctrUserLogin;
+        $login -> ctrUserLogin();
+       ?>
     </form>
 
 
