@@ -25,13 +25,29 @@
           // response from the test should come from the model class of the user;
           $response = ModelUser::modViewUser($table, $item, $value);
           // NOTE: the ModelUser here is class with static method call modViewUser;
-          // var_dump($response); // NOTE: test delete/comment out after use!
+          var_dump($response); // NOTE: test delete/comment out after use!
 
           // NOTE: remember this is newer version of php when it failed to find the usernmae
           //      instead of returning NULL it will return bollean type false; thus to override it;
           if ($response == false) {
             // code...user not found;
-            echo "<div class='alert alert-danger'>User not found!</div>";
+            echo "user not found!";
+            echo "<script>
+              $(document).ready(function(){
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Login Gagal!',
+                  text: 'User dengan nama: '".$_POST["txtusername"]." tidak ditemukan! Hubungi admin apabila ada masalah',
+                  confirmButtonText: 'OK Ulang',
+                  allowOutsideClick: true
+                }).then((result) => {
+                  if (result.value) {
+
+                  }
+                })
+              });
+
+              </script>";
           } elseif ($response["password"] == $_POST["txtpass"]) {
             // code... user match can login; start collect session;
             // echo "<div class='alert alert-success'>Welcome!</div>"; // NOTE: test only
@@ -40,7 +56,8 @@
             echo "<script>
               $(document).ready(function(){
                 Swal.fire({
-                  title: 'Login ".$_SESSION['username']." Berhasil!',
+                  icon: 'success',
+                  title: 'Login ".$response['username']." Berhasil!',
                   text: 'anda masuk sebagai ".$response['role']."',
                   confirmButtonText: 'OK Lanjut!',
                   allowOutsideClick: false
@@ -51,11 +68,26 @@
                 })
               });
 
-        </script>";
+              </script>";
 
           } else {
             // code...wrong password;
-            echo "<div class='alert alert-danger'>Password is wrong!</div>";
+            echo "<script>
+              $(document).ready(function(){
+                Swal.fire({
+                  icon: 'warning',
+                  title: 'Login ".$response['username']." Gagal!',
+                  text: 'password yang anda masukkan salah! Hubungi admin apabila ada masalah atau anda lupa',
+                  confirmButtonText: 'OK Ulang',
+                  allowOutsideClick: true
+                }).then((result) => {
+                  if (result.value) {
+
+                  }
+                })
+              });
+
+              </script>";
           }
         }
       }
