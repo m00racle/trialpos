@@ -39,7 +39,7 @@
   <!-- AdminLTE App -->
   <script src="view/dist/js/adminlte.min.js"></script>
   <!-- sweetalert2 ver 7 -->
-  <script src="view/plugins/sweetalert2/sweetalert2.all.js"></script>
+  <script src="view/plugins/sweetalert2/sweetalert2.all.min.js"></script>
   <!-- AdminLTE for demo purposes -->
   <!-- <script src="view/dist/js/demo.js"></script>
     This demo.js is where the templates resides thus I will only take themm when
