@@ -1,3 +1,6 @@
+<?php
+  session_start();
+ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,7 +58,7 @@
 
   <!-- Content Wrapper. Contains page content in modules-->
 <?php
-  if (isset($_SESSION['startSession']) && $_SESSION['startSession']=='ok') {
+  if (isset($_SESSION['login']) && $_SESSION['login']=='ok') {
     // code...then the user is logged in;
     echo "<div class='wrapper'>";
     // HEADER MENU:

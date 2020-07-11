@@ -25,7 +25,24 @@
           // response from the test should come from the model class of the user;
           $response = ModelUser::modViewUser($table, $item, $value);
           // NOTE: the ModelUser here is class with static method call modViewUser;
-          var_dump($response); // NOTE: test delete/comment out after use!
+          // var_dump($response); // NOTE: test delete/comment out after use!
+
+          // NOTE: remember this is newer version of php when it failed to find the usernmae
+          //      instead of returning NULL it will return bollean type false; thus to override it;
+          if ($response == false) {
+            // code...user not found;
+            echo "<div class='alert alert-danger'>User not found!</div>";
+          } elseif ($response["password"] == $_POST["txtpass"]) {
+            // code... user match can login; start collect session;
+            // echo "<div class='alert alert-success'>Welcome!</div>"; // NOTE: test only
+            $_SESSION['login'] = 'ok';
+            echo "<script>
+              window.location = 'dashboard';
+            </script>";
+          } else {
+            // code...wrong password;
+            echo "<div class='alert alert-danger'>Password is wrong!</div>";
+          }
         }
       }
     }
