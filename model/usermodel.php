@@ -19,7 +19,7 @@
       $stmt = Connection::connect()->prepare("SELECT * FROM $table WHERE $item = :$item");
       $stmt -> bindParam(":".$item, $value, PDO::PARAM_STR); // NOTE: this means the parameter is string;
       $stmt -> execute();
-      return $stmt -> fetch();
+      return $stmt -> fetch(PDO::FETCH_ASSOC);
     }
   }
 
