@@ -37,12 +37,11 @@
             // echo "<div class='alert alert-success'>Welcome!</div>"; // NOTE: test only
             $_SESSION['login'] = 'ok';
             $_SESSION['username'] = $response['username'];
-            echo "<script type='text/javascript'>
+            echo "<script>
               $(document).ready(function(){
-                Swal({
-                  title: 'isiaktivitas ".$_SESSION['username']." isiketerangan!',
-                  text: 'Silahkan login ulang dengan password yang baru',
-                  icon: 'success',
+                Swal.fire({
+                  title: 'Login ".$_SESSION['username']." Berhasil!',
+                  text: 'anda masuk sebagai ".$response['role']."',
                   confirmButtonText: 'OK Lanjut!',
                   allowOutsideClick: false
                 }).then((result) => {
