@@ -31,7 +31,7 @@
           //      instead of returning NULL it will return bollean type false; thus to override it;
           if ($response == false) {
             // code...user not found;
-            echo "<div class='alert alert-danger'>User not found!</div>";
+            echo "<br><div class='alert alert-danger'>User not found!</div>";
           } elseif ($response["password"] == $_POST["txtpass"]) {
             // code... user match can login; start collect session;
             // echo "<div class='alert alert-success'>Welcome!</div>"; // NOTE: test only
@@ -41,7 +41,7 @@
             </script>";
           } else {
             // code...wrong password;
-            echo "<div class='alert alert-danger'>Password is wrong!</div>";
+            echo "<br><div class='alert alert-warning'>Failed to Login: Password is wrong!</div>";
           }
         }
       }
