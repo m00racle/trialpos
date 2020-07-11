@@ -36,9 +36,24 @@
             // code... user match can login; start collect session;
             // echo "<div class='alert alert-success'>Welcome!</div>"; // NOTE: test only
             $_SESSION['login'] = 'ok';
-            echo "<script>
-              window.location = 'dashboard';
-            </script>";
+            $_SESSION['username'] = $response['username'];
+            echo "<script type='text/javascript'>
+              $(document).ready(function(){
+                Swal({
+                  title: 'isiaktivitas ".$_SESSION['username']." isiketerangan!',
+                  text: 'Silahkan login ulang dengan password yang baru',
+                  icon: 'success',
+                  confirmButtonText: 'OK Lanjut!',
+                  allowOutsideClick: false
+                }).then((result) => {
+                  if (result.value) {
+                    window.location.replace('dashboard')
+                  }
+                })
+              });
+
+        </script>";
+
           } else {
             // code...wrong password;
             echo "<div class='alert alert-danger'>Password is wrong!</div>";

@@ -1,6 +1,6 @@
 <div class="login-box">
   <div class="login-logo">
-    <img src="view\img\template\logolong.png" class="img-responsive"
+    <img src="view/img/template/logolong.png" class="img-responsive"
     style="padding: 30px 100px 0px 100px">
   </div>
   <!-- /.login-logo -->
@@ -29,6 +29,7 @@
         $login = new UserController();
         // access the method ctrUserLogin;
         $login -> ctrUserLogin();
+        
        ?>
     </form>
 

@@ -38,6 +38,8 @@
   <script src="view/bower_components/fastclick/lib/fastclick.js"></script>
   <!-- AdminLTE App -->
   <script src="view/dist/js/adminlte.min.js"></script>
+  <!-- sweetalert2 ver 7 -->
+  <script src="view/plugins/sweetalert2/sweetalert2.all.js"></script>
   <!-- AdminLTE for demo purposes -->
   <!-- <script src="view/dist/js/demo.js"></script>
     This demo.js is where the templates resides thus I will only take themm when
@@ -65,7 +67,7 @@
     include 'view/module/header.php';
     // SIDEBAR MENU:
     include 'view/module/menu.php';
-    // DASHBOARD;
+    // which page:
     if (isset($_GET["route"])) {
       // code...the reoute exist then confirm that it is goes to dashboard;
       if ($_GET["route"]=="dashboard" ||
