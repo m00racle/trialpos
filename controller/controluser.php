@@ -25,35 +25,35 @@
           // response from the test should come from the model class of the user;
           $response = ModelUser::modViewUser($table, $item, $value);
           // NOTE: the ModelUser here is class with static method call modViewUser;
-          var_dump($response); // NOTE: test delete/comment out after use!
+          // var_dump($response); // NOTE: test delete/comment out after use!
 
           // NOTE: remember this is newer version of php when it failed to find the usernmae
           //      instead of returning NULL it will return bollean type false; thus to override it;
-          if ($response == false) {
+          if ($response == false || $response['username'] == NULL) {
             // code...user not found;
-            echo "user not found!";
-            // echo "<script>
-            //   $(document).ready(function(){
-            //     Swal.fire({
-            //       icon: 'error',
-            //       title: 'Login Gagal!',
-            //       text: 'User dengan nama: '".$_POST["txtusername"]." tidak ditemukan! Hubungi admin apabila ada masalah',
-            //       confirmButtonText: 'OK Ulang',
-            //       allowOutsideClick: true
-            //     }).then((result) => {
-            //       if (result.value) {
-            //
-            //       }
-            //     })
-            //   });
-            //
-            //   </script>";
-              echo "<div class='alert alert-danger'>user not found</div>";
+            //echo "user not found!"; // NOTE: for test only! comment out or delete!
+            echo "<script>
+              $(document).ready(function(){
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Login Gagal!',
+                  text: 'User ".$_POST['txtusername']." tidak terdaftar! hubungi admin apabila ada masalah',
+                  confirmButtonText: 'OK Ulang',
+                  allowOutsideClick: true
+                }).then((result) => {
+                  if (result.value) {
+
+                  }
+                })
+              });
+
+              </script>";
+              
           } elseif ($response["password"] == $_POST["txtpass"]) {
             // code... user match can login; start collect session;
             // echo "<div class='alert alert-success'>Welcome!</div>"; // NOTE: test only
             $_SESSION['login'] = 'ok';
-            $_SESSION['username'] = $response['username'];
+            // $_SESSION['username'] = $response['username'];
             echo "<script>
               $(document).ready(function(){
                 Swal.fire({
