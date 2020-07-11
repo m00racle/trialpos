@@ -32,22 +32,23 @@
           if ($response == false) {
             // code...user not found;
             echo "user not found!";
-            echo "<script>
-              $(document).ready(function(){
-                Swal.fire({
-                  icon: 'error',
-                  title: 'Login Gagal!',
-                  text: 'User dengan nama: '".$_POST["txtusername"]." tidak ditemukan! Hubungi admin apabila ada masalah',
-                  confirmButtonText: 'OK Ulang',
-                  allowOutsideClick: true
-                }).then((result) => {
-                  if (result.value) {
-
-                  }
-                })
-              });
-
-              </script>";
+            // echo "<script>
+            //   $(document).ready(function(){
+            //     Swal.fire({
+            //       icon: 'error',
+            //       title: 'Login Gagal!',
+            //       text: 'User dengan nama: '".$_POST["txtusername"]." tidak ditemukan! Hubungi admin apabila ada masalah',
+            //       confirmButtonText: 'OK Ulang',
+            //       allowOutsideClick: true
+            //     }).then((result) => {
+            //       if (result.value) {
+            //
+            //       }
+            //     })
+            //   });
+            //
+            //   </script>";
+              echo "<div class='alert alert-danger'>user not found</div>";
           } elseif ($response["password"] == $_POST["txtpass"]) {
             // code... user match can login; start collect session;
             // echo "<div class='alert alert-success'>Welcome!</div>"; // NOTE: test only
