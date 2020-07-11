@@ -76,6 +76,7 @@
           $_GET["route"]=="customer" ||
           $_GET["route"]=="manage-sales" ||
           $_GET["route"]=="create-sales" ||
+          $_GET["route"]=="logout" ||
           $_GET["route"]=="sales-report") {
         // code...includes all things related to dashboard
           include 'view/module/'.$_GET["route"].'.php';
