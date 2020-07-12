@@ -25,7 +25,7 @@
           // response from the test should come from the model class of the user;
           $response = ModelUser::modViewUser($table, $item, $value);
           // NOTE: the ModelUser here is class with static method call modViewUser;
-          var_dump($response); // NOTE: test delete/comment out after use!
+          // var_dump($response); // NOTE: test delete/comment out after use!
 
           // NOTE: remember this is newer version of php when it failed to find the usernmae
           //      instead of returning NULL it will return bollean type false; thus to override it;
@@ -90,6 +90,24 @@
 
               </script>";
           }
+        } else {
+          // code...alert only alphanumeric allowed;
+          echo "<script>
+            $(document).ready(function(){
+              Swal.fire({
+                icon: 'error',
+                title: 'Login ".$_POST['txtusername']." Gagal!',
+                text: 'Hanya karakter huruf dan angka tanpa spasi yang diperbolehkan untuk nama user dan password!',
+                confirmButtonText: 'OK Ulang',
+                allowOutsideClick: true
+              }).then((result) => {
+                if (result.value) {
+
+                }
+              })
+            });
+
+            </script>";
         }
       }
     }
