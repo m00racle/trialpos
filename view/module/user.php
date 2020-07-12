@@ -93,16 +93,78 @@
 
     <!-- Modal content-->
     <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
-      </div>
-      <div class="modal-body">
-        <p>Some text in the modal.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
+      <form role="form" class="" action="index.html" method="post" enctype="multipart/form-data">
+        <!-- modal header -->
+        <div class="modal-header" style="background:#3c8dbc; color:white">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add User</h4>
+        </div>
+        <!-- modal body -->
+        <div class="modal-body">
+          <div class="box-body">
+
+            <!-- form for add user name-->
+            <div class="form-group">
+              <div class="input-group">
+                <!-- form and input groups are classes from bootstrap -->
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <input type="text" name="newName" placeholder="insert name" required
+                  class="form-control input-lg">
+              </div>
+            </div>
+            <!-- form for username -->
+            <div class="form-group">
+              <div class="input-group">
+                <!-- form and input groups are classes from bootstrap -->
+                <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                <input type="text" name="newUser" placeholder="new username" required
+                  class="form-control input-lg">
+              </div>
+            </div>
+            <!-- form for password -->
+            <div class="form-group">
+              <div class="input-group">
+                <!-- form and input groups are classes from bootstrap -->
+                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                <input type="password" name="newPass" placeholder="new password" required
+                  class="form-control input-lg">
+              </div>
+            </div>
+            <!-- input to select the role; -->
+            <div class="form-group">
+              <div class="input-group">
+                <!-- form and input groups are classes from bootstrap -->
+                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                <select class="form-control input-lg" name="newRole">
+                  <option value="">Select Profile</option>
+                  <option value="admin">Admin</option>
+                  <option value="manager">Manager</option>
+                  <option value="user">User</option>
+                </select>
+              </div>
+            </div>
+            <!-- input file for the picture -->
+            <div class="form-group">
+              <div class="panel">
+                Upload Photo
+                <input type="file" id="newPict" name="newPict">
+                <p class="help-block">Max 200MB</p>
+                <img src="view\img\user\default\anon_icon.png"
+                      class="img-thumbnail" width="40px">
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+        <!-- modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+        <!-- /.end model-content; -->
+      </form>
+
     </div>
 
   </div>
