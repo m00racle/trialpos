@@ -27,6 +27,10 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
+  <!-- DataTables -->
+  <link rel="stylesheet" href="view/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+  <link rel="stylesheet" href="view/bower_components/datatables.net-bs/css/responsive.bootstrap.min.css">
+
   <!-- THIS IS THE JAVASCRIPT SECTION!! -->
   <!-- jQuery 3 -->
   <script src="view/bower_components/jquery/dist/jquery.min.js"></script>
@@ -38,15 +42,12 @@
   <script src="view/bower_components/fastclick/lib/fastclick.js"></script>
   <!-- AdminLTE App -->
   <script src="view/dist/js/adminlte.min.js"></script>
-  <!-- AdminLTE for demo purposes -->
-  <!-- <script src="view/dist/js/demo.js"></script>
-    This demo.js is where the templates resides thus I will only take themm when
-    needed-->
-  <!-- <script>
-    $(document).ready(function () {
-      NOT NEEDED ALREADY BEING MOVED TO js/template.js
-    })
-  </script> -->
+  <!-- DataTables -->
+  <script src="view/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+  <script src="view/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+  <script src="view/bower_components/datatables.net-bs/js/dataTables.responsive.min.js"></script>
+  <script src="view/bower_components/datatables.net-bs/js/responsive.bootstrap.min.js"></script>
+
 
 </head>
 <!-- DOCUMENT BODY -->

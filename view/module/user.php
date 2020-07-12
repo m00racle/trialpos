@@ -25,7 +25,7 @@
       </div>
       <div class="box-body">
         <!-- here we will write the table of all users; -->
-        <table class="table table-bordered table-striped">
+        <table class="table table-bordered table-striped dt-responsive tables">
           <!-- the table classes are from the plugin -->
           <thead>
             <tr>
@@ -57,12 +57,12 @@
               </td>
             </tr>
             <tr>
-              <td>1</td>
-              <td>User Admin</td>
-              <td>admin</td>
+              <td>2</td>
+              <td>Manager User</td>
+              <td>moon</td>
               <td><img src="view\img\user\default\anon_icon.png"
                     class="img-thumbnail" width="40px"></td>
-              <td>admin</td>
+              <td>manager</td>
               <td><button class="btn btn-danger btn-xs">Deactivate</button></td>
               <td>2020-07-11 23:05:22</td>
               <td>
