@@ -28,14 +28,15 @@
     static public function addNewUser($table, $data)
     {
       // code...insert the data to the database table;
-      $stmt = Connection::connect()->prepare("INSERT INTO $table(fullname, username, password, role)
-              VALUES (:fullname, :username, :password, :role)");
+      $stmt = Connection::connect()->prepare("INSERT INTO $table(fullname, username, password, role, picture)
+              VALUES (:fullname, :username, :password, :role, :picture)");
 
       // link the parameters;
       $stmt->bindParam(":fullname", $data['fullname'], PDO::PARAM_STR);
       $stmt->bindParam(":username", $data['username'], PDO::PARAM_STR);
       $stmt->bindParam(":password", $data['password'], PDO::PARAM_STR);
       $stmt->bindParam(":role", $data['role'], PDO::PARAM_STR);
+      $stmt->bindParam(":picture", $data['picture'], PDO::PARAM_STR);
 
       // test the execute;
       if ($stmt->execute()) {

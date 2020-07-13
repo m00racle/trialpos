@@ -123,12 +123,83 @@
             && preg_match('/^[a-zA-Z0-9 ]+$/', $_POST['newName'])
             && preg_match('/^[a-zA-Z0-9]+$/', $_POST['newPass'])) {
           // code...process the data update from user static method addNewUser;
+
+          // upload the user photo;
+          // NOTE: the default profile pict route needs to be defined judt in case user does not upload any photos;
+          $route = '';
+          if (isset($_FILES["newPict"]["tmp_name"])) {
+            // code...upload the photo to the view/img/user folder;
+            // trim the controller to trim the picture to the desired size;
+            list($width, $height) = getimagesize($_FILES["newPict"]["tmp_name"]);
+            // NOTE: this is a method from PHP the width is index 1 and the height is index 2 in result;
+
+            $newWidth = 500;
+            $newHeight = 500;
+            // NOTE: these are in pixels
+
+            // set the directory to save the photos;
+            $pictDir = "view/img/user/".$_POST["newUser"];
+            // NOTE: this will make the file view/img/user/[username].jpg or .png;
+            mkdir($pictDir, 0755);
+            // NOTE: this is the standard CGI file permission (only user can write others read and execute);
+
+            // put the newPict filetype extension;
+            if ($_FILES["newPict"]["type"] == "image/jpeg") {
+              // code...save the image inside the folder created earlier;
+              // the filename will be a random number between 100 to 999;
+              $randomNumber = at_rand(100,999); // NOTE: at_rand is a php method;
+
+              // set the route to the filename;
+              $route = "view/img/user/".$_POST["newUser"]."/profilepic.jpg";
+              // NOTE: this will save the image as a random number.jpg;
+
+              // prepare the image and trim it;
+              $oriPict = imagecreatefromjpeg($_FILES["newPict"]["tmp_name"]);
+              // NOTE: this the original picture uploaded;
+              $finalPictSize = imagecreatetruecolor($newWidth, $newHeight);
+              // NOTE: imagecreatetruecolor is a php method that creates image on specific width and height as param;
+
+              // resize the image;
+              imagecopyresized($finalPictSize, $oriPict, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+              // NOTE: imagecopyresized ( resource $dst_image , resource $src_image ,
+              //      int $dst_x , int $dst_y , int $src_x , int $src_y , int $dst_w ,
+              //      int $dst_h , int $src_w , int $src_h ) : bool
+
+              // save the picture in the route path;
+              imagejpeg($finalPictSize, $route);
+              // NOTE: imagejpeg ( resource $image [, mixed $to = NULL [, int $quality = -1 ]] ) : bool
+              // imagejpeg — Output image to browser or file
+            } else {
+              // code...file png;
+              // set the route to the filename;
+              $route = "view/img/user/".$_POST["newUser"]."/profilepic.png";
+              // NOTE: this will save the image as a random number.jpg;
+
+              // prepare the image and trim it;
+              $oriPict = imagecreatefrompng($_FILES["newPict"]["tmp_name"]);
+              // NOTE: this the original picture uploaded;
+              $finalPictSize = imagecreatetruecolor($newWidth, $newHeight);
+              // NOTE: imagecreatetruecolor is a php method that creates image on specific width and height as param;
+
+              // resize the image;
+              imagecopyresized($finalPictSize, $oriPict, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+              // NOTE: imagecopyresized ( resource $dst_image , resource $src_image ,
+              //      int $dst_x , int $dst_y , int $src_x , int $src_y , int $dst_w ,
+              //      int $dst_h , int $src_w , int $src_h ) : bool
+
+              // save the picture in the route path;
+              imagepng($finalPictSize, $route);
+            }
+
+            // var_dump($_FILES["newPict"]["tmp_name"]); // NOTE: test delete or comment ater;
+          }
           $table = "user"; // NOTE: this is the table name in the database;
 
           $data = array('fullname' => $_POST['newName'],
                         'username' => $_POST['newUser'],
                         'password' => $_POST['newPass'],
-                        'role' => $_POST['newRole']);
+                        'role' => $_POST['newRole'],
+                        'picture' => $route);
 
           // call the addNewUser static method from the ModelUser class;
           $response = ModelUser::addNewUser($table, $data);
