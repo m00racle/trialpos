@@ -9,7 +9,7 @@ class Connection
   // {
   //   // code...non constructed;
   // }
-  static public function connect()
+  public function connect()
   {
     // code...connect to the database using PDO;
     $hostname="localhost";
