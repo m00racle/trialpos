@@ -122,10 +122,52 @@
         if (preg_match('/^[a-zA-Z0-9]+$/', $_POST['newUser'])
             && preg_match('/^[a-zA-Z0-9 ]+$/', $_POST['newName'])
             && preg_match('/^[a-zA-Z0-9]+$/', $_POST['newPass'])) {
-          // code...
+          // code...process the data update from user static method addNewUser;
+          $table = "user"; // NOTE: this is the table name in the database;
+
+          $data = array('fullname' => $_POST['newName'],
+                        'username' => $_POST['newUser'],
+                        'password' => $_POST['newPass'],
+                        'role' => $_POST['newRole']);
+
+          // call the addNewUser static method from the ModelUser class;
+          $response = ModelUser::addNewUser($table, $data);
+
+          // test if the process is done;
+          if ($response == 'ok') {
+            // code...give sweetalert2;
+            echo "<script>
+            Swal.fire({
+              icon: 'success',
+              title: 'Add User: ".$_POST['newUser']." Berhasil!',
+              text: 'User berhasil disimpan di basis data. Klik lanjut untuk melanjutkan',
+              confirmButtonText: 'OK Lanjut',
+              allowOutsideClick: true
+            }).then((result) => {
+              if (result.value) {
+                  window.location = 'user';
+              }
+            })
+              </script>";
+          } else {
+            // code...think of an action will you...
+          }
         } else {
           // code...the input is not valid due to preg_match restriction;
-          echo "input not valid!"; // NOTE: change this to sweetalert later!
+          // put a sweetalert2 and reload the user page;
+          echo "<script>
+          Swal.fire({
+            icon: 'error',
+            title: 'Add User: ".$_POST['newUser']." Gagal!',
+            text: 'Hanya karakter huruf dan angka tanpa spasi yang diperbolehkan untuk nama user dan password!',
+            confirmButtonText: 'OK Ulang',
+            allowOutsideClick: true
+          }).then((result) => {
+            if (result.value) {
+                window.location = 'user';
+            }
+          })
+            </script>";
         }
       }
     }

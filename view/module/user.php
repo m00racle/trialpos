@@ -93,7 +93,7 @@
 
     <!-- Modal content-->
     <div class="modal-content">
-      <form role="form" class="" action="index.html" method="post" enctype="multipart/form-data">
+      <form role="form" class="" action="" method="post" enctype="multipart/form-data">
         <!-- modal header -->
         <div class="modal-header" style="background:#3c8dbc; color:white">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -166,7 +166,8 @@
         <?php
         // save the user;
         // make a new UserController object;
-        ScreateUser = new UserController();
+
+        $createUser = new UserController();
         $createUser -> ctrCreateUser();
          ?>
       </form>

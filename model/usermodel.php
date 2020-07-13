@@ -24,6 +24,32 @@
       $stmt -> close();
       $stmt = null;
     }
+
+    static public function addNewUser($table, $data)
+    {
+      // code...insert the data to the database table;
+      $stmt = Connection::connect()->prepare("INSERT INTO $table(fullname, username, password, role)
+              VALUES (:fullname, :username, :password, :role)");
+
+      // link the parameters;
+      $stmt->bindParam(":fullname", $data['fullname'], PDO::PARAM_STR);
+      $stmt->bindParam(":username", $data['username'], PDO::PARAM_STR);
+      $stmt->bindParam(":password", $data['password'], PDO::PARAM_STR);
+      $stmt->bindParam(":role", $data['role'], PDO::PARAM_STR);
+
+      // test the execute;
+      if ($stmt->execute()) {
+        // code...return 'ok'
+        return "ok";
+      } else {
+        // code...return error;
+        return "error";
+      }
+
+      // best paractice
+      $stmt -> close();
+      $stmt = null;
+    }
   }
 
 ?>
