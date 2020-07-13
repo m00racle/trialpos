@@ -31,9 +31,6 @@
           //      instead of returning NULL it will return bollean type false; thus to override it;
           if ($response == false || $response['username'] == NULL) {
             // code...user not found;
-<<<<<<< HEAD
-            echo "<br><div class='alert alert-danger'>User not found!</div>";
-=======
             //echo "user not found!"; // NOTE: for test only! comment out or delete!
             echo "<script>
               $(document).ready(function(){
@@ -52,7 +49,6 @@
 
               </script>";
 
->>>>>>> trial_alert
           } elseif ($response["password"] == $_POST["txtpass"]) {
             // code... user match can login; start collect session;
             // echo "<div class='alert alert-success'>Welcome!</div>"; // NOTE: test only
@@ -77,9 +73,6 @@
 
           } else {
             // code...wrong password;
-<<<<<<< HEAD
-            echo "<br><div class='alert alert-warning'>Failed to Login: Password is wrong!</div>";
-=======
             echo "<script>
               $(document).ready(function(){
                 Swal.fire({
@@ -96,7 +89,6 @@
               });
 
               </script>";
->>>>>>> trial_alert
           }
         } else {
           // code...alert only alphanumeric allowed;
