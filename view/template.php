@@ -45,7 +45,7 @@
 
   <!-- sweetalert2 ver 9 -->
   <script src="view/plugins/sweetalert2/sweetalert2.all.min.js"></script>
-  
+
   <!-- DataTables -->
   <script src="view/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
   <script src="view/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
@@ -109,6 +109,7 @@
 <!-- </div> -->
 <!-- ./wrapper -->
 <script src="view/js/template.js"></script>
+<script src="view/js/user.js"></script>
 
 </body>
 </html>

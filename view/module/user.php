@@ -147,10 +147,10 @@
             <div class="form-group">
               <div class="panel">
                 Upload Photo
-                <input type="file" id="newPict" name="newPict">
-                <p class="help-block">Max 200MB</p>
+                <input type="file" class="newPict" name="newPict">
+                <p class="help-block">Max 1MB</p>
                 <img src="view\img\user\default\anon_icon.png"
-                      class="img-thumbnail" width="40px">
+                      class="img-thumbnail preview" width="40px">
               </div>
 
             </div>
