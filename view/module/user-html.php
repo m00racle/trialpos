@@ -163,12 +163,6 @@
           <button type="submit" class="btn btn-primary">Save Changes</button>
         </div>
         <!-- /.end model-content; -->
-        <?php
-        // save the user;
-        // make a new UserController object;
-        ScreateUser = new UserController();
-        $createUser -> ctrCreateUser();
-         ?>
       </form>
 
     </div>

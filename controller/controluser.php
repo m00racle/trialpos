@@ -9,7 +9,7 @@
     // {
     //   // code...non constructed class;
     // }
-    public function ctrUserLogin()
+    static public function ctrUserLogin()
     {
       // code...control the user login;
       if (isset($_POST["txtusername"])) {
@@ -108,6 +108,24 @@
             });
 
             </script>";
+        }
+      }
+    }
+
+    static public function ctrCreateUser()()
+    {
+      // code...create and add new user;
+      if (isset($_POST["newUser"])) {
+        // code...validate if the syntax for username contains only alphanumeric with no spaces
+        // validate the newName must be alphanumeric but allows spaces
+        // for the password is the same as the username
+        if (preg_match('/^[a-zA-Z0-9]+$/', $_POST['newUser'])
+            && preg_match('/^[a-zA-Z0-9 ]+$/', $_POST['newName'])
+            && preg_match('/^[a-zA-Z0-9]+$/', $_POST['newPass'])) {
+          // code...
+        } else {
+          // code...the input is not valid due to preg_match restriction;
+          echo "input not valid!"; // NOTE: change this to sweetalert later!
         }
       }
     }
