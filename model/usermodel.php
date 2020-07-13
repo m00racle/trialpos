@@ -20,6 +20,9 @@
       $stmt -> bindParam(":".$item, $value, PDO::PARAM_STR); // NOTE: this means the parameter is string;
       $stmt -> execute();
       return $stmt -> fetch(PDO::FETCH_ASSOC);
+      // erase the instaces (best practice);
+      $stmt -> close();
+      $stmt = null;
     }
   }
 
