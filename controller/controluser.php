@@ -112,7 +112,7 @@
       }
     }
 
-    static public function ctrCreateUser()()
+    static public function ctrCreateUser()
     {
       // code...create and add new user;
       if (isset($_POST["newUser"])) {
