@@ -147,7 +147,7 @@
             if ($_FILES["newPict"]["type"] == "image/jpeg") {
               // code...save the image inside the folder created earlier;
               // the filename will be a random number between 100 to 999;
-              $randomNumber = at_rand(100,999); // NOTE: at_rand is a php method;
+              // $randomNumber = at_rand(100,999); // NOTE: at_rand is a php method;
 
               // set the route to the filename;
               $route = "view/img/user/".$_POST["newUser"]."/profilepic.jpg";
@@ -169,7 +169,7 @@
               imagejpeg($finalPictSize, $route);
               // NOTE: imagejpeg ( resource $image [, mixed $to = NULL [, int $quality = -1 ]] ) : bool
               // imagejpeg — Output image to browser or file
-            } else {
+            } elseif ($_FILES["newPict"]["type"] == "image/png") {
               // code...file png;
               // set the route to the filename;
               $route = "view/img/user/".$_POST["newUser"]."/profilepic.png";
@@ -189,9 +189,18 @@
 
               // save the picture in the route path;
               imagepng($finalPictSize, $route);
+            } else {
+              // code...just use the default user picture;
+              // code...file png;
+              // set the route to the filename;
+              $route = "view/img/user/".$_POST["newUser"]."/profilepic.png";
+              $source = "view/img/user/default/userdefault.png";
+
+              // copy the default pics:
+              copy($source, $route);
             }
 
-            // var_dump($_FILES["newPict"]["tmp_name"]); // NOTE: test delete or comment ater;
+            // var_dump($_FILES["newPict"]["type"]); // NOTE: test delete or comment ater;
           }
           $table = "user"; // NOTE: this is the table name in the database;
 
