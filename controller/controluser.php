@@ -231,6 +231,19 @@
               </script>";
           } else {
             // code...think of an action will you...
+            echo "<script>
+            Swal.fire({
+              icon: 'error',
+              title: 'Add User: ".$_POST['newUser']." Gagal!',
+              text: 'Upload ke basis data gagal!',
+              confirmButtonText: 'OK Ulang!',
+              allowOutsideClick: true
+            }).then((result) => {
+              if (result.value) {
+                  
+              }
+            })
+              </script>";
           }
         } else {
           // code...the input is not valid due to preg_match restriction;
