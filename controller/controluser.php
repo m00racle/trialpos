@@ -16,6 +16,10 @@
         // code...check if all the username characters are alphanumerics;
         if (preg_match('/^[a-zA-Z0-9]+$/', $_POST["txtusername"])
             && preg_match('/^[a-zA-Z0-9]+$/', $_POST["txtpass"])) {
+          // encrypt the password input;
+          $salt = '$2a$07$usesomesillystringforsalt$'; // NOTE: blowfish salt!
+          $encryptedLogin = crypt($_POST['txtpass'], $salt);
+
           // code...then call the database for table user;
           $table = 'user';
           // then we consult to the model user which will verify if the user is valid;
@@ -49,7 +53,7 @@
 
               </script>";
 
-          } elseif ($response["password"] == $_POST["txtpass"]) {
+          } elseif ($response["password"] == $encryptedLogin) {
             // code... user match can login; start collect session;
             // echo "<div class='alert alert-success'>Welcome!</div>"; // NOTE: test only
             $_SESSION['login'] = 'ok';
@@ -202,11 +206,20 @@
 
             // var_dump($_FILES["newPict"]["type"]); // NOTE: test delete or comment ater;
           }
+
+          // ENCRYPT THE PASSWORD INPUT:
+          $salt = '$2a$07$usesomesillystringforsalt$'; // NOTE: blowfish salt!
+          $encryptor = crypt($_POST['newPass'], $salt);
+          // crypt ( string $str [, string $salt ] ) : string
+          // crypt() will return a hashed string using the standard Unix DES-based
+          // algorithm or alternative algorithms that may be available on the system.
+
+          // UPLOAD NEW USER DATA TO THE DATABASE;
           $table = "user"; // NOTE: this is the table name in the database;
 
           $data = array('fullname' => $_POST['newName'],
                         'username' => $_POST['newUser'],
-                        'password' => $_POST['newPass'],
+                        'password' => $encryptor,
                         'role' => $_POST['newRole'],
                         'picture' => $route);
 
@@ -240,7 +253,7 @@
               allowOutsideClick: true
             }).then((result) => {
               if (result.value) {
-                  
+
               }
             })
               </script>";
