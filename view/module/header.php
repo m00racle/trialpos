@@ -22,8 +22,8 @@
       <ul class="nav navbar-nav">
         <li class="dropdown user user-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <img src="view/img/user/default/userdefault.png" class="user-image">
-            <span class="hidden-xs">Admin</span>
+            <?php echo '<img src="'.$_SESSION["picture"].'" class="user-image">'; ?>
+            <span class="hidden-xs"><?php echo "Hello: ".$_SESSION['fullname']; ?></span>
           </a>
 
               <!-- dropdown -->

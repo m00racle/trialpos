@@ -56,8 +56,14 @@
           } elseif ($response["password"] == $encryptedLogin) {
             // code... user match can login; start collect session;
             // echo "<div class='alert alert-success'>Welcome!</div>"; // NOTE: test only
+            // SESSION VARIABLES:
             $_SESSION['login'] = 'ok';
-            // $_SESSION['username'] = $response['username'];
+            $_SESSION['userid'] = $response['userid'];
+            $_SESSION['fullname'] = $response['fullname'];
+            $_SESSION['username'] = $response['username'];
+            $_SESSION['picture'] = $response['picture'];
+            $_SESSION['role'] = $response['role'];
+            
             echo "<script>
               $(document).ready(function(){
                 Swal.fire({
