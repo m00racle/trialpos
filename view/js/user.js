@@ -60,14 +60,14 @@ $(".btnEditUser").click(function() {
   //capture the inputs using the HTML attribute idUser;
   var idUser = $(this).attr("idUser");
 
-  console.log("idUser", idUser); // NOTE: debug;
+  // console.log("idUser", idUser); // NOTE: debug;
 
   // instatntiate new class FormData();
   var datos = new FormData();
 
   // append userid which is stored in idUser variable;
   datos.append('idUser', idUser); // NOTE: remember here userid is idUser;
-  console.log("datos", datos.get("idUser"));
+  // console.log("datos", datos.get("idUser")); // NOTE: debug!
 
   $.ajax({
     url:"ajax/userajax3.php",
@@ -78,7 +78,14 @@ $(".btnEditUser").click(function() {
     processData: false,
     dataType: "json",
     success: function(response){
-      console.log("response", response);
+      // console.log("response", response); // NOTE: debug!
+      $("#editName").val(response["fullname"]);
+      // NOTE: the #editName denotes the input id not the name!
+      // NOTE: the response is just an array form of the data from the database thus the key of
+      // NOTE: the full name data is still fullname
+      $("#editUser").val(response["username"]);
+      $("#editRole").html(response["role"]);
+      // NOTE: this one uses html instead of val since the id is int he option not in select ot input!
     }
   });
 })

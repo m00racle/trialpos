@@ -202,7 +202,7 @@
               <div class="input-group">
                 <!-- form and input groups are classes from bootstrap -->
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                <input type="text" name="editName" value="" required
+                <input type="text" name="editName" id="editName" value="" required
                   class="form-control input-lg">
               </div>
             </div>
@@ -211,7 +211,7 @@
               <div class="input-group">
                 <!-- form and input groups are classes from bootstrap -->
                 <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                <input type="text" name="editUser" value="" required
+                <input type="text" name="editUser" id="editUser" value="" required
                   class="form-control input-lg">
               </div>
             </div>
@@ -220,7 +220,7 @@
               <div class="input-group">
                 <!-- form and input groups are classes from bootstrap -->
                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                <input type="password" name="editPass" placeholder="input new password" required
+                <input type="password" name="editPass" id="editPass" placeholder="input new password" required
                   class="form-control input-lg">
               </div>
             </div>
