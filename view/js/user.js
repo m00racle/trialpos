@@ -70,7 +70,7 @@ $(".btnEditUser").click(function() {
   console.log("datos", datos.get("idUser"));
 
   $.ajax({
-    url:"ajax/userajax.php",
+    url:"ajax/userajax2.php",
     method: "POST",
     data: datos,
     cache: false,
