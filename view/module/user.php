@@ -40,38 +40,39 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>User Admin</td>
-              <td>admin</td>
-              <td><img src="view\img\user\default\anon_icon.png"
-                    class="img-thumbnail" width="40px"></td>
-              <td>admin</td>
-              <td><button class="btn btn-success btn-xs">Activate</button></td>
-              <td>2020-07-11 23:05:22</td>
-              <td>
-                <div class="btn-group">
-                  <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
-                  <button class="btn btn-danger"><i class="fa fa-times"></i></button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Manager User</td>
-              <td>moon</td>
-              <td><img src="view\img\user\default\anon_icon.png"
-                    class="img-thumbnail" width="40px"></td>
-              <td>manager</td>
-              <td><button class="btn btn-danger btn-xs">Deactivate</button></td>
-              <td>2020-07-11 23:05:22</td>
-              <td>
-                <div class="btn-group">
-                  <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
-                  <button class="btn btn-danger"><i class="fa fa-times"></i></button>
-                </div>
-              </td>
-            </tr>
+            <!-- TABLE BODY -->
+            <?php
+              // fill the table body with user data from the database;
+              $item = null;
+              $value = null;
+              // NOTE: this is only initial values, we will update it once we fill the table body;
+
+              $userData = UserController::ctrDataUser($item, $value);
+
+              // var_dump($userData); // NOTE: for debug only!
+              // echo "<br>"; // NOTE: for debug!
+              foreach ($userData as $key => $data) {
+                // code...
+                // var_dump($data['username']); // NOTE: debug!
+                echo '<tr>
+                  <td>'.$data["userid"].'</td>
+                  <td>'.$data["fullname"].'</td>
+                  <td>'.$data["username"].'</td>
+                  <td><img src="'.$data["picture"].'"
+                        class="img-thumbnail" width="40px"></td>
+                  <td>'.$data["role"].'</td>
+                  <td><button class="btn btn-success btn-xs">Activate</button></td>
+                  <td>'.$data["last_login"].'</td>
+                  <td>
+                    <div class="btn-group">
+                      <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
+                      <button class="btn btn-danger"><i class="fa fa-times"></i></button>
+                    </div>
+                  </td>
+                </tr>';
+              }
+             ?>
+
           </tbody>
         </table>
       </div>

@@ -16,10 +16,19 @@
       // code...this will call the user data from the  database using SELECT;
       // NOTE: this method is static since it is called using ::
       //prepare the statement;
-      $stmt = Connection::connect()->prepare("SELECT * FROM $table WHERE $item = :$item");
-      $stmt -> bindParam(":".$item, $value, PDO::PARAM_STR); // NOTE: this means the parameter is string;
-      $stmt -> execute();
-      return $stmt -> fetch(PDO::FETCH_ASSOC);
+      if ($item != null) {
+        // code...
+        $stmt = Connection::connect()->prepare("SELECT * FROM $table WHERE $item = :$item");
+        $stmt -> bindParam(":".$item, $value, PDO::PARAM_STR); // NOTE: this means the parameter is string;
+        $stmt -> execute();
+        return $stmt -> fetch(PDO::FETCH_ASSOC);
+      } else {
+        // code...select the whole table;
+        $stmt = Connection::connect()->prepare("SELECT * FROM $table");
+        $stmt -> execute();
+        return $stmt -> fetchAll(PDO::FETCH_ASSOC); // NOTE: fetch all including table number index;
+      }
+
       // erase the instaces (best practice);
       $stmt -> close();
       $stmt = null;

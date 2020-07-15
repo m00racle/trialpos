@@ -63,7 +63,7 @@
             $_SESSION['username'] = $response['username'];
             $_SESSION['picture'] = $response['picture'];
             $_SESSION['role'] = $response['role'];
-            
+
             echo "<script>
               $(document).ready(function(){
                 Swal.fire({
@@ -120,6 +120,8 @@
             </script>";
         }
       }
+
+      // END OF ctrUserLogin method;
     }
 
     static public function ctrCreateUser()
@@ -282,7 +284,20 @@
             </script>";
         }
       }
+
+      // -END OF ctrCreateUser method;
     }
+
+    static public function ctrDataUser($item, $value)
+    {
+      // code...CONTROL THE USER DATA VIEW;
+      // connect to the ModelUser class and modViewUser to fetch data;
+      $table = 'user';
+      $response = ModelUser::modViewUser($table, $item, $value);
+      return $response;
+    }
+
+    // -END OF CLASS UserController
   }
 
  ?>
