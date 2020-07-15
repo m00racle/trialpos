@@ -53,3 +53,32 @@ $(".newPict").change(function(){
     })
   }
 })
+
+// EDIT USER & UPDATE DATABASE USING AJAX;
+// When the user click at the btnEditUser;
+$(".btnEditUser").click(function() {
+  //capture the inputs using the HTML attribute idUser;
+  var idUser = $(this).attr("idUser");
+
+  console.log("idUser", idUser); // NOTE: debug;
+
+  // instatntiate new class FormData();
+  var datos = new FormData();
+
+  // append userid which is stored in idUser variable;
+  datos.append('idUser', idUser); // NOTE: remember here userid is idUser;
+  console.log("datos", datos.get("idUser"));
+
+  $.ajax({
+    url:"ajax/userajax.php",
+    method: "POST",
+    data: datos,
+    cache: false,
+    contentType: false,
+    processData: false,
+    dataType: "json",
+    success: function(response){
+      console.log("response", response);
+    }
+  });
+})

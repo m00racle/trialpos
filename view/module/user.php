@@ -65,7 +65,8 @@
                   <td>'.$data["last_login"].'</td>
                   <td>
                     <div class="btn-group">
-                      <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
+                      <button class="btn btn-warning btnEditUser" idUser="'.$data["userid"].'" data-toggle="modal"
+                        data-target="#modalEditUser"><i class="fa fa-pencil"></i></button>
                       <button class="btn btn-danger"><i class="fa fa-times"></i></button>
                     </div>
                   </td>
@@ -89,6 +90,7 @@
 </div>
 <!-- this is the modal pop ups; -->
 <!-- Modal -->
+<!-- MODAL ADD USER -->
 <div id="modalAddUser" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
@@ -177,3 +179,89 @@
 
   </div>
 </div>
+<!-- END OF MODAL ADD USER -->
+
+<!-- MODAL EDIT USER -->
+<div id="modalEditUser" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <form role="form" class="" action="" method="post" enctype="multipart/form-data">
+        <!-- modal header -->
+        <div class="modal-header" style="background:#3c8dbc; color:white">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Edit User</h4>
+        </div>
+        <!-- modal body -->
+        <div class="modal-body">
+          <div class="box-body">
+
+            <!-- form for add user name-->
+            <div class="form-group">
+              <div class="input-group">
+                <!-- form and input groups are classes from bootstrap -->
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <input type="text" name="editName" value="" required
+                  class="form-control input-lg">
+              </div>
+            </div>
+            <!-- form for username -->
+            <div class="form-group">
+              <div class="input-group">
+                <!-- form and input groups are classes from bootstrap -->
+                <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                <input type="text" name="editUser" value="" required
+                  class="form-control input-lg">
+              </div>
+            </div>
+            <!-- form for password -->
+            <div class="form-group">
+              <div class="input-group">
+                <!-- form and input groups are classes from bootstrap -->
+                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                <input type="password" name="editPass" placeholder="input new password" required
+                  class="form-control input-lg">
+              </div>
+            </div>
+            <!-- input to select the role; -->
+            <div class="form-group">
+              <div class="input-group">
+                <!-- form and input groups are classes from bootstrap -->
+                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                <select class="form-control input-lg" name="editRole">
+                  <option value="" id="editRole">Select Profile</option>
+                  <option value="admin">Admin</option>
+                  <option value="manager">Manager</option>
+                  <option value="user">User</option>
+                </select>
+              </div>
+            </div>
+            <!-- input file for the picture -->
+            <div class="form-group">
+              <div class="panel">
+                Upload Photo
+                <input type="file" class="newPict" name="editPict">
+                <p class="help-block">Max 1MB</p>
+                <img src="view\img\user\default\anon_icon.png"
+                      class="img-thumbnail preview" width="40px">
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+        <!-- modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+        <!-- /.end model-content; -->
+
+      </form>
+
+    </div>
+
+  </div>
+</div>\
+<!-- END OF MODAL EDIT USER -->
