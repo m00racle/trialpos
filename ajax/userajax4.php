@@ -4,23 +4,22 @@
 
   // code...make a class;
   /**
-   *Class ajaxUser to operate the ajax through method;
+   * AjaxUser construct $idUser and control response using Ajax;
    */
   class AjaxUser
   {
-    // properties;
+    // class property;
     private $idUser;
 
-    // setter;
-    public function setIdUser($input='')
+    function __construct($idUser)
     {
-      // code...set the idUser variable;
-      $this->idUser = $input;
+      // code...construct the Class with the argumen idUser;
+      $this -> idUser = $idUser;
     }
 
     public function ajaxEditUser()
     {
-      // code...
+      // code...execute the query and parse it in JSON;
       $item = "userid";
       $value = $this->idUser;
 
@@ -31,9 +30,10 @@
 
   }
 
+
   if (isset($_POST["idUser"])) {
-    $editor = new AjaxUser();
-    $editor -> setIdUser($_POST["idUser"]);
+    $editor = new AjaxUser($_POST["idUser"]);
+    // $editor -> idUser = ; // NOTE: this is a bad practice!
     $editor -> ajaxEditUser();
   }
  ?>
