@@ -197,21 +197,22 @@
         <div class="modal-body">
           <div class="box-body">
 
-            <!-- form for add user name-->
+            <!-- form for edit user name-->
             <div class="form-group">
               <div class="input-group">
                 <!-- form and input groups are classes from bootstrap -->
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                <input type="text" name="editName" id="editName" value="" required
+                <input type="text" name="editName" id="editName" value=""
                   class="form-control input-lg">
               </div>
             </div>
             <!-- form for username -->
+            <!-- username is not editable thus it will be readonly input! -->
             <div class="form-group">
               <div class="input-group">
                 <!-- form and input groups are classes from bootstrap -->
                 <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                <input type="text" name="editUser" id="editUser" value="" required
+                <input type="text" name="editUser" id="editUser" value="" readonly
                   class="form-control input-lg">
               </div>
             </div>
@@ -220,8 +221,10 @@
               <div class="input-group">
                 <!-- form and input groups are classes from bootstrap -->
                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                <input type="password" name="editPass" id="editPass" placeholder="input new password" required
+                <input type="password" name="editPass" id="editPass" placeholder="input new password" 
                   class="form-control input-lg">
+                <input type="hidden" name="currentPass" id="currentPass">
+                <!-- hidden will not be visible by the user -->
               </div>
             </div>
             <!-- input to select the role; -->
@@ -245,6 +248,7 @@
                 <p class="help-block">Max 1MB</p>
                 <img src="view\img\user\default\anon_icon.png"
                       class="img-thumbnail preview" width="40px">
+                <input type="hidden" name="currentPict" id="currentPict">
               </div>
 
             </div>
@@ -257,6 +261,12 @@
           <button type="submit" class="btn btn-primary">Save Changes</button>
         </div>
         <!-- /.end model-content; -->
+
+        <!-- php code for the edit user modal -->
+        <?php
+          $editUser = new UserController();
+          $editUser -> ctrEditUser();
+        ?>
 
       </form>
 

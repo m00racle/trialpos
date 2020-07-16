@@ -84,8 +84,17 @@ $(".btnEditUser").click(function() {
       // NOTE: the response is just an array form of the data from the database thus the key of
       // NOTE: the full name data is still fullname
       $("#editUser").val(response["username"]);
+      $("#currentPass").val(response["password"]);
+      // NOTE: for the password we use the hidden input to store the value of the current password!
       $("#editRole").html(response["role"]);
+      $("#editRole").val(response["role"]);
       // NOTE: this one uses html instead of val since the id is int he option not in select ot input!
+      // NOTE: we still have to bind value on it since html only display but not binding that is val job!
+      // now we also need to preview the user's current photo (picture); (the default is annondefault)
+      $(".preview").attr("src", response["picture"]);
+      // NOTE: jQuery attr() Method => $(selector).attr(attribute,value);
+      $("#currentPict").val(response["picture"]);
+      // NOTE: binding the current picture to the hidden input!
     }
   });
 })
