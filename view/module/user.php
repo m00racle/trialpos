@@ -202,7 +202,7 @@
               <div class="input-group">
                 <!-- form and input groups are classes from bootstrap -->
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                <input type="text" name="editName" id="editName" value=""
+                <input type="text" name="editName" id="editName" value="" required
                   class="form-control input-lg">
               </div>
             </div>
@@ -221,7 +221,7 @@
               <div class="input-group">
                 <!-- form and input groups are classes from bootstrap -->
                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                <input type="password" name="editPass" id="editPass" placeholder="input new password" 
+                <input type="password" name="editPass" id="editPass" placeholder="input new password"
                   class="form-control input-lg">
                 <input type="hidden" name="currentPass" id="currentPass">
                 <!-- hidden will not be visible by the user -->
