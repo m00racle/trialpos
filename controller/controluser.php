@@ -500,7 +500,7 @@
             echo "<script>
             Swal.fire({
               icon: 'success',
-              title: 'Add User: ".$_POST['editUser']." Berhasil!',
+              title: 'Update Data User: ".$_POST['editUser']." Berhasil!',
               text: 'User berhasil dimodifikasi di basis data. Klik lanjut untuk melanjutkan',
               confirmButtonText: 'OK Lanjut',
               allowOutsideClick: true
