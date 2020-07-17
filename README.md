@@ -12,3 +12,6 @@ The app does not provides any other link to access the web app functions.
 - If the user forget about their password, they only have one solution to call the admin to reset their password.
 
 This way it will make the app more secure since this app is most likely used by internal management which only provides account access to verified employees.
+
+###User Module
+Done... see wiki
