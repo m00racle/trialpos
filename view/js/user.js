@@ -56,7 +56,7 @@ $(".newPict").change(function(){
 
 // EDIT USER & UPDATE DATABASE USING AJAX;
 // When the user click at the btnEditUser;
-$(".btnEditUser").click(function() {
+$(document).on("click", ".btnEditUser", function() {
   //capture the inputs using the HTML attribute idUser;
   var idUser = $(this).attr("idUser");
 
@@ -100,7 +100,7 @@ $(".btnEditUser").click(function() {
 })
 
 // ACTIVATE User
-$(".btnActivate").click(function(){
+$(document).on("click", ".btnActivate", function(){
   var idUser = $(this).attr("idUser");
   var statusUser = $(this).attr("statusUser");
 
@@ -116,7 +116,20 @@ $(".btnActivate").click(function(){
     contentType: false,
     processData: false,
     success: function(response){
+      if (window.matchMedia("(max-width:767px)").matches) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Status User Terupdate',
+          text: 'Status User sudah berhasil diupdate',
+          confirmButtonText: 'OK Lanjut!',
+          allowOutsideClick: false
+        }).then((result) => {
+          if (result.value) {
+            window.location = "user";
+          }
+        });
 
+      }
     }
   })
 
@@ -164,7 +177,7 @@ $("#newUser").change(function(){
 })
 
 // HANDLE THE DELETE BUTTON CLICK;
-$(".btnDeleteUser").click(function(){
+$(document).on("click", ".btnDeleteUser", function(){
   var idUser = $(this).attr("idUser");
   var pictUser = $(this).attr("pictUser");
   var nameUser = $(this).attr("nameUser");
