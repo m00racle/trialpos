@@ -25,7 +25,7 @@
       </div>
       <div class="box-body">
         <!-- here we will write the table of all users; -->
-        <table class="table table-bordered table-striped dt-responsive tables">
+        <table class="table table-bordered table-striped dt-responsive tables" width="100%">
           <!-- the table classes are from the plugin -->
           <thead>
             <tr>
@@ -213,7 +213,7 @@
               <div class="input-group">
                 <!-- form and input groups are classes from bootstrap -->
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                <input type="text" name="editName" id="editName" value="" 
+                <input type="text" name="editName" id="editName" value=""
                   class="form-control input-lg">
               </div>
             </div>
