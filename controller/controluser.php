@@ -65,22 +65,59 @@
               $_SESSION['picture'] = $response['picture'];
               $_SESSION['role'] = $response['role'];
 
-              echo "<script>
-                $(document).ready(function(){
-                  Swal.fire({
-                    icon: 'success',
-                    title: 'Login ".$response['username']." Berhasil!',
-                    text: 'anda masuk sebagai ".$response['role']."',
-                    confirmButtonText: 'OK Lanjut!',
-                    allowOutsideClick: false
-                  }).then((result) => {
-                    if (result.value) {
-                      window.location.replace('dashboard')
-                    }
-                  })
-                });
+              // REGISTER THE LOGIN TIME;
+              date_default_timezone_set("Asia/Jakarta");
+              $tanggal = date('Y-m-d');
+              $jam = date('H:i:s');
 
-                </script>";
+              $loginTime = $tanggal.' '.$jam;
+              // we use the mdlActivateUser to input the timestamp for the login;
+              $item1 = "last_login";
+              $value1 = $loginTime;
+              $item2 = "userid";
+              $value2 = $response["userid"];
+              $lastLogin = ModelUser::mdlActivateUser($table, $item1, $value1, $item2, $value2);
+
+              // only if lastLogin says ok then the user can enter;
+              if ($lastLogin == "ok") {
+                // code...last login have been updated ready to login;
+                echo "<script>
+                  $(document).ready(function(){
+                    Swal.fire({
+                      icon: 'success',
+                      title: 'Login ".$response['username']." Berhasil!',
+                      text: 'anda masuk sebagai ".$response['role']."',
+                      confirmButtonText: 'OK Lanjut!',
+                      allowOutsideClick: false
+                    }).then((result) => {
+                      if (result.value) {
+                        window.location.replace('dashboard')
+                      }
+                    })
+                  });
+
+                  </script>";
+              } else {
+                // code...last login failed to update, contact admin;
+                echo "<script>
+                  $(document).ready(function(){
+                    Swal.fire({
+                      icon: 'warning',
+                      title: 'Login ".$response['username']." Gagal!',
+                      text: 'Sistem gagal tersambung, hubungi admin atau ulang login!',
+                      confirmButtonText: 'OK!',
+                      allowOutsideClick: true
+                    }).then((result) => {
+                      if (result.value) {
+
+                      }
+                    })
+                  });
+
+                  </script>";
+              }
+
+
             } else {
               // code...login is not activated
               echo "<script>
