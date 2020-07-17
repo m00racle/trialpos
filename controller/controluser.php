@@ -54,32 +54,53 @@
               </script>";
 
           } elseif ($response["password"] == $encryptedLogin) {
-            // code... user match can login; start collect session;
-            // echo "<div class='alert alert-success'>Welcome!</div>"; // NOTE: test only
-            // SESSION VARIABLES:
-            $_SESSION['login'] = 'ok';
-            $_SESSION['userid'] = $response['userid'];
-            $_SESSION['fullname'] = $response['fullname'];
-            $_SESSION['username'] = $response['username'];
-            $_SESSION['picture'] = $response['picture'];
-            $_SESSION['role'] = $response['role'];
+            if ($response['status'] == 1) {
+              // code...login allowed;
+              // code... user match can login; start collect session;
+              // SESSION VARIABLES:
+              $_SESSION['login'] = 'ok';
+              $_SESSION['userid'] = $response['userid'];
+              $_SESSION['fullname'] = $response['fullname'];
+              $_SESSION['username'] = $response['username'];
+              $_SESSION['picture'] = $response['picture'];
+              $_SESSION['role'] = $response['role'];
 
-            echo "<script>
-              $(document).ready(function(){
-                Swal.fire({
-                  icon: 'success',
-                  title: 'Login ".$response['username']." Berhasil!',
-                  text: 'anda masuk sebagai ".$response['role']."',
-                  confirmButtonText: 'OK Lanjut!',
-                  allowOutsideClick: false
-                }).then((result) => {
-                  if (result.value) {
-                    window.location.replace('dashboard')
-                  }
-                })
-              });
+              echo "<script>
+                $(document).ready(function(){
+                  Swal.fire({
+                    icon: 'success',
+                    title: 'Login ".$response['username']." Berhasil!',
+                    text: 'anda masuk sebagai ".$response['role']."',
+                    confirmButtonText: 'OK Lanjut!',
+                    allowOutsideClick: false
+                  }).then((result) => {
+                    if (result.value) {
+                      window.location.replace('dashboard')
+                    }
+                  })
+                });
 
-              </script>";
+                </script>";
+            } else {
+              // code...login is not activated
+              echo "<script>
+                $(document).ready(function(){
+                  Swal.fire({
+                    icon: 'warning',
+                    title: 'Login ".$response['username']." Gagal!',
+                    text: 'Akun anda belum diaktifkan, hubungi admin untuk mengaktifkan akun anda!',
+                    confirmButtonText: 'OK!',
+                    allowOutsideClick: true
+                  }).then((result) => {
+                    if (result.value) {
+
+                    }
+                  })
+                });
+
+                </script>";
+            }
+
 
           } else {
             // code...wrong password;

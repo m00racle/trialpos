@@ -98,3 +98,38 @@ $(".btnEditUser").click(function() {
     }
   });
 })
+
+// ACTIVATE User
+$(".btnActivate").click(function(){
+  var idUser = $(this).attr("idUser");
+  var statusUser = $(this).attr("statusUser");
+
+  var datos = new FormData();
+  datos.append("activateId", idUser);
+  datos.append("activateUser", statusUser);
+
+  $.ajax({
+    url:"ajax/userajax3.php",
+    method: "POST",
+    data: datos,
+    cache: false,
+    contentType: false,
+    processData: false,
+    success: function(response){
+
+    }
+  })
+
+  if (statusUser == 0) {
+    $(this).removeClass('btn-success');
+    $(this).addClass('btn-danger');
+    $(this).html("Deactivated");
+    $(this).attr('statusUser',1);
+
+  } else {
+    $(this).removeClass('btn-danger');
+    $(this).addClass('btn-success');
+    $(this).html("Activated");
+    $(this).attr('statusUser',0);
+  }
+})

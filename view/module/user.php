@@ -60,8 +60,18 @@
                   <td>'.$data["username"].'</td>
                   <td><img src="'.$data["picture"].'"
                         class="img-thumbnail" width="40px"></td>
-                  <td>'.$data["role"].'</td>
-                  <td><button class="btn btn-success btn-xs">Activate</button></td>
+                  <td>'.$data["role"].'</td>';
+                  if ($data['status'] != 0) {
+                    // code...user is activated
+                    echo '<td><button class="btn btn-success btn-xs btnActivate"
+                    idUser="'.$data["userid"].'" statusUser="0">Activated</button></td>';
+                  } else {
+                    // code...user is not activated;
+                    echo '<td><button class="btn btn-danger btn-xs btnActivate"
+                    idUser="'.$data["userid"].'" statusUser="1">Deactivated</button></td>';
+                  }
+
+                  echo '
                   <td>'.$data["last_login"].'</td>
                   <td>
                     <div class="btn-group">
