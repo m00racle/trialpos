@@ -130,7 +130,7 @@
               <div class="input-group">
                 <!-- form and input groups are classes from bootstrap -->
                 <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                <input type="text" name="newUser" placeholder="new username" required
+                <input type="text" name="newUser" placeholder="new username" id="newUser" required
                   class="form-control input-lg">
               </div>
             </div>

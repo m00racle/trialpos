@@ -133,3 +133,32 @@ $(".btnActivate").click(function(){
     $(this).attr('statusUser',0);
   }
 })
+
+// VALIDATE NEW USERNAME IF THERE IS ALREADY ONE USING IT;
+$("#newUser").change(function(){
+  // remove alert if any;
+  $(".alert").remove();
+  var userName = $(this).val();
+
+  var datos = new FormData();
+  datos.append("validateUser", userName);
+
+  $.ajax({
+    url:"ajax/userajax3.php",
+    method: "POST",
+    data: datos,
+    cache: false,
+    contentType: false,
+    processData: false,
+    dataType: "json",
+    success: function(response){
+      // console.log("response", response);
+      if (response) {
+        // warn the user!
+        $("#newUser").parent().after('<div class="alert alert-warning">Username sudah terpakai user lain!</div>');
+        // clear the username field;
+        $("#newUser").val("");
+      }
+    }
+  })
+})

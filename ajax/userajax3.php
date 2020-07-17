@@ -35,7 +35,20 @@
       $item2 = "userid";
       $value2 = $this->activateId;
       $response = ModelUser::mdlActivateUser($table, $item1, $value1, $item2, $value2);
-      
+
+    }
+
+    // VALIDATE USERNAME IF THERE IS ALREADY ONE USING IT;
+    public $validateUser;
+
+    public function ajaxValidateUser()
+    {
+      $item = "username";
+      $value = $this->validateUser;
+
+      $response = UserController::ctrDataUser($item, $value);
+
+      echo json_encode($response);
     }
 
   }
@@ -54,6 +67,14 @@
     $activator -> activateUser = $_POST["activateUser"];
     $activator -> activateId = $_POST["activateId"];
     $activator -> ajaxActivateUser();
+  }
+
+  // OBJECT VALIDATE USERNAME IF THERE IS ALREADY ONE USING IT;
+  if (isset($_POST["validateUser"])) {
+    // code...use ajaxUser to validate;
+    $validator = new AjaxUser();
+    $validator -> validateUser = $_POST["validateUser"];
+    $validator -> ajaxValidateUser();
   }
 
  ?>
