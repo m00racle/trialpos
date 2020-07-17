@@ -556,6 +556,42 @@
       // end of static public function ctrEditUser()
     }
 
+    // DELETE USER;
+    static public function ctrDeleteUser()
+    {
+      if (isset($_GET["idUser"])) {
+        // code...delete this particular user;
+        $table = "user";
+        $data = $_GET["idUser"];
+
+        // delete the user picture file;
+        unlink($_GET["pictUser"]);
+        // delete the user folder ;
+        rmdir("view/img/user/".$_GET["nameUser"]);
+
+        $response = ModelUser::mdlDeleteUser($table, $data);
+
+        if ($response == "ok") {
+          // code...
+          echo "<script>
+          Swal.fire({
+            icon: 'success',
+            title: 'User: ".$_GET['nameUser']." Telah Dihapus!',
+            text: 'User sudah dihapus dari basis data. Klik lanjut untuk melanjutkan',
+            confirmButtonText: 'OK Lanjut',
+            allowOutsideClick: true
+          }).then((result) => {
+            if (result.value) {
+                window.location = 'user';
+            }
+          })
+            </script>";
+        }
+      }
+
+      // end of static public function ctrDeleteUser()
+    }
+
     // -END OF CLASS UserController
   }
 

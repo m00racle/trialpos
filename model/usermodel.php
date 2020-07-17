@@ -110,6 +110,25 @@
       $stmt = null;
     }
 
+    // DELETE THE USER;
+    static public function mdlDeleteUser($table, $data)
+    {
+      $stmt = Connection::connect()->prepare("DELETE FROM $table WHERE userid = :userid");
+      $stmt->bindParam(":userid", $data, PDO::PARAM_INT);
+
+      if ($stmt->execute()) {
+        // code...return 'ok'
+        return "ok";
+      } else {
+        // code...return error;
+        return "error";
+      }
+
+      // best paractice
+      $stmt -> close();
+      $stmt = null;
+    }
+
     // end of class ModelUser
   }
 

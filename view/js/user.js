@@ -162,3 +162,24 @@ $("#newUser").change(function(){
     }
   })
 })
+
+// HANDLE THE DELETE BUTTON CLICK;
+$(".btnDeleteUser").click(function(){
+  var idUser = $(this).attr("idUser");
+  var pictUser = $(this).attr("pictUser");
+  var nameUser = $(this).attr("nameUser");
+
+      Swal.fire({
+    title: 'Anda Yakin Menghapus User ini?',
+    text: "Anda tidak bisa mengembalikan user setelah terhapus!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Ya, hapus user!'
+    }).then((result) => {
+    if (result.value) {
+      window.location = "index.php?route=user&idUser="+idUser+"&pictUser="+pictUser+"&nameUser="+nameUser;
+      }
+    })
+})

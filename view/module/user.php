@@ -77,7 +77,8 @@
                     <div class="btn-group">
                       <button class="btn btn-warning btnEditUser" idUser="'.$data["userid"].'" data-toggle="modal"
                         data-target="#modalEditUser"><i class="fa fa-pencil"></i></button>
-                      <button class="btn btn-danger"><i class="fa fa-times"></i></button>
+                      <button class="btn btn-danger btnDeleteUser" idUser="'.$data["userid"].'"
+                      pictUser="'.$data["picture"].'" nameUser="'.$data["username"].'"><i class="fa fa-times"></i></button>
                     </div>
                   </td>
                 </tr>';
@@ -212,7 +213,7 @@
               <div class="input-group">
                 <!-- form and input groups are classes from bootstrap -->
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                <input type="text" name="editName" id="editName" value="" required
+                <input type="text" name="editName" id="editName" value="" 
                   class="form-control input-lg">
               </div>
             </div>
@@ -283,5 +284,10 @@
     </div>
 
   </div>
-</div>\
+</div>
 <!-- END OF MODAL EDIT USER -->
+
+<?php
+  $deleteUser = new UserController();
+  $deleteUser -> ctrDeleteUser();
+?>
