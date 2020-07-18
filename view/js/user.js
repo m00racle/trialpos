@@ -70,7 +70,7 @@ $(document).on("click", ".btnEditUser", function() {
   // console.log("datos", datos.get("idUser")); // NOTE: debug!
 
   $.ajax({
-    url:"ajax/userajax3.php",
+    url:"ajax/userajax5.php",
     method: "POST",
     data: datos,
     cache: false,
@@ -109,7 +109,7 @@ $(document).on("click", ".btnActivate", function(){
   datos.append("activateUser", statusUser);
 
   $.ajax({
-    url:"ajax/userajax3.php",
+    url:"ajax/userajax5.php",
     method: "POST",
     data: datos,
     cache: false,
@@ -157,7 +157,7 @@ $("#newUser").change(function(){
   datos.append("validateUser", userName);
 
   $.ajax({
-    url:"ajax/userajax3.php",
+    url:"ajax/userajax5.php",
     method: "POST",
     data: datos,
     cache: false,
