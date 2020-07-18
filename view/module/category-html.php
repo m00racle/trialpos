@@ -100,7 +100,7 @@
         <div class="modal-body">
           <div class="box-body">
 
-            <!-- form for add category name-->
+            <!-- form for add user name-->
             <div class="form-group">
               <div class="input-group">
                 <!-- form and input groups are classes from bootstrap -->
@@ -109,7 +109,7 @@
                   class="form-control input-lg">
               </div>
             </div>
-            <!-- input to select the supplier type; -->
+            <!-- input to select the role; -->
             <div class="form-group">
               <div class="input-group">
                 <!-- form and input groups are classes from bootstrap -->
@@ -122,7 +122,7 @@
                 </select>
               </div>
             </div>
-            <!-- form for bank account -->
+            <!-- form for username -->
             <div class="form-group">
               <div class="input-group">
                 <!-- form and input groups are classes from bootstrap -->
@@ -131,7 +131,7 @@
                   class="form-control input-lg">
               </div>
             </div>
-            <!-- form for account number -->
+            <!-- form for password -->
             <div class="form-group">
               <div class="input-group">
                 <!-- form and input groups are classes from bootstrap -->
@@ -150,10 +150,6 @@
           <button type="submit" class="btn btn-primary">Save Supplier</button>
         </div>
         <!-- /.end model-content; -->
-        <?php
-          $createSupplier = new ControllerSupplier();
-          $createSupplier -> ctrCreateSupplier();
-        ?>
       </form>
 
     </div>
