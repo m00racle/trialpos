@@ -33,6 +33,33 @@
       // --static public function mdlCreateCategory($table, $data)
     }
 
+    // VIEW SUPPLIERS;
+    static public function modViewSupplier($table, $item, $value)
+    {
+      if ($item != null) {
+        // code...fetch only specific data;
+        $stmt = Connection::connect()->prepare("SELECT * FROM $table WHERE $item = :$item");
+        $stmt->bindParam(":".$item, $value, PDO::PARAM_STR);
+        $stmt -> execute();
+        return $stmt -> fetch(PDO::FETCH_ASSOC);
+
+        // --if ($item != null)
+      } else {
+        // code...fetch all suppliers data;
+        $stmt = Connection::connect()->prepare("SELECT * FROM $table");
+        $stmt -> execute();
+        return $stmt -> fetchAll(PDO::FETCH_ASSOC);
+
+        // -- else of if ($item != null)
+      }
+
+      // erase the instaces (best practice);
+      $stmt -> close();
+      $stmt = null;
+
+      // -- static public function modViewSupplier($table, $item, $value)
+    }
+
     // -- class ModelSupplier
   }
 

@@ -39,36 +39,31 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Omah Cafe</td>
-              <td>
-                <div class="btn-group">
-                  <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
-                  <button class="btn btn-danger"><i class="fa fa-times"></i></button>
-                </div>
-              </td>
-              <td>inhouse</td>
-              <td>BCA: Warji</td>
-              <td>35353535</td>
-              <td>2020-07-11 23:05:22</td>
+            <?php
+              // fetch all suppliers data;
+              $item = null;
+              $value = null;
+              $supplierData = ControllerSupplier::ctrDataSupplier($item,$value);
 
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Jajan Pasar</td>
-              <td>
-                <div class="btn-group">
-                  <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
-                  <button class="btn btn-danger"><i class="fa fa-times"></i></button>
-                </div>
-              </td>
-              <td>inhouse</td>
-              <td>BCA: Fulan</td>
-              <td>2345676</td>
-              <td>2020-07-11 23:05:22</td>
+              // display each data as table row;
+              foreach ($supplierData as $key => $data) {
+                echo '<tr>
+                  <td>'.$data["id"].'</td>
+                  <td>'.$data["supname"].'</td>
+                  <td>
+                    <div class="btn-group">
+                      <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
+                      <button class="btn btn-danger"><i class="fa fa-times"></i></button>
+                    </div>
+                  </td>
+                  <td>'.$data["status"].'</td>
+                  <td>'.$data["bankacc"].'</td>
+                  <td>'.$data["accnum"].'</td>
+                  <td>'.$data["lastinv"].'</td>
+                </tr>';
+              }
+            ?>
 
-            </tr>
           </tbody>
         </table>
       </div>
@@ -105,7 +100,7 @@
               <div class="input-group">
                 <!-- form and input groups are classes from bootstrap -->
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <input type="text" name="newSupplier" placeholder="insert name" required
+                <input type="text" name="newSupplier" id="newSupplier" placeholder="insert name" required
                   class="form-control input-lg">
               </div>
             </div>

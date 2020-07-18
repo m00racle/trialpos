@@ -47,7 +47,7 @@
               allowOutsideClick: true
             }).then((result) => {
               if (result.value) {
-                  
+
               }
             })
               </script>";
@@ -77,6 +77,18 @@
       }
 
       // end of static public function ctrCreateSupplier()
+    }
+
+    static public function ctrDataSupplier($item,$value)
+    {
+      //control the supllier data fetch;
+      $table = "supplier";
+
+      $response = ModelSupplier::modViewSupplier($table, $item, $value);
+
+      return $response;
+
+      // -- static public function ctrDataSupplier($item,$value)
     }
 
     // end of class ControllerSupplier
