@@ -145,6 +145,56 @@
       // --static public function ctrEditSupplier()
     }
 
+    // DELETE SUPPLIER!
+    static public function ctrDeleteSupplier()
+    {
+      // the supplier delete is denoted by the uri get idSupplier
+      if (isset($_GET["idSupplier"])) {
+        $table = "supplier";
+        $data = $_GET["idSupplier"];
+
+        $response = ModelSupplier::mdlDeleteSupplier($table, $data);
+
+        if ($response = "ok") {
+          echo "<script>
+          Swal.fire({
+            icon: 'success',
+            title: 'Supplier: ".$_GET['nameSupplier']." Telah Dihapus!',
+            text: 'User sudah dihapus dari basis data. Klik lanjut untuk melanjutkan',
+            confirmButtonText: 'OK Lanjut',
+            allowOutsideClick: true
+          }).then((result) => {
+            if (result.value) {
+                window.location = 'category';
+            }
+          })
+            </script>";
+
+          // --if ($response = "ok")
+        } else {
+          echo "<script>
+          Swal.fire({
+            icon: 'error',
+            title: 'Supplier: ".$_GET['nameSupplier']." Gagal Dihapus!',
+            text: 'User gagal dihapus dari basis data. Klik ok untuk mengulang',
+            confirmButtonText: 'OK Ulang',
+            allowOutsideClick: true
+          }).then((result) => {
+            if (result.value) {
+                window.location = 'category';
+            }
+          })
+            </script>";
+
+          // -- else of if ($response = "ok")
+        }
+
+        // --if (isset($_GET["idSupplier"]))
+      }
+
+      // --static public function ctrDeleteSupplier()
+    }
+
     // end of class ControllerSupplier
   }
 

@@ -54,7 +54,8 @@
                     <div class="btn-group">
                       <button class="btn btn-warning btnEditSupplier" idSupplier="'.$data["id"].'"
                       data-toggle="modal" data-target="#modalEditSupplier"><i class="fa fa-pencil"></i></button>
-                      <button class="btn btn-danger"><i class="fa fa-times"></i></button>
+                      <button class="btn btn-danger btnDeleteSupplier" idSupplier="'.$data["id"].'"
+                      nameSupplier="'.$data["supname"].'"><i class="fa fa-times"></i></button>
                     </div>
                   </td>
                   <td>'.$data["status"].'</td>
@@ -233,3 +234,9 @@
 
   </div>
 </div>
+<!-- END OF MODAL EDIT SUPPLIER -->
+<?php
+  // DELETE USER PROCESSOR (capture the command of GET and process it in contorller);
+  $deleteSupplier = new ControllerSupplier();
+  $deleteSupplier -> ctrDeleteSupplier();
+?>

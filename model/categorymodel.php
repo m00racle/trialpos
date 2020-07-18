@@ -86,6 +86,26 @@
       // --static public function modEditSupplier($table, $data)
     }
 
+    static public function mdlDeleteSupplier($table, $data)
+    {
+      $stmt = Connection::connect()->prepare("DELETE FROM $table WHERE id = :id");
+      $stmt->bindParam(":id", $data, PDO::PARAM_INT);
+
+      if ($stmt->execute()) {
+        // code...return 'ok'
+        return "ok";
+      } else {
+        // code...return error;
+        return "error";
+      }
+
+      // best paractice
+      $stmt -> close();
+      $stmt = null;
+
+      // -- static public function mdlDeleteSupplier($table, $data)
+    }
+
     // -- class ModelSupplier
   }
 

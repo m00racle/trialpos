@@ -25,7 +25,7 @@ $("#newSupplier").change(function(){
   })
 })
 
-// EDIT USER - SHOWING CURRENT DATA IN THE MODAL-
+// EDIT SUPPLIER - SHOWING CURRENT DATA IN THE MODAL-
 $(document).on("click", ".btnEditSupplier", function() {
   var idSupplier = $(this).attr("idSupplier");
 
@@ -50,4 +50,26 @@ $(document).on("click", ".btnEditSupplier", function() {
   })
 
   // --$(document).on("click", ".btnEditSupplier", function()
+})
+
+// DELETE SUPPLIER - handle delete button click;
+$(document).on("click", ".btnDeleteSupplier", function() {
+  var idSupplier = $(this).attr("idSupplier");
+  var nameSupplier = $(this).attr("nameSupplier");
+
+      Swal.fire({
+    title: 'Anda Yakin Menghapus Supplier: '+nameSupplier+'?',
+    text: "Anda tidak bisa mengembalikan data setelah terhapus!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Ya, hapus user!'
+    }).then((result) => {
+    if (result.value) {
+      window.location = "index.php?route=category&idSupplier="+idSupplier+"&nameSupplier="+nameSupplier;
+      }
+    })
+
+  // -- $(document).on("click", ".btnDeleteSupplier", function()
 })
