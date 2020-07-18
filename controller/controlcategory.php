@@ -91,6 +91,60 @@
       // -- static public function ctrDataSupplier($item,$value)
     }
 
+    static public function ctrEditSupplier()
+    {
+      if (isset($_POST["editSupplier"])) {
+        // code...edit the user data;
+        $table = "supplier";
+
+        $data = array("supname" => $_POST["editSupplier"],
+                      "status" => $_POST["editStatus"],
+                      "bankacc" => $_POST["editBankAcc"],
+                      "accnum" => $_POST["editAccNum"]);
+
+        $response = ModelSupplier::modEditSupplier($table, $data);
+
+        if ($response == "ok") {
+          // code...alert success!
+          echo "<script>
+          Swal.fire({
+            icon: 'success',
+            title: 'Update Data Supplier: ".$_POST['editSupplier']." Berhasil!',
+            text: 'Supplier berhasil dimodifikasi di basis data. Klik lanjut untuk melanjutkan',
+            confirmButtonText: 'OK Lanjut',
+            allowOutsideClick: true
+          }).then((result) => {
+            if (result.value) {
+                window.location = 'category';
+            }
+          })
+            </script>";
+
+            // --if ($response == "ok")
+        } else {
+          echo "<script>
+          Swal.fire({
+            icon: 'error',
+            title: 'Update Supplier: ".$_POST['editSupplier']." Gagal!',
+            text: 'Upload ke basis data gagal!',
+            confirmButtonText: 'OK Ulang!',
+            allowOutsideClick: true
+          }).then((result) => {
+            if (result.value) {
+
+            }
+          })
+            </script>";
+
+          // -- else of if ($response == "ok")
+        }
+
+        // -- if (isset($_POST["editSupplier"]))
+      }
+
+      // --static public function ctrEditSupplier()
+    }
+
     // end of class ControllerSupplier
   }
 

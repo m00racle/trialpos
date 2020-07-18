@@ -20,6 +20,19 @@
       // --static public function ajaxValidateSupplier($validateSup)
     }
 
+    // EDIT SUPPLIER DATA;
+    static public function ajaxEditSupplier($idSupplier)
+    {
+      $item = "id";
+      $value = $idSupplier;
+
+      $response = ControllerSupplier::ctrDataSupplier($item, $value);
+
+      echo json_encode($response);
+
+      // -- static public function ajaxEditSupplier($idSupplier)
+    }
+
     // -- class AjaxSupplier
   }
 
@@ -30,5 +43,13 @@
     $validateSup = $_POST["validateSup"];
     $validator -> ajaxValidateSupplier($validateSup);
   }
-  
+
+  // OBJECT EDIT SUPPLIER;
+  if (isset($_POST["idSupplier"])) {
+    // code... use ajax to stream supplier data into modal;
+    $editor = new AjaxSupplier();
+    $idSupplier = $_POST["idSupplier"];
+    $editor -> ajaxEditSupplier($idSupplier);
+  }
+
 ?>

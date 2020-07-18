@@ -60,6 +60,32 @@
       // -- static public function modViewSupplier($table, $item, $value)
     }
 
+    static public function modEditSupplier($table, $data)
+    {
+      $stmt = Connection::connect()->prepare("UPDATE $table SET status = :status, bankacc = :bankacc,
+              accnum = :accnum WHERE supname = :supname");
+
+      $stmt->bindParam(":supname", $data["supname"], PDO::PARAM_STR);
+      $stmt->bindParam(":status", $data["status"], PDO::PARAM_STR);
+      $stmt->bindParam(":bankacc", $data["bankacc"], PDO::PARAM_STR);
+      $stmt->bindParam(":accnum", $data["accnum"], PDO::PARAM_STR);
+
+      // test the execute;
+      if ($stmt->execute()) {
+        // code...return 'ok'
+        return "ok";
+      } else {
+        // code...return error;
+        return "error";
+      }
+
+      // best paractice
+      $stmt -> close();
+      $stmt = null;
+
+      // --static public function modEditSupplier($table, $data)
+    }
+
     // -- class ModelSupplier
   }
 
