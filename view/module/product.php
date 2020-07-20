@@ -165,25 +165,25 @@
                   <span class="input-group-addon"><i class="fa fa-arrow-down"></i></span>
                   <input type="number" name="newSellingPrice" min="0" placeholder="add Selling Price" required
                     class="form-control input-lg">
+                </div> <br>
+                <!-- CHECKBOX FOR PERCENTAGE -->
+                <div class="col-xs-6">
+                  <div class="form-group">
+                    <label>
+                      <input type="checkbox" class="minimal percentage" checked>
+                      Use Percentage
+                    </label>
+                  </div>
+                </div>
+                <!-- INPUT FOR THE PERCENTAGE -->
+                <div class="col-xs-6" style="padding:0">
+                  <div class="input-group">
+                    <input type="number" class="form-control input-lg newPercentage" min="0" value="40" required>
+                    <span class="input-group-addon"><i class="fa fa-percent"></i></span>
+                  </div>
                 </div>
               </div>
-              <br>
-              <!-- CHECKBOX FOR PERCENTAGE -->
-              <div class="col-xs-6">
-                <div class="form-group">
-                  <label>
-                    <input type="checkbox" class="minimal percentage" checked>
-                    Use Percentage
-                  </label>
-                </div>
-              </div>
-              <!-- INPUT FOR THE PERCENTAGE -->
-              <div class="col-xs-6">
-                <div class="input-group">
-                  <input type="number" class="form-control input-lg newPercentage" min="0" value="40" required>
-                  <span class="input-group-addon"><i class="fa fa-percent"></i></span>
-                </div>
-              </div>
+
 
             </div>
             <!-- input file for the picture -->

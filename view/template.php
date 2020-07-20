@@ -31,6 +31,9 @@
   <link rel="stylesheet" href="view/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <link rel="stylesheet" href="view/bower_components/datatables.net-bs/css/responsive.bootstrap.min.css">
 
+  <!-- iCheck for checkboxes and radio inputs -->
+  <link rel="stylesheet" href="view/plugins/iCheck/all.css">
+
   <!-- THIS IS THE JAVASCRIPT SECTION!! -->
   <!-- jQuery 3 -->
   <script src="view/bower_components/jquery/dist/jquery.min.js"></script>
@@ -51,6 +54,9 @@
   <script src="view/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
   <script src="view/bower_components/datatables.net-bs/js/dataTables.responsive.min.js"></script>
   <script src="view/bower_components/datatables.net-bs/js/responsive.bootstrap.min.js"></script>
+
+  <!-- iCheck script -->
+  <script src="view/plugins/iCheck/icheck.min.js"></script>
 
 
 
