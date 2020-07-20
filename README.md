@@ -15,3 +15,6 @@ This way it will make the app more secure since this app is most likely used by 
 
 ###User Module
 Done... see wiki
+
+###Category/Supplier module
+Done... see wiki
