@@ -6,7 +6,7 @@
       <small>Control Panel</small>
     </h1>
     <ol class="breadcrumb">
-      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><a href="dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
 
       <li class="active">Product Management</li>
     </ol>
@@ -18,27 +18,197 @@
     <!-- Default box -->
     <div class="box">
       <div class="box-header with-border">
-        <h3 class="box-title">Title</h3>
+        <button class="btn btn-primary"
+         data-toggle="modal" data-target="#modalAddProduct">Add Product</button>
+         <!-- /.ini bootstrap modal untuk add user -->
 
-        <div class="box-tools pull-right">
-          <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
-                  title="Collapse">
-            <i class="fa fa-minus"></i></button>
-          <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-            <i class="fa fa-times"></i></button>
-        </div>
       </div>
       <div class="box-body">
-        Start creating your amazing application!
+        <!-- here we will write the table of all users; -->
+        <table class="table table-bordered table-striped dt-responsive tables">
+          <!-- the table classes are from the plugin -->
+          <thead>
+            <tr>
+              <th style="width:10px">#</th>
+              <th>Gambar</th>
+              <th>Code</th>
+              <th>Keterangan</th>
+              <th>Supplier</th>
+              <th>Stock</th>
+              <th>HPP</th>
+              <th>Harga Jual</th>
+              <th>Tanggak Entry</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td><img src="view/img/product/default/anonymousbox.png"
+                class="img-thumbnail" width="40px"></td>
+              <td>10001</td>
+              <td>Lorem ipsum sit amet</td>
+              <td>Sularno</td>
+              <td>20</td>
+              <td>10.000,00</td>
+              <td>15.000,00</td>
+              <td>2020-07-11 23:05:22</td>
+              <td>
+                <div class="btn-group">
+                  <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
+                  <button class="btn btn-danger"><i class="fa fa-times"></i></button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td><img src="view/img/product/default/anonymousbox.png"
+                class="img-thumbnail" width="40px"></td>
+              <td>10001</td>
+              <td>Lorem ipsum sit amet</td>
+              <td>Sularno</td>
+              <td>20</td>
+              <td>10.000,00</td>
+              <td>15.000,00</td>
+              <td>2020-07-11 23:05:22</td>
+              <td>
+                <div class="btn-group">
+                  <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
+                  <button class="btn btn-danger"><i class="fa fa-times"></i></button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
       <!-- /.box-body -->
-      <div class="box-footer">
+      <!-- <div class="box-footer">
         Footer
-      </div>
+      </div> -->
       <!-- /.box-footer-->
     </div>
     <!-- /.box -->
 
   </section>
   <!-- /.content -->
+</div>
+<!-- this is the modal pop ups; -->
+<!-- Modal Add Product-->
+<div id="modalAddProduct" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <form role="form" class="" action="" method="post" enctype="multipart/form-data">
+        <!-- modal header -->
+        <div class="modal-header" style="background:#3c8dbc; color:white">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add Product</h4>
+        </div>
+        <!-- modal body -->
+        <div class="modal-body">
+          <div class="box-body">
+
+            <!-- form for add code-->
+            <div class="form-group">
+              <div class="input-group">
+                <!-- form and input groups are classes from bootstrap -->
+                <span class="input-group-addon"><i class="fa fa-product-hunt"></i></span>
+                <input type="text" name="newCode" placeholder="add product code" required
+                  class="form-control input-lg">
+              </div>
+            </div>
+            <!-- form for add description-->
+            <div class="form-group">
+              <div class="input-group">
+                <!-- form and input groups are classes from bootstrap -->
+                <span class="input-group-addon"><i class="fa fa-product-hunt"></i></span>
+                <input type="text" name="newDescription" placeholder="add description" required
+                  class="form-control input-lg">
+              </div>
+            </div>
+            <!-- input to select the Supplier; -->
+            <div class="form-group">
+              <div class="input-group">
+                <!-- form and input groups are classes from bootstrap -->
+                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                <select class="form-control input-lg" name="newSupplier">
+                  <option value="inhouse">Sendiri</option>
+                  <option value="sularno">Sularno</option>
+                </select>
+              </div>
+            </div>
+            <!-- form for add stock-->
+            <div class="form-group">
+              <div class="input-group">
+                <!-- form and input groups are classes from bootstrap -->
+                <span class="input-group-addon"><i class="fa fa-check"></i></span>
+                <input type="number" name="newStock" min="0" placeholder="add stock" required
+                  class="form-control input-lg">
+              </div>
+            </div>
+            <!-- form for add buy price-->
+            <div class="form-group row">
+              <div class="col-xs-6">
+                <div class="input-group">
+                  <!-- form and input groups are classes from bootstrap -->
+                  <span class="input-group-addon"><i class="fa fa-arrow-up"></i></span>
+                  <input type="number" name="newBuyingPrice" min="0" placeholder="add Buying Price" required
+                    class="form-control input-lg">
+                </div>
+              </div>
+
+            <!-- form for add selling price-->
+              <div class="col-xs-6">
+                <div class="input-group">
+                  <!-- form and input groups are classes from bootstrap -->
+                  <span class="input-group-addon"><i class="fa fa-arrow-down"></i></span>
+                  <input type="number" name="newSellingPrice" min="0" placeholder="add Selling Price" required
+                    class="form-control input-lg">
+                </div>
+              </div>
+              <br>
+              <!-- CHECKBOX FOR PERCENTAGE -->
+              <div class="col-xs-6">
+                <div class="form-group">
+                  <label>
+                    <input type="checkbox" class="minimal percentage" checked>
+                    Use Percentage
+                  </label>
+                </div>
+              </div>
+              <!-- INPUT FOR THE PERCENTAGE -->
+              <div class="col-xs-6">
+                <div class="input-group">
+                  <input type="number" class="form-control input-lg newPercentage" min="0" value="40" required>
+                  <span class="input-group-addon"><i class="fa fa-percent"></i></span>
+                </div>
+              </div>
+
+            </div>
+            <!-- input file for the picture -->
+            <div class="form-group">
+              <div class="panel">
+                Upload Photo
+                <input type="file" id="newPictProduct" name="newPictProduct">
+                <p class="help-block">Max 2MB</p>
+                <img src="view/img/product/default/anonymousbox.png"
+                      class="img-thumbnail" width="40px">
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+        <!-- modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Product</button>
+        </div>
+        <!-- /.end model-content; -->
+      </form>
+
+    </div>
+
+  </div>
 </div>
