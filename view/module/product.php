@@ -37,47 +37,44 @@
               <th>Stock</th>
               <th>HPP</th>
               <th>Harga Jual</th>
-              <th>Tanggak Entry</th>
+              <th>Tanggal Entry</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td><img src="view/img/product/default/anonymousbox.png"
-                class="img-thumbnail" width="40px"></td>
-              <td>10001</td>
-              <td>Lorem ipsum sit amet</td>
-              <td>Sularno</td>
-              <td>20</td>
-              <td>10.000,00</td>
-              <td>15.000,00</td>
-              <td>2020-07-11 23:05:22</td>
-              <td>
-                <div class="btn-group">
-                  <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
-                  <button class="btn btn-danger"><i class="fa fa-times"></i></button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td><img src="view/img/product/default/anonymousbox.png"
-                class="img-thumbnail" width="40px"></td>
-              <td>10001</td>
-              <td>Lorem ipsum sit amet</td>
-              <td>Sularno</td>
-              <td>20</td>
-              <td>10.000,00</td>
-              <td>15.000,00</td>
-              <td>2020-07-11 23:05:22</td>
-              <td>
-                <div class="btn-group">
-                  <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
-                  <button class="btn btn-danger"><i class="fa fa-times"></i></button>
-                </div>
-              </td>
-            </tr>
+            <?php
+              // call the controller to fetch all data;
+              $productData = ControllerProduct::ctrDataProduct(null, null);
+              foreach ($productData as $key => $value) {
+                echo '
+                <tr>
+                  <td>'.$value["id"].'</td>
+                  <td><img src="'.$value["image"].'"
+                    class="img-thumbnail" width="40px"></td>
+                  <td>'.$value["code"].'</td>
+                  <td>'.$value["description"].'</td>';
+                    $supplierId = $value["id_supplier"];
+                    $supplierName = ControllerSupplier::ctrDataSupplier("id", $supplierId);
+                  echo '
+                  <td>'.$supplierName["supname"].'</td>
+                  <td>'.$value["stock"].'</td>
+                  <td>'.$value["buy_price"].'</td>
+                  <td>'.$value["sell_price"].'</td>
+                  <td>'.$value["date"].'</td>
+                  <td>
+                    <div class="btn-group">
+                      <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
+                      <button class="btn btn-danger"><i class="fa fa-times"></i></button>
+                    </div>
+                  </td>
+                </tr>';
+
+                // --foreach ($productData as $key => $value)
+              }
+
+            ?>
+
+
           </tbody>
         </table>
       </div>
