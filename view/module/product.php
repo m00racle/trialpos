@@ -25,7 +25,7 @@
       </div>
       <div class="box-body">
         <!-- here we will write the table of all users; -->
-        <table class="table table-bordered table-striped dt-responsive tables">
+        <table class="table table-bordered table-striped dt-responsive" id="productTable">
           <!-- the table classes are from the plugin -->
           <thead>
             <tr>
@@ -41,41 +41,41 @@
               <th>Action</th>
             </tr>
           </thead>
-          <tbody>
+          <!-- <tbody>
             <?php
               // call the controller to fetch all data;
-              $productData = ControllerProduct::ctrDataProduct(null, null);
-              foreach ($productData as $key => $value) {
-                echo '
-                <tr>
-                  <td>'.$value["id"].'</td>
-                  <td><img src="'.$value["image"].'"
-                    class="img-thumbnail" width="40px"></td>
-                  <td>'.$value["code"].'</td>
-                  <td>'.$value["description"].'</td>';
-                    $supplierId = $value["id_supplier"];
-                    $supplierName = ControllerSupplier::ctrDataSupplier("id", $supplierId);
-                  echo '
-                  <td>'.$supplierName["supname"].'</td>
-                  <td>'.$value["stock"].'</td>
-                  <td>'.$value["buy_price"].'</td>
-                  <td>'.$value["sell_price"].'</td>
-                  <td>'.$value["date"].'</td>
-                  <td>
-                    <div class="btn-group">
-                      <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
-                      <button class="btn btn-danger"><i class="fa fa-times"></i></button>
-                    </div>
-                  </td>
-                </tr>';
-
-                // --foreach ($productData as $key => $value)
-              }
+              // $productData = ControllerProduct::ctrDataProduct(null, null);
+              // foreach ($productData as $key => $value) {
+              //   echo '
+              //   <tr>
+              //     <td>'.$value["id"].'</td>
+              //     <td><img src="'.$value["image"].'"
+              //       class="img-thumbnail" width="40px"></td>
+              //     <td>'.$value["code"].'</td>
+              //     <td>'.$value["description"].'</td>';
+              //       $supplierId = $value["id_supplier"];
+              //       $supplierName = ControllerSupplier::ctrDataSupplier("id", $supplierId);
+              //     echo '
+              //     <td>'.$supplierName["supname"].'</td>
+              //     <td>'.$value["stock"].'</td>
+              //     <td>'.$value["buy_price"].'</td>
+              //     <td>'.$value["sell_price"].'</td>
+              //     <td>'.$value["date"].'</td>
+              //     <td>
+              //       <div class="btn-group">
+              //         <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
+              //         <button class="btn btn-danger"><i class="fa fa-times"></i></button>
+              //       </div>
+              //     </td>
+              //   </tr>';
+              //
+              //   --foreach ($productData as $key => $value)
+              // }
 
             ?>
 
 
-          </tbody>
+          </tbody> -->
         </table>
       </div>
       <!-- /.box-body -->
