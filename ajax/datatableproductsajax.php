@@ -1,4 +1,10 @@
 <?php
+  require_once "../controller/controlproduct.php";
+  require_once "../model/productmodel.php";
+  // NOTE: since this datatable also includes suppliers we need to add category also;
+  require_once "../controller/controlcategory.php";
+  require_once "../model/categorymodel.php";
+
   /**
    * the table product plugin;
    */
@@ -6,34 +12,42 @@
   {
       static public function showProductTable()
       {
-        echo '{
-          "data": [
-            [
-              "1",
-              "anonymousbox.png",
-              "10001",
-              "Kopi Aroma",
+        $productData = ControllerProduct::ctrDataProduct(null,null);
+
+        // var_dump($productData);// NOTE: test data product fetch all;
+
+        $actionButtons = "<div class='btn-group'>".
+                "<button class='btn btn-warning'><i class='fa fa-pencil'></i></button>".
+                "<button class='btn btn-danger'><i class='fa fa-times'></i></button>".
+              "</div>";
+
+        $dataJson= '{
+          "data": [';
+          for ($i=0; $i < count($productData); $i++) {
+            $image = "<img src='".$productData[$i]["image"]."' ".
+            "width='40px'>";
+
+            $dataJson .= '[
+              "'.$productData[$i]["id"].'",
+              "'.$image.'",
+              "'.$productData[$i]["code"].'",
+              "'.$productData[$i]["description"].'",
               "Omah Cafe",
-              "20",
-              "Rp 2.000",
-              "Rp 6.000",
-              "2020-07-22 16:30:00",
-              "action wait"
-            ],
-            [
-              "2",
-              "anonymousbox.png",
-              "10002",
-              "Kopi Espresso",
-              "Sularno",
-              "20",
-              "Rp 2.500",
-              "Rp 7.000",
-              "2020-07-22 16:30:00",
-              "action wait"
-            ]
-          ]
+              "'.$productData[$i]["stock"].'",
+              "'.$productData[$i]["buy_price"].'",
+              "'.$productData[$i]["sell_price"].'",
+              "'.$productData[$i]["date"].'",
+              "'.$actionButtons.'"
+            ],';
+
+            // --for ($i=0; $i < count($productData); $i++)
+          }
+          $dataJson = substr($dataJson,0,-1); // NOTE: substract the ',' from the last table row json;
+
+          $dataJson .= ']
         }';
+
+        echo $dataJson;
 
         // --static public function showProductTable()
       }
