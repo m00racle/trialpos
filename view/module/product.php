@@ -41,41 +41,7 @@
               <th>Action</th>
             </tr>
           </thead>
-          <!-- <tbody>
-            <?php
-              // call the controller to fetch all data;
-              // $productData = ControllerProduct::ctrDataProduct(null, null);
-              // foreach ($productData as $key => $value) {
-              //   echo '
-              //   <tr>
-              //     <td>'.$value["id"].'</td>
-              //     <td><img src="'.$value["image"].'"
-              //       class="img-thumbnail" width="40px"></td>
-              //     <td>'.$value["code"].'</td>
-              //     <td>'.$value["description"].'</td>';
-              //       $supplierId = $value["id_supplier"];
-              //       $supplierName = ControllerSupplier::ctrDataSupplier("id", $supplierId);
-              //     echo '
-              //     <td>'.$supplierName["supname"].'</td>
-              //     <td>'.$value["stock"].'</td>
-              //     <td>'.$value["buy_price"].'</td>
-              //     <td>'.$value["sell_price"].'</td>
-              //     <td>'.$value["date"].'</td>
-              //     <td>
-              //       <div class="btn-group">
-              //         <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
-              //         <button class="btn btn-danger"><i class="fa fa-times"></i></button>
-              //       </div>
-              //     </td>
-              //   </tr>';
-              //
-              //   --foreach ($productData as $key => $value)
-              // }
 
-            ?>
-
-
-          </tbody> -->
         </table>
       </div>
       <!-- /.box-body -->
@@ -106,12 +72,35 @@
         <div class="modal-body">
           <div class="box-body">
 
+            <!-- input to select the Supplier; -->
+            <div class="form-group">
+              <div class="input-group">
+                <!-- form and input groups are classes from bootstrap -->
+                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                <select class="form-control input-lg" name="newSupplier" id="newSupplier" required>
+                  <option value="">Pilih Supplier</option>
+                  <?php
+                    // we will show all the supplier in the list;
+                    $supplierData = ControllerSupplier::ctrDataSupplier(null,null);
+
+                    foreach ($supplierData as $key => $value) {
+                      echo '
+                      <option value="'.$value["id"].'">'.$value["supname"].'</option>
+                      ';
+
+                      // -- foreach ($supplierData as $key => $value)
+                    }
+                  ?>
+
+                </select>
+              </div>
+            </div>
             <!-- form for add code-->
             <div class="form-group">
               <div class="input-group">
                 <!-- form and input groups are classes from bootstrap -->
                 <span class="input-group-addon"><i class="fa fa-product-hunt"></i></span>
-                <input type="text" name="newCode" placeholder="add product code" required
+                <input type="text" name="newCode" id="newCode" placeholder="add product code" readonly
                   class="form-control input-lg">
               </div>
             </div>
@@ -124,17 +113,7 @@
                   class="form-control input-lg">
               </div>
             </div>
-            <!-- input to select the Supplier; -->
-            <div class="form-group">
-              <div class="input-group">
-                <!-- form and input groups are classes from bootstrap -->
-                <span class="input-group-addon"><i class="fa fa-users"></i></span>
-                <select class="form-control input-lg" name="newSupplier">
-                  <option value="inhouse">Sendiri</option>
-                  <option value="sularno">Sularno</option>
-                </select>
-              </div>
-            </div>
+
             <!-- form for add stock-->
             <div class="form-group">
               <div class="input-group">
