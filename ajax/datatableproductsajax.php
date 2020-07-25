@@ -16,24 +16,49 @@
 
         // var_dump($productData);// NOTE: test data product fetch all;
 
-        $actionButtons = "<div class='btn-group'>".
-                "<button class='btn btn-warning'><i class='fa fa-pencil'></i></button>".
-                "<button class='btn btn-danger'><i class='fa fa-times'></i></button>".
-              "</div>";
-
         $dataJson= '{
           "data": [';
           for ($i=0; $i < count($productData); $i++) {
             $image = "<img src='".$productData[$i]["image"]."' ".
             "width='40px'>";
+            // call the supplier data;
+            $value = $productData[$i]["id_supplier"];
+            $supplierData = ControllerSupplier::ctrDataSupplier("id", $value);
+
+            // set action buttons;
+            $actionButtons = "<div class='btn-group'>".
+                    "<button class='btn btn-warning btnEditProduct' ".
+                    "idProduct='".$productData[$i]["id"]."' ".
+                    "data-toggle='modal' data-target='#modalEditProduct'>".
+                    "<i class='fa fa-pencil'></i></button>".
+                    "<button class='btn btn-danger btnDeleteProduct' ".
+                    "idProduct='".$productData[$i]["id"]."' ".
+                    "code='".$productData[$i]["code"]."' image='".$productData[$i]["image"]."'>".
+                    "<i class='fa fa-times'></i></button>".
+                  "</div>";
+
+            // checking stocks;
+            if ($productData[$i]["stock"] <= 10) {
+              $stock = "<button class='btn btn-danger'>".$productData[$i]["stock"]."</button>";
+
+              // --if ($productData[$i]["stock"] <= 10)
+            } elseif ($productData[$i]["stock"] > 10 && $productData[$i]["stock"] <=15) {
+              $stock = "<button class='btn btn-warning'>".$productData[$i]["stock"]."</button>";
+
+              // --elseif ($productData[$i]["stock"] > 10 && $productData[$i]["stock"] <=15)
+            } else {
+              $stock = "<button class='btn btn-success'>".$productData[$i]["stock"]."</button>";
+
+              // -- else of if ($productData[$i]["stock"] <= 10)
+            }
 
             $dataJson .= '[
               "'.$productData[$i]["id"].'",
               "'.$image.'",
               "'.$productData[$i]["code"].'",
               "'.$productData[$i]["description"].'",
-              "Omah Cafe",
-              "'.$productData[$i]["stock"].'",
+              "'.$supplierData["supname"].'",
+              "'.$stock.'",
               "'.$productData[$i]["buy_price"].'",
               "'.$productData[$i]["sell_price"].'",
               "'.$productData[$i]["date"].'",
