@@ -182,6 +182,11 @@
           <button type="submit" class="btn btn-primary">Save Product</button>
         </div>
         <!-- /.end model-content; -->
+        <?php
+          // CREATE NEW PRODUCT;
+          $createProduct = new ControllerProduct();
+          $createProduct -> ctrCreateProduct();
+        ?>
       </form>
 
     </div>

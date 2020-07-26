@@ -38,7 +38,7 @@ $("#newSupplier").change(function(){
     dataType: "json",
     success: function(response){
       if (!response) {
-        var newCode = idSupplier + "0001"
+        var newCode = idSupplier + "001"
       }else {
         var newCode = Number(response["code"]) + 1;
       }
