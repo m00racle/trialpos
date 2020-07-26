@@ -129,7 +129,8 @@
                 <div class="input-group">
                   <!-- form and input groups are classes from bootstrap -->
                   <span class="input-group-addon"><i class="fa fa-arrow-up"></i></span>
-                  <input type="number" name="newBuyingPrice" min="0" placeholder="add Buying Price" required
+                  <input type="number" name="newBuyingPrice" id="newBuyingPrice" min="0"
+                  placeholder="add Buying Price" required
                     class="form-control input-lg">
                 </div>
               </div>
@@ -139,14 +140,15 @@
                 <div class="input-group">
                   <!-- form and input groups are classes from bootstrap -->
                   <span class="input-group-addon"><i class="fa fa-arrow-down"></i></span>
-                  <input type="number" name="newSellingPrice" min="0" placeholder="add Selling Price" required
+                  <input type="number" name="newSellingPrice" id="newSellingPrice" min="0"
+                  placeholder="add Selling Price" readonly required
                     class="form-control input-lg">
                 </div> <br>
                 <!-- CHECKBOX FOR PERCENTAGE -->
                 <div class="col-xs-6">
                   <div class="form-group">
                     <label>
-                      <input type="checkbox" class="minimal percentage" checked>
+                      <input type="checkbox" class="percentage" checked>
                       Use Percentage
                     </label>
                   </div>
@@ -154,7 +156,7 @@
                 <!-- INPUT FOR THE PERCENTAGE -->
                 <div class="col-xs-6" style="padding:0">
                   <div class="input-group">
-                    <input type="number" class="form-control input-lg newPercentage" min="0" value="40" required>
+                    <input type="number" class="form-control input-lg newPercentage" min="0" value="30" required>
                     <span class="input-group-addon"><i class="fa fa-percent"></i></span>
                   </div>
                 </div>

@@ -50,3 +50,66 @@ $("#newSupplier").change(function(){
 
   // --$("#newSupplier").change(function()
 })
+
+// CALCULATE PERCENTAGE;
+$(".percentage").click(function(){
+  // console.log($(this).prop("checked"));// NOTE: debug;
+  if ($(this).prop("checked")) {
+    $("#newSellingPrice").attr("readonly", true);
+    $(".newPercentage").attr("readonly", false);
+    // console.log($(".newPercentage").val());// DEBUG:
+    if ($("#newBuyingPrice").val()!="" && $(".newPercentage").val()!="") {
+      var buy = $("#newBuyingPrice").val();
+      var margin = $(".newPercentage").val()/100;
+      $("#newSellingPrice").val(buy/(1-margin));
+      // console.log($(".newPercentage").val());// DEBUG:
+    }
+  } else {
+    $("#newSellingPrice").attr("readonly", false);
+    $(".newPercentage").attr("readonly", true);
+    if ($("#newSellingPrice").val()!="" && $("#newBuyingPrice").val()!="") {
+      var buy = $("#newBuyingPrice").val();
+      var sell = $("#newSellingPrice").val();
+      $(".newPercentage").val((1-buy/sell)*100);
+    }
+  }
+
+  // --$(".percentage").click(function()
+})
+
+$("#newBuyingPrice").change(function(){
+  if ($(".percentage").prop("checked")) {
+    var buy = $(this).val();
+    var margin = $(".newPercentage").val()/100;
+    // console.log(margin);// NOTE: debug;
+    $("#newSellingPrice").val(buy/(1-margin));
+  } else {
+    if ($("#newSellingPrice").val()!="") {
+      var buy = $(this).val();
+      var sell = $("#newSellingPrice").val();
+      $(".newPercentage").val((1-buy/sell)*100);
+    }
+  }
+
+  // --$(".percentage").click(function()
+})
+
+$(".newPercentage").change(function(){
+  if ($("#newBuyingPrice").val()!="" && $(".newPercentage").val()!="") {
+    var buy = $("#newBuyingPrice").val();
+    var margin = $(this).val()/100;
+    $("#newSellingPrice").val(buy/(1-margin));
+  }
+
+  // --$(".newPercentage").change(function()
+})
+
+$("#newSellingPrice").change(function(){
+  if ($("#newSellingPrice").val()!="" && $("#newBuyingPrice").val()!="") {
+    var buy = $("#newBuyingPrice").val();
+    var sell = $("#newSellingPrice").val();
+    $(".newPercentage").val((1-buy/sell)*100);
+  }
+
+  // --$("#newSellingPrice").change(function()
+})
