@@ -75,6 +75,7 @@
               // else of if (isset($_FILES["newPictProduct"]["tmp_name"]))
             }
 
+            $table = "product";
             $trials = array('id_supplier' => $_POST["newSupplier"],
                             'code' => $_POST["newCode"],
                             'description' => $_POST["newDescription"],
@@ -83,7 +84,40 @@
                             'buy_price' => $_POST["newBuyingPrice"],
                             'sell_price' => $_POST["newSellingPrice"]);
 
-            // echo "<script>console.log(".json_encode($trials).")</script>"; // NOTE: debug
+            // echo "<script>console.log(".json_encode($trials).")</script>"; // DEBUG:
+            $response = ModelProduct::modAddProduct($table, $trials);
+
+            if ($response == "ok") {
+              echo "<script>
+              Swal.fire({
+                icon: 'success',
+                title: 'Add Product: ".$_POST['newDescription']." Berhasil!',
+                text: 'Product telah masuk ke dalam database!',
+                confirmButtonText: 'OK Lanjut',
+                allowOutsideClick: false
+              }).then((result) => {
+                if (result.value) {
+                    window.location = 'product';
+                }
+              })
+                </script>";
+              // code...if (response = "ok")
+            }else {
+              echo "<script>
+              Swal.fire({
+                icon: 'error',
+                title: 'Add Product: ".$_POST['newDescription']." Gagal!',
+                text: 'Upload ke database gagal',
+                confirmButtonText: 'OK Ulang',
+                allowOutsideClick: true
+              }).then((result) => {
+                if (result.value) {
+                    window.location = 'product';
+                }
+              })
+                </script>";
+              // else...if (response = "ok")
+            }
 
           // code...if (preg_match('/^[a-zA-Z0-9 ]+$/', $_POST['newDescription'])
             // && preg_match('/^[0-9]+$/', $_POST['newStock']))

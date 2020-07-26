@@ -113,3 +113,53 @@ $("#newSellingPrice").change(function(){
 
   // --$("#newSellingPrice").change(function()
 })
+
+// PREVIEW PHOTO;
+$("#newPictProduct").change(function(){
+  // see the image loaded;
+  var pict = this.files[0];
+
+  if (pict["type"] != "image/jpeg" && pict["type"] != "image/png") {
+    $("#newPictProduct").val("");
+
+    // put sweetalert2;
+      Swal.fire({
+        icon: 'error',
+        title: 'Add Photo Gagal!',
+        text: 'format gambar bukan jpeg atau png!',
+        confirmButtonText: 'OK Ulang',
+        allowOutsideClick: true
+      }).then((result) => {
+        if (result.value) {
+
+        }
+      });
+  } else if (pict["size"] > 1000000) {
+    // the file size is too big;
+    $("#newPictProduct").val("");
+
+    // put sweetalert2;
+      Swal.fire({
+        icon: 'error',
+        title: 'Add Photo Gagal!',
+        text: 'Ukuran file maksimal 1MB!',
+        confirmButtonText: 'OK Ulang',
+        allowOutsideClick: true
+      }).then((result) => {
+        if (result.value) {
+
+        }
+      })
+  } else {
+    var dataPict = new FileReader;
+    dataPict.readAsDataURL(pict);
+
+    $(dataPict).on("load", function(event){
+      var routePict = event.target.result;
+
+      $(".preview").attr("src", routePict);
+    })
+  }
+
+  // -- $("#newPictProduct").change(function()
+})

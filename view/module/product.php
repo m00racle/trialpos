@@ -171,7 +171,7 @@
                 <input type="file" id="newPictProduct" name="newPictProduct">
                 <p class="help-block">Max 2MB</p>
                 <img src="view/img/product/default/anonymousbox.png"
-                      class="img-thumbnail" width="40px">
+                      class="img-thumbnail preview" width="40px">
               </div>
 
             </div>
