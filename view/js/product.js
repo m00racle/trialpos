@@ -20,7 +20,7 @@ $('#productTable').DataTable( {
     } );
 
 // SET PRODUCT CODE BASED ON THE SUPPLIER NAME;
-$("#newSupplier").change(function(){
+$(".newSupplier").change(function(){
   var idSupplier = $(this).val();
   // console.log("idSupplier", idSupplier); // NOTE: debug
 
@@ -44,7 +44,7 @@ $("#newSupplier").change(function(){
       }
 
       // console.log("new code", newCode);// NOTE: debug
-      $("#newCode").val(newCode);
+      $(".newCode").val(newCode);
     }
   })
 
@@ -55,21 +55,21 @@ $("#newSupplier").change(function(){
 $(".percentage").click(function(){
   // console.log($(this).prop("checked"));// NOTE: debug;
   if ($(this).prop("checked")) {
-    $("#newSellingPrice").attr("readonly", true);
+    $(".newSellingPrice").attr("readonly", true);
     $(".newPercentage").attr("readonly", false);
     // console.log($(".newPercentage").val());// DEBUG:
-    if ($("#newBuyingPrice").val()!="" && $(".newPercentage").val()!="") {
-      var buy = $("#newBuyingPrice").val();
+    if ($(".newBuyingPrice").val()!="" && $(".newPercentage").val()!="") {
+      var buy = $(".newBuyingPrice").val();
       var margin = $(".newPercentage").val()/100;
-      $("#newSellingPrice").val(buy/(1-margin));
+      $(".newSellingPrice").val(buy/(1-margin));
       // console.log($(".newPercentage").val());// DEBUG:
     }
   } else {
-    $("#newSellingPrice").attr("readonly", false);
+    $(".newSellingPrice").attr("readonly", false);
     $(".newPercentage").attr("readonly", true);
-    if ($("#newSellingPrice").val()!="" && $("#newBuyingPrice").val()!="") {
-      var buy = $("#newBuyingPrice").val();
-      var sell = $("#newSellingPrice").val();
+    if ($(".newSellingPrice").val()!="" && $(".newBuyingPrice").val()!="") {
+      var buy = $(".newBuyingPrice").val();
+      var sell = $(".newSellingPrice").val();
       $(".newPercentage").val((1-buy/sell)*100);
     }
   }
@@ -77,16 +77,16 @@ $(".percentage").click(function(){
   // --$(".percentage").click(function()
 })
 
-$("#newBuyingPrice").change(function(){
+$(".newBuyingPrice").change(function(){
   if ($(".percentage").prop("checked")) {
     var buy = $(this).val();
     var margin = $(".newPercentage").val()/100;
     // console.log(margin);// NOTE: debug;
-    $("#newSellingPrice").val(buy/(1-margin));
+    $(".newSellingPrice").val(buy/(1-margin));
   } else {
-    if ($("#newSellingPrice").val()!="") {
+    if ($(".newSellingPrice").val()!="") {
       var buy = $(this).val();
-      var sell = $("#newSellingPrice").val();
+      var sell = $(".newSellingPrice").val();
       $(".newPercentage").val((1-buy/sell)*100);
     }
   }
@@ -95,23 +95,23 @@ $("#newBuyingPrice").change(function(){
 })
 
 $(".newPercentage").change(function(){
-  if ($("#newBuyingPrice").val()!="" && $(".newPercentage").val()!="") {
-    var buy = $("#newBuyingPrice").val();
+  if ($(".newBuyingPrice").val()!="" && $(".newPercentage").val()!="") {
+    var buy = $(".newBuyingPrice").val();
     var margin = $(this).val()/100;
-    $("#newSellingPrice").val(buy/(1-margin));
+    $(".newSellingPrice").val(buy/(1-margin));
   }
 
   // --$(".newPercentage").change(function()
 })
 
-$("#newSellingPrice").change(function(){
-  if ($("#newSellingPrice").val()!="" && $("#newBuyingPrice").val()!="") {
-    var buy = $("#newBuyingPrice").val();
-    var sell = $("#newSellingPrice").val();
+$(".newSellingPrice").change(function(){
+  if ($(".newSellingPrice").val()!="" && $(".newBuyingPrice").val()!="") {
+    var buy = $(".newBuyingPrice").val();
+    var sell = $(".newSellingPrice").val();
     $(".newPercentage").val((1-buy/sell)*100);
   }
 
-  // --$("#newSellingPrice").change(function()
+  // --$(".newSellingPrice").change(function()
 })
 
 // PREVIEW PHOTO;
@@ -183,6 +183,17 @@ $(document).on("click", ".btnEditProduct", function(){
     dataType:"json",
     success: function(response){
       console.log("response", response);// DEBUG: slow AJAX compiled!
+      $("#editSupplier").val(response["supname"]);
+      $("#editSupplier").html(response["supname"]);
+      $("#editCode").val(response["code"]);
+      $("#editDescription").val(response["description"]);
+      $("#editStock").val(response["stock"]);
+      $("#editBuyingPrice").val(response["buy_price"]);
+      $("#editSellingPrice").val(response["sell_price"]);
+      var margin = 1-(Number(response["buy_price"])/Number(response["sell_price"]));
+      $("#editPercentage").val(margin*100);
+      $(".preview").attr("src", response["image"]);
+      $("#currentProductPicture").val(response["image"]);
 
     }
   })
