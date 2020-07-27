@@ -209,7 +209,7 @@
                               'stock' => $_POST["editStock"],
                               'buy_price' => $_POST["editBuyingPrice"],
                               'sell_price' => $_POST["editSellingPrice"]);
-          echo "<script>console.log(".json_encode($editTrials).")</script>"; // DEBUG:
+          // echo "<script>console.log(".json_encode($editTrials).")</script>"; // DEBUG:
           $response = ModelProduct::modEditDataProduct($table, $editTrials);
 
           if ($response == "ok") {
