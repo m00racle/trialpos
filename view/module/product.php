@@ -271,14 +271,14 @@
                   <!-- form and input groups are classes from bootstrap -->
                   <span class="input-group-addon"><i class="fa fa-arrow-down"></i></span>
                   <input type="number" name="editSellingPrice" id="editSellingPrice" min="0"
-                  placeholder="add Selling Price" required readonly
+                  placeholder="add Selling Price" required
                     class="form-control input-lg">
                 </div> <br>
                 <!-- CHECKBOX FOR PERCENTAGE -->
                 <div class="col-xs-6">
                   <div class="form-group">
                     <label>
-                      <input type="checkbox" class="" id="editCheckPercent" checked>
+                      <input type="checkbox" class="" id="editCheckPercent">
                       Use Percentage
                     </label>
                   </div>
@@ -287,7 +287,7 @@
                 <div class="col-xs-6" style="padding:0">
                   <div class="input-group">
                     <input type="number" class="form-control input-lg"
-                    id="editPercentage" min="0" value="">
+                    id="editPercentage" min="0" value="" readonly>
                     <span class="input-group-addon"><i class="fa fa-percent"></i></span>
                   </div>
                 </div>
@@ -319,8 +319,8 @@
         <!-- /.end model-content; -->
         <?php
           // CREATE NEW PRODUCT;
-          // $editProduct = new ControllerProduct();
-          // $editProduct -> ctrEditProduct();
+          $editProduct = new ControllerProduct();
+          $editProduct -> ctrEditProduct();
         ?>
       </form>
 
