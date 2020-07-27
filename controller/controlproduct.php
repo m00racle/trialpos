@@ -22,9 +22,9 @@
       if (isset($_POST["newDescription"])) {
         // check if the syntax of the description does not contain unwanted chars;
         if (preg_match('/^[a-zA-Z0-9 ]+$/', $_POST['newDescription'])
-          && preg_match('/^[0-9]+$/', $_POST['newStock'])
-          && preg_match('/^[0-9]+$/', $_POST['newBuyingPrice'])
-          && preg_match('/^[0-9]+$/', $_POST['newSellingPrice'])) {
+          && preg_match('/^[0-9.]+$/', $_POST['newStock'])
+          && preg_match('/^[0-9.]+$/', $_POST['newBuyingPrice'])
+          && preg_match('/^[0-9.]+$/', $_POST['newSellingPrice'])) {
 
             $route = "";
             if (isset($_FILES["newPictProduct"]["tmp_name"])

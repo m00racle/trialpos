@@ -119,28 +119,28 @@
               <div class="input-group">
                 <!-- form and input groups are classes from bootstrap -->
                 <span class="input-group-addon"><i class="fa fa-check"></i></span>
-                <input type="number" name="newStock" min="0" placeholder="add stock" required
+                <input type="number" name="newStock" min="0" step="any" placeholder="add stock" required
                   class="form-control input-lg">
               </div>
             </div>
             <!-- form for add buy price-->
             <div class="form-group row">
-              <div class="col-xs-6">
+              <div class="col-xs-12 col-sm-6">
                 <div class="input-group">
                   <!-- form and input groups are classes from bootstrap -->
                   <span class="input-group-addon"><i class="fa fa-arrow-up"></i></span>
-                  <input type="number" name="newBuyingPrice" min="0"
+                  <input type="number" name="newBuyingPrice" min="0" step="any"
                   placeholder="add Buying Price" required
                     class="form-control input-lg newBuyingPrice">
                 </div>
               </div>
 
             <!-- form for add selling price-->
-              <div class="col-xs-6">
+              <div class="col-xs-12 col-sm-6">
                 <div class="input-group">
                   <!-- form and input groups are classes from bootstrap -->
                   <span class="input-group-addon"><i class="fa fa-arrow-down"></i></span>
-                  <input type="number" name="newSellingPrice" min="0"
+                  <input type="number" name="newSellingPrice" min="0" step="any"
                   placeholder="add Selling Price" readonly required
                     class="form-control input-lg newSellingPrice">
                 </div> <br>
@@ -156,7 +156,7 @@
                 <!-- INPUT FOR THE PERCENTAGE -->
                 <div class="col-xs-6" style="padding:0">
                   <div class="input-group">
-                    <input type="number" class="form-control input-lg newPercentage" min="0" value="30" required>
+                    <input type="number" class="form-control input-lg newPercentage" min="0" step="any" value="40" required>
                     <span class="input-group-addon"><i class="fa fa-percent"></i></span>
                   </div>
                 </div>
@@ -248,29 +248,29 @@
               <div class="input-group">
                 <!-- form and input groups are classes from bootstrap -->
                 <span class="input-group-addon"><i class="fa fa-check"></i></span>
-                <input type="number" name="editStock" id="editStock" min="0"
+                <input type="number" name="editStock" id="editStock" min="0" step="any"
                 placeholder="add stock" required
                   class="form-control input-lg">
               </div>
             </div>
             <!-- form for edit buy price-->
             <div class="form-group row">
-              <div class="col-xs-6">
+              <div class="col-xs-12 col-sm-6">
                 <div class="input-group">
                   <!-- form and input groups are classes from bootstrap -->
                   <span class="input-group-addon"><i class="fa fa-arrow-up"></i></span>
-                  <input type="number" name="editBuyingPrice" id="editBuyingPrice" min="0"
+                  <input type="number" name="editBuyingPrice" id="editBuyingPrice" min="0" step="any"
                   placeholder="add Buying Price" required
                     class="form-control input-lg">
                 </div>
               </div>
 
             <!-- form for edit selling price-->
-              <div class="col-xs-6">
+              <div class="col-xs-12 col-sm-6">
                 <div class="input-group">
                   <!-- form and input groups are classes from bootstrap -->
                   <span class="input-group-addon"><i class="fa fa-arrow-down"></i></span>
-                  <input type="number" name="editSellingPrice" id="editSellingPrice" min="0"
+                  <input type="number" name="editSellingPrice" id="editSellingPrice" min="0" step="any"
                   placeholder="add Selling Price" required
                     class="form-control input-lg">
                 </div> <br>
@@ -287,7 +287,7 @@
                 <div class="col-xs-6" style="padding:0">
                   <div class="input-group">
                     <input type="number" class="form-control input-lg"
-                    id="editPercentage" min="0" value="" readonly>
+                    id="editPercentage" min="0" step="any" value="" readonly>
                     <span class="input-group-addon"><i class="fa fa-percent"></i></span>
                   </div>
                 </div>
