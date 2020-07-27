@@ -182,11 +182,7 @@ $(document).on("click", ".btnEditProduct", function(){
     processData:false,
     dataType:"json",
     success: function(response){
-<<<<<<< HEAD
       // console.log("response", response);// DEBUG: slow AJAX compiled!
-=======
-      console.log("response", response);// DEBUG: slow AJAX compiled!
->>>>>>> 44b9b77a5dec16e32e59cbb207ef42aaf015b3cd
       $("#editSupplier").val(response["supname"]);
       $("#editSupplier").html(response["supname"]);
       $("#editCode").val(response["code"]);
