@@ -12,10 +12,26 @@ require_once "../model/categorymodel.php";
   {
     static public function ajaxReadProductCode($idSupplier){
       $response = ControllerProduct::ctrDataProduct("id_supplier", $idSupplier);
-      
+
 
       echo json_encode($response);
 
+      // --static public function ajaxReadProductCode($idSupplier)
+    }
+
+    static public function ajaxEditProduct($idProduct)
+    {
+      $productData = ControllerProduct::ctrDataProduct("id",$idProduct);
+      $supplierData = ControllerSupplier::ctrDataSupplier("id", $productData["id_supplier"]);
+      $supName = array("supname"=>$supplierData["supname"]);
+
+      // echo "<script>console.log('response',".json_encode($supplierData).")</script>";
+
+      $response = array_merge($productData,$supName);
+
+
+      echo json_encode($response);
+      // --static public function ajaxEditProduct($idProduct)
     }
 
     // --class AjaxProduct
@@ -27,5 +43,13 @@ require_once "../model/categorymodel.php";
     $reader = new AjaxProduct();
     $reader->ajaxReadProductCode($_POST["idSupplier"]);
   }
+
+  // OBJECT FETCH DATA FOR EDIT MODAL;
+  if (isset($_POST["idProduct"])) {
+    // code...
+    $editor = new AjaxProduct();
+    $editor -> ajaxEditProduct($_POST["idProduct"]);
+  }
+
 
  ?>

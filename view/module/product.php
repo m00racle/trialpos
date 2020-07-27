@@ -168,7 +168,7 @@
             <div class="form-group">
               <div class="panel">
                 Upload Photo
-                <input type="file" id="newPictProduct" name="newPictProduct">
+                <input type="file" class="newPictProduct" name="newPictProduct">
                 <p class="help-block">Max 2MB</p>
                 <img src="view/img/product/default/anonymousbox.png"
                       class="img-thumbnail preview" width="40px">
@@ -194,4 +194,151 @@
     </div>
 
   </div>
+  <!-- end of Modal Add Product-->
+</div>
+
+<!-- Modal Edit Product-->
+<div id="modalEditProduct" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <form role="form" class="" action="" method="post" enctype="multipart/form-data">
+        <!-- modal header -->
+        <div class="modal-header" style="background:#3c8dbc; color:white">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add Product</h4>
+        </div>
+        <!-- modal body -->
+        <div class="modal-body">
+          <div class="box-body">
+
+            <!-- input to select the Supplier; -->
+            <div class="form-group">
+              <div class="input-group">
+                <!-- form and input groups are classes from bootstrap -->
+                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                <select class="form-control input-lg" name="editSupplier" required>
+                  <option value="" id="editSupplier">Pilih Supplier</option>
+                  <?php
+                    // we will show all the supplier in the list;
+                    $supplierData = ControllerSupplier::ctrDataSupplier(null,null);
+
+                    foreach ($supplierData as $key => $value) {
+                      echo '
+                      <option value="'.$value["id"].'">'.$value["supname"].'</option>
+                      ';
+
+                      // -- foreach ($supplierData as $key => $value)
+                    }
+                  ?>
+
+                </select>
+              </div>
+            </div>
+            <!-- form for edit code-->
+            <div class="form-group">
+              <div class="input-group">
+                <!-- form and input groups are classes from bootstrap -->
+                <span class="input-group-addon"><i class="fa fa-product-hunt"></i></span>
+                <input type="text" name="editCode" id="editCode" placeholder="add product code" readonly
+                  class="form-control input-lg">
+              </div>
+            </div>
+            <!-- form for edit description-->
+            <div class="form-group">
+              <div class="input-group">
+                <!-- form and input groups are classes from bootstrap -->
+                <span class="input-group-addon"><i class="fa fa-product-hunt"></i></span>
+                <input type="text" name="editDescription" id="editDescription"
+                placeholder="add description" required
+                  class="form-control input-lg">
+              </div>
+            </div>
+
+            <!-- form for edit stock-->
+            <div class="form-group">
+              <div class="input-group">
+                <!-- form and input groups are classes from bootstrap -->
+                <span class="input-group-addon"><i class="fa fa-check"></i></span>
+                <input type="number" name="editStock" id="editStock" min="0"
+                placeholder="add stock" required
+                  class="form-control input-lg">
+              </div>
+            </div>
+            <!-- form for edit buy price-->
+            <div class="form-group row">
+              <div class="col-xs-6">
+                <div class="input-group">
+                  <!-- form and input groups are classes from bootstrap -->
+                  <span class="input-group-addon"><i class="fa fa-arrow-up"></i></span>
+                  <input type="number" name="newBuyingPrice" id="editBuyingPrice" min="0"
+                  placeholder="add Buying Price" required
+                    class="form-control input-lg">
+                </div>
+              </div>
+
+            <!-- form for edit selling price-->
+              <div class="col-xs-6">
+                <div class="input-group">
+                  <!-- form and input groups are classes from bootstrap -->
+                  <span class="input-group-addon"><i class="fa fa-arrow-down"></i></span>
+                  <input type="number" name="newSellingPrice" id="editSellingPrice" min="0"
+                  placeholder="add Selling Price" required
+                    class="form-control input-lg">
+                </div> <br>
+                <!-- CHECKBOX FOR PERCENTAGE -->
+                <div class="col-xs-6">
+                  <div class="form-group">
+                    <label>
+                      <input type="checkbox" id="editCheckPercent">
+                      Use Percentage
+                    </label>
+                  </div>
+                </div>
+                <!-- INPUT FOR THE PERCENTAGE -->
+                <div class="col-xs-6" style="padding:0">
+                  <div class="input-group">
+                    <input type="number" class="form-control input-lg editPercentage"
+                    min="0" value="30" readonly>
+                    <span class="input-group-addon"><i class="fa fa-percent"></i></span>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+            <!-- input file for the picture -->
+            <div class="form-group">
+              <div class="panel">
+                Upload Photo
+                <input type="file" class="newPictProduct" name="editPictProduct">
+                <p class="help-block">Max 2MB</p>
+                <img src="view/img/product/default/anonymousbox.png"
+                      class="img-thumbnail preview" width="40px">
+                <input type="hidden" name="currentProductPicture"
+                id="currentProductPicture">
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+        <!-- modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Product</button>
+        </div>
+        <!-- /.end model-content; -->
+        <?php
+          // CREATE NEW PRODUCT;
+          // $editProduct = new ControllerProduct();
+          // $editProduct -> ctrEditProduct();
+        ?>
+      </form>
+
+    </div>
+
+  </div>
+  <!-- end of Modal Edit Product-->
 </div>

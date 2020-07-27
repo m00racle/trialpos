@@ -115,12 +115,12 @@ $("#newSellingPrice").change(function(){
 })
 
 // PREVIEW PHOTO;
-$("#newPictProduct").change(function(){
+$(".newPictProduct").change(function(){
   // see the image loaded;
   var pict = this.files[0];
 
   if (pict["type"] != "image/jpeg" && pict["type"] != "image/png") {
-    $("#newPictProduct").val("");
+    $(".newPictProduct").val("");
 
     // put sweetalert2;
       Swal.fire({
@@ -136,7 +136,7 @@ $("#newPictProduct").change(function(){
       });
   } else if (pict["size"] > 1000000) {
     // the file size is too big;
-    $("#newPictProduct").val("");
+    $(".newPictProduct").val("");
 
     // put sweetalert2;
       Swal.fire({
@@ -162,4 +162,29 @@ $("#newPictProduct").change(function(){
   }
 
   // -- $("#newPictProduct").change(function()
+})
+
+// EDIT PRODUCTS;
+$(document).on("click", ".btnEditProduct", function(){
+  var idProduct = $(this).attr("idProduct");
+  console.log("idProduct", idProduct);// DEBUG:
+
+  var datos = new FormData();
+  datos.append("idProduct", idProduct);
+  console.log("datos", datos.getAll("idProduct"));// DEBUG:
+
+  $.ajax({
+    url:"ajax/productajax.php",
+    method:"POST",
+    data:datos,
+    cache:false,
+    contentType:false,
+    processData:false,
+    dataType:"json",
+    success: function(response){
+      console.log("response", response);// DEBUG: slow AJAX compiled!
+
+    }
+  })
+  // --$(document).on("click", "btnEditProduct", function()
 })
