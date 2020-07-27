@@ -77,7 +77,7 @@
               <div class="input-group">
                 <!-- form and input groups are classes from bootstrap -->
                 <span class="input-group-addon"><i class="fa fa-users"></i></span>
-                <select class="form-control input-lg" name="newSupplier" id="newSupplier" required>
+                <select class="form-control input-lg newSupplier" name="newSupplier" required>
                   <option value="">Pilih Supplier</option>
                   <?php
                     // we will show all the supplier in the list;
@@ -100,8 +100,8 @@
               <div class="input-group">
                 <!-- form and input groups are classes from bootstrap -->
                 <span class="input-group-addon"><i class="fa fa-product-hunt"></i></span>
-                <input type="text" name="newCode" id="newCode" placeholder="add product code" readonly
-                  class="form-control input-lg">
+                <input type="text" name="newCode" placeholder="add product code" readonly
+                  class="form-control input-lg newCode">
               </div>
             </div>
             <!-- form for add description-->
@@ -129,9 +129,9 @@
                 <div class="input-group">
                   <!-- form and input groups are classes from bootstrap -->
                   <span class="input-group-addon"><i class="fa fa-arrow-up"></i></span>
-                  <input type="number" name="newBuyingPrice" id="newBuyingPrice" min="0"
+                  <input type="number" name="newBuyingPrice" min="0"
                   placeholder="add Buying Price" required
-                    class="form-control input-lg">
+                    class="form-control input-lg newBuyingPrice">
                 </div>
               </div>
 
@@ -140,9 +140,9 @@
                 <div class="input-group">
                   <!-- form and input groups are classes from bootstrap -->
                   <span class="input-group-addon"><i class="fa fa-arrow-down"></i></span>
-                  <input type="number" name="newSellingPrice" id="newSellingPrice" min="0"
+                  <input type="number" name="newSellingPrice" min="0"
                   placeholder="add Selling Price" readonly required
-                    class="form-control input-lg">
+                    class="form-control input-lg newSellingPrice">
                 </div> <br>
                 <!-- CHECKBOX FOR PERCENTAGE -->
                 <div class="col-xs-6">
@@ -207,7 +207,7 @@
         <!-- modal header -->
         <div class="modal-header" style="background:#3c8dbc; color:white">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Add Product</h4>
+          <h4 class="modal-title">Edit Product</h4>
         </div>
         <!-- modal body -->
         <div class="modal-body">
@@ -218,21 +218,8 @@
               <div class="input-group">
                 <!-- form and input groups are classes from bootstrap -->
                 <span class="input-group-addon"><i class="fa fa-users"></i></span>
-                <select class="form-control input-lg" name="editSupplier" required>
+                <select class="form-control input-lg" name="editSupplier" required readonly>
                   <option value="" id="editSupplier">Pilih Supplier</option>
-                  <?php
-                    // we will show all the supplier in the list;
-                    $supplierData = ControllerSupplier::ctrDataSupplier(null,null);
-
-                    foreach ($supplierData as $key => $value) {
-                      echo '
-                      <option value="'.$value["id"].'">'.$value["supname"].'</option>
-                      ';
-
-                      // -- foreach ($supplierData as $key => $value)
-                    }
-                  ?>
-
                 </select>
               </div>
             </div>
@@ -272,7 +259,7 @@
                 <div class="input-group">
                   <!-- form and input groups are classes from bootstrap -->
                   <span class="input-group-addon"><i class="fa fa-arrow-up"></i></span>
-                  <input type="number" name="newBuyingPrice" id="editBuyingPrice" min="0"
+                  <input type="number" name="editBuyingPrice" id="editBuyingPrice" min="0"
                   placeholder="add Buying Price" required
                     class="form-control input-lg">
                 </div>
@@ -283,15 +270,15 @@
                 <div class="input-group">
                   <!-- form and input groups are classes from bootstrap -->
                   <span class="input-group-addon"><i class="fa fa-arrow-down"></i></span>
-                  <input type="number" name="newSellingPrice" id="editSellingPrice" min="0"
-                  placeholder="add Selling Price" required
+                  <input type="number" name="editSellingPrice" id="editSellingPrice" min="0"
+                  placeholder="add Selling Price" required readonly
                     class="form-control input-lg">
                 </div> <br>
                 <!-- CHECKBOX FOR PERCENTAGE -->
                 <div class="col-xs-6">
                   <div class="form-group">
                     <label>
-                      <input type="checkbox" id="editCheckPercent">
+                      <input type="checkbox" class="" id="editCheckPercent" checked>
                       Use Percentage
                     </label>
                   </div>
@@ -299,8 +286,8 @@
                 <!-- INPUT FOR THE PERCENTAGE -->
                 <div class="col-xs-6" style="padding:0">
                   <div class="input-group">
-                    <input type="number" class="form-control input-lg editPercentage"
-                    min="0" value="30" readonly>
+                    <input type="number" class="form-control input-lg"
+                    id="editPercentage" min="0" value="">
                     <span class="input-group-addon"><i class="fa fa-percent"></i></span>
                   </div>
                 </div>
