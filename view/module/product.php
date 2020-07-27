@@ -318,7 +318,7 @@
         </div>
         <!-- /.end model-content; -->
         <?php
-          // CREATE NEW PRODUCT;
+          // EDIT NEW PRODUCT;
           $editProduct = new ControllerProduct();
           $editProduct -> ctrEditProduct();
         ?>
@@ -329,3 +329,9 @@
   </div>
   <!-- end of Modal Edit Product-->
 </div>
+
+<?php
+  // DELETE PRODUCT;
+  $deleteProduct = new ControllerProduct();
+  $deleteProduct->ctrDeleteProduct();
+?>

@@ -267,6 +267,43 @@
       // --static public function ctrEditProduct()
     }
 
+    static public function ctrDeleteProduct()
+    {
+      if (isset($_GET["idDelProduct"])) {
+        $table = "product";
+        $data = $_GET["idDelProduct"];
+
+        $defaultPict = "view/img/product/default/anonymousbox.png";
+        if ($_GET["pictProduct"]!=$defaultPict) {
+          unlink($_GET["pictProduct"]);
+          rmdir("view/img/product/".$_GET["codeProduct"]);
+          // code...if ($_GET["pictProduct"]!=$defaultPict)
+        }
+
+        $response = ModelProduct::modDeleteProduct($table, $data);
+
+        if ($response == "ok") {
+
+          echo "<script>
+          Swal.fire({
+            icon: 'success',
+            title: 'Product: ".$_GET['codeProduct']." Telah Dihapus!',
+            text: 'Product sudah dihapus dari basis data. Klik lanjut untuk melanjutkan',
+            confirmButtonText: 'OK Lanjut',
+            allowOutsideClick: true
+          }).then((result) => {
+            if (result.value) {
+                window.location = 'product';
+            }
+          })
+            </script>";
+            // -- if ($response == "ok")
+        }
+        // code...if (isset($_GET["idDelProduct"]))
+      }
+      // --static public function ctrDeleteProduct()
+    }
+
     // --class ControllerProduct
   }
 

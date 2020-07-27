@@ -262,3 +262,24 @@ $("#editSellingPrice").change(function(){
 
   // --$("#editSellingPrice").change(function()
 })
+
+// DELETE PRODUCT;
+$(document).on("click", ".btnDeleteProduct", function(){
+  var idProduct = $(this).attr("idProduct");
+  var codeProduct = $(this).attr("code");
+  var pictProduct = $(this).attr("image");
+
+    Swal.fire({
+  title: 'Anda Yakin Menghapus Product ini?',
+  text: "Anda tidak bisa mengembalikan product setelah terhapus!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Ya, hapus Product!'
+  }).then((result) => {
+  if (result.value) {
+    window.location = "index.php?route=product&idDelProduct="+idProduct+"&pictProduct="+pictProduct+"&codeProduct="+codeProduct;
+    }
+  })
+})
