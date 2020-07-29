@@ -1,0 +1,55 @@
+<?php
+require_once "../controller/controlproduct.php";
+require_once "../model/productmodel.php";
+// NOTE: since this datatable also includes suppliers we need to add category also;
+require_once "../controller/controlcategory.php";
+require_once "../model/categorymodel.php";
+
+  /**
+   *
+   */
+  class AjaxProduct
+  {
+    static public function ajaxReadProductCode($idSupplier){
+      $response = ControllerProduct::ctrDataProduct("id_supplier", $idSupplier);
+
+
+      echo json_encode($response);
+
+      // --static public function ajaxReadProductCode($idSupplier)
+    }
+
+    static public function ajaxEditProduct($idProduct)
+    {
+      $productData = ControllerProduct::ctrDataProduct("id",$idProduct);
+      $supplierData = ControllerSupplier::ctrDataSupplier("id", $productData["id_supplier"]);
+      $supName = array("supname"=>$supplierData["supname"]);
+
+      // echo "<script>console.log('response',".json_encode($supplierData).")</script>";
+
+      $response = array_merge($productData,$supName);
+
+
+      echo json_encode($response);
+      // --static public function ajaxEditProduct($idProduct)
+    }
+
+    // --class AjaxProduct
+  }
+
+  // OBJECT;
+  if (isset($_POST["idSupplier"])) {
+    // code...
+    $reader = new AjaxProduct();
+    $reader->ajaxReadProductCode($_POST["idSupplier"]);
+  }
+
+  // OBJECT FETCH DATA FOR EDIT MODAL;
+  if (isset($_POST["idProduct"])) {
+    // code...
+    $editor = new AjaxProduct();
+    $editor -> ajaxEditProduct($_POST["idProduct"]);
+  }
+
+
+ ?>
