@@ -58,6 +58,11 @@
   <!-- iCheck script -->
   <script src="view/plugins/iCheck/icheck.min.js"></script>
 
+  <!-- data mask -->
+  <script src="view/plugins/input-mask/jquery.inputmask.js"></script>
+  <script src="view/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+  <script src="view/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+
 
 
 </head>
