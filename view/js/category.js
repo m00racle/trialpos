@@ -58,13 +58,13 @@ $(document).on("click", ".btnDeleteSupplier", function() {
   var nameSupplier = $(this).attr("nameSupplier");
 
       Swal.fire({
-    title: 'Anda Yakin Menghapus Supplier: '+nameSupplier+'?',
-    text: "Anda tidak bisa mengembalikan data setelah terhapus!",
+    title: 'Anda Yakin Menghapus Supplier: '+nameSupplier+' dan dagangannya?',
+    text: "Anda tidak bisa mengembalikan data setelah terhapus termasuk barang dagangannya!",
     icon: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
-    confirmButtonText: 'Ya, hapus user!'
+    confirmButtonText: 'Ya, hapus Suppler dan dagangannya!'
     }).then((result) => {
     if (result.value) {
       window.location = "index.php?route=category&idSupplier="+idSupplier+"&nameSupplier="+nameSupplier;

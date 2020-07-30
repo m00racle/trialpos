@@ -42,42 +42,34 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>General Customer</td>
-              <td>12345</td>
-              <td>customer@gmail.com</td>
-              <td>0812-2223-331</td>
-              <td>Jl. Sulawesi AK 31A, Sleman</td>
-              <td>2020-07-11</td>
-              <td>35</td>
-              <td>2020-07-11</td>
-              <td>
-                <div class="btn-group">
-                  <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
-                  <button class="btn btn-danger"><i class="fa fa-times"></i></button>
-                </div>
-              </td>
+            <?php
+              // fetch all customer data to be presented
+              $dataCustomer = ControllerCustomer::ctrDataCustomer(null, null);
+              echo "<script>console.log('dataCustomer,".json_encode($dataCustomer)."')</script>";// DEBUG:
+              foreach ($dataCustomer as $key => $value) {
+                echo '
+                <tr>
+                  <td>'.$value["id"].'</td>
+                  <td>'.$value["name"].'</td>
+                  <td>'.$value["doc_id"].'</td>
+                  <td>'.$value["email"].'</td>
+                  <td>'.$value["phone"].'</td>
+                  <td>'.$value["address"].'</td>
+                  <td>'.$value["birthdate"].'</td>
+                  <td>'.$value["total_purchase"].'</td>
+                  <td>'.$value["last_purchase"].'</td>
+                  <td>
+                    <div class="btn-group">
+                      <button class="btn btn-warning btnEditCustomer" idCustomer="'.$value["id"].'"
+                      data-toggle="modal" data-target="#modalEditCustomer"><i class="fa fa-pencil"></i></button>
+                      <button class="btn btn-danger btnDeleteCustomer" delCustomer="'.$value["id"].'">
+                      <i class="fa fa-times"></i></button>
+                    </div>
+                  </td>';
+                // code...foreach ($dataCustomer as $key => $value)
+              }
+            ?>
 
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>General Customer</td>
-              <td>12345</td>
-              <td>customer@gmail.com</td>
-              <td>0812-2223-331</td>
-              <td>Jl. Sulawesi AK 31A, Sleman</td>
-              <td>2020-07-11</td>
-              <td>35</td>
-              <td>2020-07-11</td>
-              <td>
-                <div class="btn-group">
-                  <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
-                  <button class="btn btn-danger"><i class="fa fa-times"></i></button>
-                </div>
-              </td>
-
-            </tr>
           </tbody>
         </table>
       </div>
