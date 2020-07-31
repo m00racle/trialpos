@@ -8,16 +8,16 @@
   class ModelCustomer
   {
     // VIEW DATA CUSTOMER;
-    static public function modDataCustomer($table, $item, $value)
+    static public function modDataCustomer($table, $item, $value, $order="ASC")
     {
       if ($item != null) {
-        $stmt = Connection::connect()->prepare("SELECT * FROM $table WHERE $item = :$item");
+        $stmt = Connection::connect()->prepare("SELECT * FROM $table WHERE $item = :$item ORDER BY id $order");
         $stmt->bindParam(":".$item, $value, PDO::PARAM_STR);
         $stmt -> execute();
         return $stmt -> fetch(PDO::FETCH_ASSOC);
         // code...if ($item != null)
       } else {
-        $stmt = Connection::connect()->prepare("SELECT * FROM $table");
+        $stmt = Connection::connect()->prepare("SELECT * FROM $table ORDER BY id $order");
         $stmt -> execute();
         return $stmt -> fetchAll(PDO::FETCH_ASSOC);
         // code...else...if ($item != null)
@@ -38,7 +38,7 @@
       $stmt->bindParam(":phone", $data['phone'], PDO::PARAM_STR);
       $stmt->bindParam(":address", $data['address'], PDO::PARAM_STR);
       $stmt->bindParam(":birthdate", $data['birthdate'], PDO::PARAM_STR);
-      
+
       // test the execute;
       if ($stmt->execute()) {
         // code...return 'ok'

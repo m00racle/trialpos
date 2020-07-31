@@ -45,7 +45,7 @@
             <?php
               // fetch all customer data to be presented
               $dataCustomer = ControllerCustomer::ctrDataCustomer(null, null);
-              echo "<script>console.log('dataCustomer,".json_encode($dataCustomer)."')</script>";// DEBUG:
+              // echo "<script>console.log('dataCustomer,".json_encode($dataCustomer)."')</script>";// DEBUG:
               foreach ($dataCustomer as $key => $value) {
                 echo '
                 <tr>
@@ -107,7 +107,7 @@
                 <!-- form and input groups are classes from bootstrap -->
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
                 <input type="text" name="newCustomerName" placeholder="insert name" required
-                  class="form-control input-lg">
+                  id="newCustomerName" class="form-control input-lg">
               </div>
             </div>
             <!-- form for insert customer document id -->
@@ -115,8 +115,8 @@
               <div class="input-group">
                 <!-- form and input groups are classes from bootstrap -->
                 <span class="input-group-addon"><i class="fa fa-file"></i></span>
-                <input type="number" name="newDocumentId" placeholder="Document ID" required
-                  class="form-control input-lg">
+                <input type="number" name="newDocumentId" placeholder="Document ID" readonly
+                  id="newDocumentId" class="form-control input-lg" required>
               </div>
             </div>
             <!-- form for customer email -->

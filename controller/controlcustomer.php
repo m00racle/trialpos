@@ -5,9 +5,9 @@
    */
   class ControllerCustomer
   {
-    static public function ctrDataCustomer($item, $value)
+    static public function ctrDataCustomer($item, $value, $order="ASC")
     {
-      $response = ModelCustomer::modDataCustomer("customer", $item, $value);
+      $response = ModelCustomer::modDataCustomer("customer", $item, $value, $order);
       return $response;
       // --static public function ctrDataCustomer($item, $value)
     }
