@@ -42,7 +42,7 @@
             Swal.fire({
               icon: 'error',
               title: 'Add Supplier: ".$_POST['newSupplier']." Gagal!',
-              text: 'User gagal ditambahkan ke category!',
+              text: 'Supplier gagal ditambahkan ke category!',
               confirmButtonText: 'OK Ulang',
               allowOutsideClick: true
             }).then((result) => {

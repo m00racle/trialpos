@@ -115,7 +115,7 @@
               <div class="input-group">
                 <!-- form and input groups are classes from bootstrap -->
                 <span class="input-group-addon"><i class="fa fa-file"></i></span>
-                <input type="number" name="newCustomerId" placeholder="Customer ID" required
+                <input type="number" name="newDocumentId" placeholder="Document ID" required
                   class="form-control input-lg">
               </div>
             </div>
@@ -166,6 +166,10 @@
           <button type="submit" class="btn btn-primary">Save Supplier</button>
         </div>
         <!-- /.end model-content; -->
+        <?php
+          $addCustomer = new ControllerCustomer();
+          $addCustomer -> ctrAddCustomer();
+        ?>
       </form>
 
     </div>

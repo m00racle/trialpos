@@ -30,17 +30,15 @@
     static public function modCreateCustomer($table, $data)
     {
       $stmt = Connection::connect()->prepare("INSERT INTO $table(name, doc_id, email, phone,
-              address, birthdate, total_purchase, last_purchase)
-              VALUES (:name, :doc_id, :email, :phone, :address, :birthdate, :total_purchase, :last_purchase)");
+              address, birthdate)
+              VALUES (:name, :doc_id, :email, :phone, :address, :birthdate)");
       $stmt->bindParam(":name", $data['name'], PDO::PARAM_STR);
       $stmt->bindParam(":doc_id", $data['doc_id'], PDO::PARAM_STR);
       $stmt->bindParam(":email", $data['email'], PDO::PARAM_STR);
       $stmt->bindParam(":phone", $data['phone'], PDO::PARAM_STR);
       $stmt->bindParam(":address", $data['address'], PDO::PARAM_STR);
       $stmt->bindParam(":birthdate", $data['birthdate'], PDO::PARAM_STR);
-      $stmt->bindParam(":total_purchase", $data['total_purchase'], PDO::PARAM_STR);
-      $stmt->bindParam(":last_purchase", $data['last_purchase'], PDO::PARAM_STR);
-
+      
       // test the execute;
       if ($stmt->execute()) {
         // code...return 'ok'
