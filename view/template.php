@@ -58,6 +58,11 @@
   <!-- iCheck script -->
   <script src="view/plugins/iCheck/icheck.min.js"></script>
 
+  <!-- data mask -->
+  <script src="view/plugins/input-mask/jquery.inputmask.js"></script>
+  <script src="view/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+  <script src="view/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+
 
 
 </head>
@@ -118,6 +123,7 @@
 <script src="view/js/user.js"></script>
 <script src="view/js/category.js"></script>
 <script src="view/js/product.js"></script>
+<script src="view/js/customer.js"></script>
 
 </body>
 </html>
