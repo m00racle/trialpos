@@ -62,8 +62,8 @@
                     <div class="btn-group">
                       <button class="btn btn-warning btnEditCustomer" idCustomer="'.$value["id"].'"
                       data-toggle="modal" data-target="#modalEditCustomer"><i class="fa fa-pencil"></i></button>
-                      <button class="btn btn-danger btnDeleteCustomer" delCustomer="'.$value["id"].'">
-                      <i class="fa fa-times"></i></button>
+                      <button class="btn btn-danger btnDeleteCustomer" delCustomer="'.$value["id"].'"
+                      nameCustomer="'.$value["name"].'"><i class="fa fa-times"></i></button>
                     </div>
                   </td>';
                 // code...foreach ($dataCustomer as $key => $value)
@@ -267,4 +267,11 @@
     </div>
 
   </div>
+  <!-- End of Modal Edit Customer-->
 </div>
+
+<?php
+  // DELETE CUSTOMER;
+  $deleteCustomer = new ControllerCustomer();
+  $deleteCustomer -> ctrDeleteCustomer();
+?>

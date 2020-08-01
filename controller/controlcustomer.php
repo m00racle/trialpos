@@ -164,6 +164,48 @@
       }
       // --static public function ctrEditCustomer()
     }
+
+    static public function ctrDeleteCustomer()
+    {
+      if (isset($_GET["idCustomer"])) {
+        // echo "<script>console.log('id', ".json_encode($_GET["idCustomer"]).")</script>";// DEBUG: 
+        $response = ModelCustomer::modDeleteCustomer("customer", $_GET["idCustomer"]);
+
+        if ($response == "ok") {
+          echo "<script>
+          Swal.fire({
+            icon: 'success',
+            title: 'Customer Telah Dihapus!',
+            text: 'Customer sudah dihapus dari basis data. Klik lanjut untuk melanjutkan',
+            confirmButtonText: 'OK Lanjut',
+            allowOutsideClick: true
+          }).then((result) => {
+            if (result.value) {
+                window.location = 'customer';
+            }
+          })
+            </script>";
+          // code...if ($response == "ok")
+        } else {
+          echo "<script>
+          Swal.fire({
+            icon: 'error',
+            title: 'Customer Gagal Dihapus!',
+            text: 'Customer gagal dihapus dari basis data. Klik ok untuk mengulang',
+            confirmButtonText: 'OK Ulang',
+            allowOutsideClick: true
+          }).then((result) => {
+            if (result.value) {
+                window.location = 'customer';
+            }
+          })
+            </script>";
+          // else...if ($response == "ok")
+        }
+        // code...if (isset($_GET["idCustomer"]))
+      }
+      // --static public function ctrDeleteCustomer()
+    }
     // --class ControllerCustomer
   }
 
