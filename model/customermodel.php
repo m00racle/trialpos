@@ -58,9 +58,9 @@
     {
       $stmt = Connection::connect()->prepare("UPDATE $table
               SET name = :name, email = :email, phone = :phone,
-              address = :address, birthdate = :birthdate WHERE id = :id");
+              address = :address, birthdate = :birthdate WHERE doc_id = :doc_id");
 
-      $stmt->bindParam(":id", $data['id'], PDO::PARAM_STR);
+      $stmt->bindParam(":doc_id", $data['doc_id'], PDO::PARAM_STR);
       $stmt->bindParam(":name", $data['name'], PDO::PARAM_STR);
       $stmt->bindParam(":email", $data['email'], PDO::PARAM_STR);
       $stmt->bindParam(":phone", $data['phone'], PDO::PARAM_STR);

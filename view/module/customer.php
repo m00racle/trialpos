@@ -163,12 +163,104 @@
         <!-- modal footer -->
         <div class="modal-footer">
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
-          <button type="submit" class="btn btn-primary">Save Supplier</button>
+          <button type="submit" class="btn btn-primary">Save Customer</button>
         </div>
         <!-- /.end model-content; -->
         <?php
           $addCustomer = new ControllerCustomer();
           $addCustomer -> ctrAddCustomer();
+        ?>
+      </form>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal Edit Customer-->
+<div id="modalEditCustomer" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <form role="form" class="" action="" method="post">
+        <!-- modal header -->
+        <div class="modal-header" style="background:#3c8dbc; color:white">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Edit Customer</h4>
+        </div>
+        <!-- modal body -->
+        <div class="modal-body">
+          <div class="box-body">
+
+            <!-- form for edit customer name-->
+            <div class="form-group">
+              <div class="input-group">
+                <!-- form and input groups are classes from bootstrap -->
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <input type="text" name="editCustomerName" placeholder="insert name" required
+                  id="editCustomerName" class="form-control input-lg">
+              </div>
+            </div>
+            <!-- form for insert customer document id -->
+            <div class="form-group">
+              <div class="input-group">
+                <!-- form and input groups are classes from bootstrap -->
+                <span class="input-group-addon"><i class="fa fa-file"></i></span>
+                <input type="number" name="editDocumentId" placeholder="Document ID" readonly
+                  id="editDocumentId" class="form-control input-lg" required>
+              </div>
+            </div>
+            <!-- form for customer email -->
+            <div class="form-group">
+              <div class="input-group">
+                <!-- form and input groups are classes from bootstrap -->
+                <span class="input-group-addon"><i class="fa fa-at"></i></span>
+                <input type="email" name="editCustomerEmail" placeholder="E mail" required
+                  id="editCustomerEmail" class="form-control input-lg">
+              </div>
+            </div>
+            <!-- form for customer phone -->
+            <div class="form-group">
+              <div class="input-group">
+                <!-- form and input groups are classes from bootstrap -->
+                <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                <input type="text" name="editCustomerPhone" placeholder="nomor telepon" required
+                  class="form-control input-lg" data-inputmask="'mask': ['+(62) 999-9999-9999']"
+                  data-mask id="editCustomerPhone">
+              </div>
+            </div>
+            <!-- form for add customer address-->
+            <div class="form-group">
+              <div class="input-group">
+                <!-- form and input groups are classes from bootstrap -->
+                <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                <input type="text" name="editCustomerAddress" placeholder="Alamat" required
+                  class="form-control input-lg" id="editCustomerAddress">
+              </div>
+            </div>
+            <!-- form for customer birth date -->
+            <div class="form-group">
+              <div class="input-group">
+                <!-- form and input groups are classes from bootstrap -->
+                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                <input type="text" name="editCustomerBirthDate" placeholder="tanggal lahir" required
+                  class="form-control input-lg" data-inputmask="'alias': 'yyyy/mm/dd'"
+                  data-mask id="editCustomerBirthDate">
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Edit Customer</button>
+        </div>
+        <!-- /.end model-content; -->
+        <?php
+          $editCustomer = new ControllerCustomer();
+          $editCustomer -> ctrEditCustomer();
         ?>
       </form>
 

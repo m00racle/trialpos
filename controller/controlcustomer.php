@@ -46,7 +46,7 @@
                   echo "<script>
                   Swal.fire({
                     icon: 'error',
-                    title: 'Add Supplier: ".$_POST['newCustomerName']." Gagal!',
+                    title: 'Add Customer: ".$_POST['newCustomerName']." Gagal!',
                     text: 'Customer gagal ditambahkan ke category!',
                     confirmButtonText: 'OK Ulang',
                     allowOutsideClick: true
@@ -81,7 +81,7 @@
           echo "<script>
           Swal.fire({
             icon: 'error',
-            title: 'Add Supplier: ".$_POST['newCustomerName']." Gagal!',
+            title: 'Add Customer: ".$_POST['newCustomerName']." Gagal!',
             text: 'Hanya karakter huruf dan angka yang diperbolehkan untuk nama lengkap Supplier!',
             confirmButtonText: 'OK Ulang',
             allowOutsideClick: true
@@ -97,6 +97,72 @@
       }
 
       // --static public function ctrAddCustomer()
+    }
+
+    static public function ctrEditCustomer()
+    {
+      if (isset($_POST["editCustomerName"])) {
+        if (preg_match('/^[a-zA-Z0-9 ]+$/', $_POST["editCustomerName"])) {
+          $data = array('name' => $_POST["editCustomerName"],
+                        'doc_id' => $_POST["editDocumentId"],
+                        'email' => $_POST["editCustomerEmail"],
+                        'phone' => $_POST["editCustomerPhone"],
+                        'address' => $_POST["editCustomerAddress"],
+                        'birthdate' => $_POST["editCustomerBirthDate"]);
+          // echo "<script>console.log(".json_encode($data).")</script>"; // NOTE: debug
+          $response = ModelCustomer::modEditCustomer("customer", $data);
+
+          if ($response == "ok") {
+            echo "<script>
+            Swal.fire({
+              icon: 'success',
+              title: 'Edit Customer: ".$_POST['newCustomerName']." Berhasil!',
+              text: 'Customer sudah diupdate di database!',
+              confirmButtonText: 'OK Lanjut!',
+              allowOutsideClick: false
+            }).then((result) => {
+              if (result.value) {
+                  window.location = 'customer';
+              }
+            })
+              </script>";
+            // code...if ($response == "ok")
+          } else {
+            echo "<script>
+            Swal.fire({
+              icon: 'error',
+              title: 'Edit Customer: ".$_POST['newCustomerName']." Gagal!',
+              text: 'Customer gagal diupdate ke database!',
+              confirmButtonText: 'OK Ulang',
+              allowOutsideClick: true
+            }).then((result) => {
+              if (result.value) {
+
+              }
+            })
+              </script>";
+            // else...if ($response == "ok")
+          }
+          // code...if (preg_match('/^[a-zA-Z0-9 ]+$/', $_POST["editCustomerName"]))
+        } else {
+          echo "<script>
+          Swal.fire({
+            icon: 'error',
+            title: 'Edit data Customer: ".$_POST['editCustomerName']." Gagal!',
+            text: 'Hanya karakter huruf dan angka yang diperbolehkan untuk nama lengkap Supplier!',
+            confirmButtonText: 'OK Ulang',
+            allowOutsideClick: true
+          }).then((result) => {
+            if (result.value) {
+
+            }
+          })
+            </script>";
+          // else...if (preg_match('/^[a-zA-Z0-9 ]+$/', $_POST["editCustomerName"]))
+        }
+        // code...if (isset($_POST["editCustomerName"]))
+      }
+      // --static public function ctrEditCustomer()
     }
     // --class ControllerCustomer
   }
