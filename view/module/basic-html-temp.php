@@ -2,13 +2,13 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Sales Management
+      Supplier Management
       <small>Control Panel</small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
 
-      <li class="active">Sales Management</li>
+      <li class="active">Supplier Management</li>
     </ol>
   </section>
 
@@ -18,9 +18,8 @@
     <!-- Default box -->
     <div class="box">
       <div class="box-header with-border">
-        <a href="create-sales">
-        <button class="btn btn-primary">Kasir</button>
-         </a>
+        <button class="btn btn-primary"
+         data-toggle="modal" data-target="#modalAddSupplier">Add Supplier</button>
          <!-- /.ini bootstrap modal untuk add user -->
 
       </div>
@@ -31,49 +30,43 @@
           <thead>
             <tr>
               <th style="width:10px">#</th>
-              <th>Billing Code</th>
-              <th>Customer</th>
-              <th>Seller</th>
-              <th>Payment Method</th>
-              <th>Net Price</th>
-              <th>Total</th>
-              <th>Transaction Date</th>
-              <th>Action</th>
+              <th>Full Name</th>
+              <th>Actions</th>
+              <th>Status</th>
+              <th>Bank Acc</th>
+              <th>Acc Num</th>
+              <th>Last Inv</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>1</td>
-              <td>12345</td>
-              <td>Customer</td>
-              <td>Warji</td>
-              <td>BCA:Debit</td>
-              <td>75000</td>
-              <td>82500</td>
-              <td>2020-07-11 23:05:22</td>
+              <td>Omah Cafe</td>
               <td>
                 <div class="btn-group">
                   <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
                   <button class="btn btn-danger"><i class="fa fa-times"></i></button>
                 </div>
               </td>
+              <td>inhouse</td>
+              <td>BCA: Warji</td>
+              <td>35353535</td>
+              <td>2020-07-11 23:05:22</td>
 
             </tr>
             <tr>
-              <td>1</td>
-              <td>12345</td>
-              <td>Customer</td>
-              <td>Warji</td>
-              <td>Cash</td>
-              <td>75000</td>
-              <td>82500</td>
-              <td>2020-07-11 23:05:22</td>
+              <td>2</td>
+              <td>Jajan Pasar</td>
               <td>
                 <div class="btn-group">
                   <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
                   <button class="btn btn-danger"><i class="fa fa-times"></i></button>
                 </div>
               </td>
+              <td>inhouse</td>
+              <td>BCA: Fulan</td>
+              <td>2345676</td>
+              <td>2020-07-11 23:05:22</td>
 
             </tr>
           </tbody>
