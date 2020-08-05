@@ -21,9 +21,9 @@
           <div class="box-header with-border">
             <!-- empty space just to fill some sort of white space -->
           </div>
-          <div class="box-header with-border">
+          <div class="box">
             <form class="" action="" method="post" role="form">
-              <div class="box">
+              <div class="box-body">
                 <!-- SELLER INPUT -->
                 <div class="form-group">
                   <div class="input-group">
@@ -66,16 +66,66 @@
                   <div class="col-xs-3" style="padding-left:0px">
                     <!-- product price -->
                     <div class="input-group">
-                      <input type="number" class="form-control" id="newProductPrice" name="newProductPrice" min="1" placeholder="00000" required readonly>
                       <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
+                      <input type="number" class="form-control" id="newProductPrice" name="newProductPrice" min="1" placeholder="00000" required readonly>
                     </div>
                   </div>
                 </div>
                 <!-- the button to add products; this is for the mobile device only since in the desktop user can pick the product from the list in the right side of the form-->
                 <button type="button" class="btn btn-default hidden-lg">Add Product</button><hr>
                 <div class="row">
-                  
+                  <div class="col-xs-8 pull-right">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Pajak</th>
+                          <th>Total</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <!-- tax and total amount -->
+                          <td style="width:50%">
+                            <div class="input-group">
+                              <input type="number" class="form-control" min="0" id="newSalesTax" name="newSalesTax" placeholder="0" required>
+                              <span class="input-group-addon"><i class="fa fa-percent"></i></span>
+                            </div>
+                          </td>
+                          <td style="width:50%">
+                            <div class="input-group">
+                              <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
+                              <input type="number" class="form-control" id="newTotalSales" name="newTotalSales"  placeholder="00000" required readonly>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
+                <hr>
+                <!-- select payment methods -->
+                <div class="form-group row">
+                  <div class="col-xs-6" style="padding-right:0px">
+                    <div class="input-group">
+                      <select class="form-control" id="newPaymentMethod" name="newPaymentMethod" required>
+                        <option value="">Select Payment Method</option>
+                        <option value="cash">Cash</option>
+                        <option value="creditCard">Credit Card</option>
+                        <option value="debitCard">Debit Card</option>
+                      </select>
+                    </div>
+                  </div>
+                  <!-- enter transaction code from card transaction -->
+                  <div class="col-xs-6" style="padding-left:0px">
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="newTransactionCode" name="newTransactionCode" placeholder="Transaction Code" required>
+                      <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                    </div>
+                  </div>
+                </div>
+              </div><hr>
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary pull-right">Save Sales</button>
               </div>
             </form>
           </div>
@@ -84,6 +134,39 @@
       <div class="col-lg-7 hidden-md hidden-sm hidden-xs">
         <div class="box box-warning">
           <!-- this is the initial default box colored as green meaning success but when things went bad it will turns yellow as warning -->
+          <div class="box-header with-border">
+            <!-- just left it blank because just whitespace -->
+          </div>
+          <div class="box-body">
+            <table class="table table-bordered table-striped dt-responsive tables">
+              <thead>
+                <tr>
+                  <th style="width:10px">#</th>
+                  <th>Picture</th>
+                  <th>Code</th>
+                  <th>Description</th>
+                  <th>Supplier</th>
+                  <th>Stock</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td><img src="view\img\product\default\anonymousbox.png" class="img-thumbnail" width="40px"></td>
+                  <td>1002</td>
+                  <td>Lorem ipsum dolor</td>
+                  <td>Sularno</td>
+                  <td>20</td>
+                  <td>
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-primary">Add</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
 
