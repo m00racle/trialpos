@@ -28,14 +28,30 @@
                 <div class="form-group">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                    <input type="text" class="form-control" id="newSeller" name="newSeller" value="User Admin" readonly>
+                    <input type="text" class="form-control" id="newSeller" name="newSeller" value="<?php echo $_SESSION['username']; ?>" readonly>
+                    <!-- we need to add user id for the sales record but we must do this hidden -->
+                    <input type="hidden" name="sellerId" value="<?php echo $_SESSION["userid"]; ?>">
                   </div>
                 </div>
                 <!-- BILLING CODE -->
                 <div class="form-group">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                    <input type="text" class="form-control" id="newSale" name="newSale" value="100002343" readonly>
+                    <?php
+                      $salesData = ControllerSales::ctrDataSales(null,null);
+                      if (!$salesData) {
+                        echo '<input type="text" class="form-control" id="newSale" name="newSale" value="1001" readonly>';
+                        // code...if (!salesData)
+                      } else {
+                        foreach ($salesData as $key => $value) {
+                          // code...just let it roll we only need the last
+                        }
+                        $salesCode = $value["code"] + 1;
+                        echo '<input type="text" class="form-control" id="newSale" name="newSale" value="'.$salesCode.'" readonly>';
+                        // else...if (!salesData)
+                      }
+                    ?>
+
                   </div>
                 </div>
                 <!-- CUSTOMER INPUT -->
@@ -45,6 +61,13 @@
 
                     <select class="form-control" id="selectCustomer" name="selectCustomer" required>
                       <option value="">Select Customer</option>
+                      <?php
+                        $customerData = ControllerCustomer::ctrDataCustomer(null,null);
+                        foreach ($customerData as $key => $value) {
+                          echo '<option value="'.$value["id"].'">'.$value["name"].'</option>';
+                          // code...foreach ($customerData as $key => $value)
+                        }
+                      ?>
                     </select>
                     <!-- add button for new customer -->
                     <span class="input-group-addon"><button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modalAddCustomer" data-dismiss="modal">Add Customer</button></span>
