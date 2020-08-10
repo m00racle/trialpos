@@ -161,33 +161,18 @@
             <!-- just left it blank because just whitespace -->
           </div>
           <div class="box-body">
-            <table class="table table-bordered table-striped dt-responsive tables">
+            <table class="table table-bordered table-striped dt-responsive" id="tableProductsForSale">
               <thead>
                 <tr>
                   <th style="width:10px">#</th>
                   <th>Picture</th>
                   <th>Code</th>
                   <th>Description</th>
-                  <th>Supplier</th>
                   <th>Stock</th>
                   <th>Action</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td><img src="view\img\product\default\anonymousbox.png" class="img-thumbnail" width="40px"></td>
-                  <td>1002</td>
-                  <td>Lorem ipsum dolor</td>
-                  <td>Sularno</td>
-                  <td>20</td>
-                  <td>
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-primary">Add</button>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
+
             </table>
           </div>
         </div>

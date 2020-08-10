@@ -1,4 +1,5 @@
 <?php
+  require_once "connectdb.php";
   //this model the object: product
   /**
    * Class model product;
