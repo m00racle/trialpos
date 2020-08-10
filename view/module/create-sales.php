@@ -22,7 +22,7 @@
             <!-- empty space just to fill some sort of white space -->
           </div>
           <div class="box">
-            <form class="" action="" method="post" role="form">
+            <form class="salesForm" action="" method="post" role="form">
               <div class="box-body">
                 <!-- SELLER INPUT -->
                 <div class="form-group">
@@ -75,24 +75,7 @@
                 </div>
                 <!-- ENTRY FOR NEW PRODUCT -->
                 <div class="form-group row newProduct">
-                  <!-- description of the product -->
-                  <div class="col-xs-6" style="padding-right:0px">
-                    <div class="input-group">
-                      <span class="input-group-addon"><button class="btn btn-danger"><i class="fa fa-times"></i></button></span>
-                    <input type="text" class="form-control" id="addProduct" name="addProduct" placeholder="Product Description" required>
-                    </div>
-                  </div>
-                  <div class="col-xs-3">
-                    <!-- product quantity -->
-                    <input type="number" class="form-control" id="newProductQuantity" name="newProductQuantity" min="1" placeholder="0" required>
-                  </div>
-                  <div class="col-xs-3" style="padding-left:0px">
-                    <!-- product price -->
-                    <div class="input-group">
-                      <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
-                      <input type="number" class="form-control" id="newProductPrice" name="newProductPrice" min="1" placeholder="00000" required readonly>
-                    </div>
-                  </div>
+                  <!-- uses the jQuery  -->
                 </div>
                 <!-- the button to add products; this is for the mobile device only since in the desktop user can pick the product from the list in the right side of the form-->
                 <button type="button" class="btn btn-default hidden-lg">Add Product</button><hr>

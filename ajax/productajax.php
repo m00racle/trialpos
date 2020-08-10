@@ -28,6 +28,7 @@ require_once "../model/categorymodel.php";
       // echo "<script>console.log('response',".json_encode($supplierData).")</script>";
 
       $response = array_merge($productData,$supName);
+      // NOTE: this $response is added by array if supplier name data from the supplier data controller used as the additional data for the whole process.
 
 
       echo json_encode($response);
