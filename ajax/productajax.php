@@ -19,19 +19,28 @@ require_once "../model/categorymodel.php";
       // --static public function ajaxReadProductCode($idSupplier)
     }
 
-    static public function ajaxEditProduct($idProduct)
+    static public function ajaxEditProduct($idProduct, $bringProducts="notOK")
     {
-      $productData = ControllerProduct::ctrDataProduct("id",$idProduct);
-      $supplierData = ControllerSupplier::ctrDataSupplier("id", $productData["id_supplier"]);
-      $supName = array("supname"=>$supplierData["supname"]);
+      if ($bringProducts == "ok") {
+        // code...
+        $response = ControllerProduct::ctrDataProduct(null, null);
 
-      // echo "<script>console.log('response',".json_encode($supplierData).")</script>";
+        echo json_encode($response);
+      } else {
+        // code...
+        $productData = ControllerProduct::ctrDataProduct("id",$idProduct);
+        $supplierData = ControllerSupplier::ctrDataSupplier("id", $productData["id_supplier"]);
+        $supName = array("supname"=>$supplierData["supname"]);
 
-      $response = array_merge($productData,$supName);
-      // NOTE: this $response is added by array if supplier name data from the supplier data controller used as the additional data for the whole process.
+        // echo "<script>console.log('response',".json_encode($supplierData).")</script>";
+
+        $response = array_merge($productData,$supName);
+        // NOTE: this $response is added by array if supplier name data from the supplier data controller used as the additional data for the whole process.
 
 
-      echo json_encode($response);
+        echo json_encode($response);
+      }
+
       // --static public function ajaxEditProduct($idProduct)
     }
 
@@ -52,5 +61,11 @@ require_once "../model/categorymodel.php";
     $editor -> ajaxEditProduct($_POST["idProduct"]);
   }
 
+  // OBJECT FOR ADD PRODUCT IN CREATE SALES VIEW;
+  if (isset($_POST["bringProducts"])) {
+    // code...
+    $getter = new AjaxProduct();
+    $getter -> ajaxEditProduct(null, $_POST["bringProducts"]);
+  }
 
  ?>

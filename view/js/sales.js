@@ -140,3 +140,93 @@ $("#tableProductsForSale").on("draw.dt", function(){
   }
   // --$(".salesForm").on("draw.dt", function()
 })
+
+// ADD PRODUCT USING TABLET OR SMALLER DEVICE USING THE ADD PRODUCT BUTTON;
+$(".btnAddProduct").click(function(){
+  // IDEA: : we will use ajax to call the product table lto the create sell view;
+  var datos = new FormData();
+  datos.append("bringProducts", "ok");
+
+  $.ajax({
+    url:"ajax/productajax.php",
+    method:"POST",
+    data:datos,
+    cache:false,
+    contentType:false,
+    processData:false,
+    dataType:"json",
+    success: function(response){
+      // console.log("response", response);// DEBUG:
+      $(".newProduct").append(
+        '<div class="row" style="padding:5px 15px">' +
+          '<div class="col-xs-6" style="padding-right:0px">' +
+            '<div class="input-group">'+
+              '<span class="input-group-addon"><button class="btn btn-danger removeProduct"><i class="fa fa-times"></i></button></span>' +
+            '<select class="form-control newDescriptionProduct" name="newDescriptionProduct"  required>' +
+              '<option>Select Product</option>' +
+            '</select>' +
+            '</div>' +
+          '</div>' +
+          '<!-- product quantity -->' +
+          '<div class="col-xs-3 inputQuantity">' +
+            '<input type="number" class="form-control newProductQuantity" name="newProductQuantity" min="1" value="1" stock="" required>' +
+          '</div>' +
+          '<!-- product price -->' +
+          '<div class="col-xs-3 inputPrice" style="padding-left:0px">' +
+            '<div class="input-group">' +
+              '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>' +
+              '<input type="number" class="form-control newProductPrice" name="newProductPrice" min="1"' + 'value="" required readonly>' +
+            '</div>' +
+          '</div>' +
+        '</div>'
+      );
+
+      // IDEA: add all the product in the response but in the form of option appended into the select input; remember the class of the select is newDescriptionProduct;
+      response.forEach((item, i) => {
+        $(".newDescriptionProduct").append(
+          '<option idProduct="'+item.id+'" value="'+item.id+'">'+item.description+'</option>'
+        )
+      });
+
+      // --success: function(response)
+    }
+  })
+  // -$(".btnAddProduct").click(function()-
+})
+
+// --SELECT PRODUCT FOR SMALLER DEVICE;
+$(".salesForm").on("change", "select.newDescriptionProduct", function(){
+  var idProduct = $(this).val();
+  // NOTE: in HTML <select> can only get the value attribute from its child <option> element; other attributes will not be able to be fetched;
+  var newProductPrice = $(this).parent().parent().parent().children(".inputPrice").children().children(".newProductPrice");
+  // NOTE: this is the porent from the select tag then transfer to the children refers to newSellingPrice text input;
+
+  var newProductQuantity = $(this).parent().parent().parent().children(".inputQuantity").children(".newProductQuantity");
+
+  // console.log("price parent", newProductPrice);// DEBUG:
+  // console.log("idProduct", idProduct);// DEBUG:
+  var datos = new FormData();
+  datos.append("idProduct", idProduct);
+
+  // IDEA: call again the ajax product and see what is the response;
+  $.ajax({
+    url:"ajax/productajax.php",
+    method:"POST",
+    data:datos,
+    cache:false,
+    contentType:false,
+    processData:false,
+    dataType:"json",
+    success: function(response){
+      // console.log("prod_response", response);// DEBUG:
+      // IDEA: put the stock from data response to the stock attribute in the newProductQuantity class input;
+      $(newProductQuantity).attr("stock", response["stock"]);
+      // console.log("new Product quantity", newProductQuantity);// DEBUG:
+      // IDEA: put the sell_price data into the value of the newProductPrice class;
+      $(newProductPrice).val(response["sell_price"]);
+      // NOTE: this is to avoid class repetition using the newProductPrice variable that redirect to the parent child relationship from the select input to the text input for the price!
+    }
+  })
+
+  // --$(".salesForm").on("change", "select.newDescriptionProduct", function()
+})

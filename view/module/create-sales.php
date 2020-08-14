@@ -78,7 +78,7 @@
                   <!-- uses the jQuery  -->
                 </div>
                 <!-- the button to add products; this is for the mobile device only since in the desktop user can pick the product from the list in the right side of the form-->
-                <button type="button" class="btn btn-default hidden-lg">Add Product</button><hr>
+                <button type="button" class="btn btn-default hidden-lg btnAddProduct">Add Product</button><hr>
                 <div class="row">
                   <div class="col-xs-8 pull-right">
                     <table class="table">
