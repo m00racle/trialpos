@@ -78,7 +78,7 @@
                   <!-- uses the jQuery  -->
                 </div>
                 <!-- the button to add products; this is for the mobile device only since in the desktop user can pick the product from the list in the right side of the form-->
-                <button type="button" class="btn btn-default hidden-lg">Add Product</button><hr>
+                <button type="button" class="btn btn-default hidden-lg" data-toggle="modal" data-target="#modalAddProduct" data-dismiss="modal">Add Product</button><hr>
                 <div class="row">
                   <div class="col-xs-8 pull-right">
                     <table class="table">
@@ -144,7 +144,7 @@
             <!-- just left it blank because just whitespace -->
           </div>
           <div class="box-body">
-            <table class="table table-bordered table-striped dt-responsive tableProducts" >
+            <table class="table table-bordered table-striped dt-responsive tableProducts">
               <thead>
                 <tr>
                   <th style="width:10px">#</th>
@@ -168,7 +168,7 @@
   <!-- /.content -->
 </div>
 
-<!-- Modal -->
+<!-- Modal Add Customer-->
 <div id="modalAddCustomer" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
@@ -255,6 +255,48 @@
         ?>
       </form>
 
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal add product -->
+<div id="modalAddProduct" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <!-- modal header -->
+      <div class="modal-header" style="background:#3c8dbc; color:white">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Add Customer</h4>
+      </div>
+      <div class="box box-warning">
+        <!-- this is the initial default box colored as green meaning success but when things went bad it will turns yellow as warning -->
+        <div class="box-header with-border">
+          <!-- just left it blank because just whitespace -->
+        </div>
+        <div class="box-body">
+          <table class="table table-bordered table-striped dt-responsive tableProducts">
+            <thead>
+              <tr>
+                <th style="width:10px">#</th>
+                <th>Picture</th>
+                <th>Code</th>
+                <th>Description</th>
+                <th>Stock</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+          </table>
+        </div>
+      </div>
+      <!-- modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Done</button>
+        <!-- <button type="submit" class="btn btn-primary">Save Customer</button> -->
+      </div>
     </div>
 
   </div>
