@@ -144,7 +144,7 @@
             <!-- just left it blank because just whitespace -->
           </div>
           <div class="box-body">
-            <table class="table table-bordered table-striped dt-responsive" id="tableProductsForSale">
+            <table class="table table-bordered table-striped dt-responsive tableProducts" >
               <thead>
                 <tr>
                   <th style="width:10px">#</th>

@@ -10,7 +10,7 @@
 //   // --$.ajax
 // })
 
-$('#tableProductsForSale').DataTable( {
+$(".tableProducts").DataTable( {
         "ajax": "ajax/datatablesalesajax.php",
         "deferRender": true,
         "retrieve": true,
@@ -18,7 +18,7 @@ $('#tableProductsForSale').DataTable( {
     } );
 
 // ADD THE PRODUCT FROM THE PRODUCT TABLE FOR SALE WHEN THE ADD BUTTON IS CLICKED;
-$("#tableProductsForSale tbody").on("click", "button.addProduct", function(){
+$(".tableProducts tbody").on("click", "button.addProduct", function(){
   // first we capture the product id;
   var idProduct = $(this).attr("idProduct");
   // console.log("idProduct ", idProduct);// DEBUG: test if id Product does exist;
@@ -85,7 +85,7 @@ $("#tableProductsForSale tbody").on("click", "button.addProduct", function(){
       );
     }
   })
-  // --$("#tableProductsForSale tbody").on("click", "button.addProduct", function()
+  // --$(".tableProducts tbody").on("click", "button.addProduct", function()
 })
 
 
@@ -118,7 +118,7 @@ $(".salesForm").on("click", "button.removeProduct", function(){
 })
 
 // NOTE: THIS IS TO HANDLE THE MOMENT THE DATA TABLE WAS RELOADED;
-$("#tableProductsForSale").on("draw.dt", function(){
+$(".tableProducts").on("draw.dt", function(){
   // console.log("drawtable"); // DEBUG:
   if (localStorage.getItem("removedProduct") != null) {
     var listIdProduct = JSON.parse(localStorage.getItem("removedProduct"));
