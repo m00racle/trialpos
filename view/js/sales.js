@@ -37,16 +37,16 @@ $(".tableProducts tbody").on("click", "button.addProduct", function(){
     var targetButton = otherTable + "tbody tr td button[idProduct='"+idProduct+"']";
   }
 
-  // console.log("idProduct ", idProduct);// DEBUG: test if id Product does exist;
-  console.log("table id", tableId);// DEBUG: active
-  console.log("other table", $(targetButton).length);// DEBUG: active
+  // console.log("idProduct ", idProduct);// DEBUG:
+  // console.log("table id", tableId);// DEBUG:
+  // console.log("other table", $(targetButton).length);// DEBUG:
 
   // deactivate the button on the product list when already added;
   $(this).removeClass("btn-primary addProduct");
   $(this).addClass("btn-default");
 
   if ($(targetButton).length) {
-    console.log("target button true");// DEBUG: active
+    // console.log("target button true");// DEBUG:
     $(targetButton).removeClass("btn-primary addProduct");
     $(targetButton).addClass("btn-default");
   }else {
@@ -163,7 +163,7 @@ $(".salesForm").on("click", "button.removeProduct", function(){
 
 // NOTE: THIS IS TO HANDLE THE MOMENT THE DATA TABLE WAS RELOADED;
 $(".tableProducts").on("draw.dt", function(){
-  console.log("drawtable"); // DEBUG:active
+  // console.log("drawtable"); // DEBUG:
   if (localStorage.getItem("updateProduct") != null) {
     var listIdProduct = JSON.parse(localStorage.getItem("updateProduct"));
 
@@ -184,11 +184,11 @@ $(".tableProducts").on("draw.dt", function(){
         }
 
         // NOTE: we need to pop the i th data from the array listIdProduct;
-        listIdProduct.splice(i, 1);// BUG: this leap the index thus some orders failed to read! search other method to change the table;
-        i--;
+        listIdProduct.splice(i, 1);
+        i--; // IDEA: when splice the list index also shofted thus the index must be substracted;
       }
       i++;
-      // --for (var i = 0; i < listIdProduct.length; i++)
+      // --while (i < listIdProduct.length)
     }
     // console.log("listIdProduct", JSON.stringify(listIdProduct));// DEBUG:
     localStorage.setItem("updateProduct", JSON.stringify(listIdProduct));
