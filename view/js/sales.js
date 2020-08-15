@@ -19,21 +19,42 @@ $(".tableProducts").DataTable( {
 
 // ADD THE PRODUCT FROM THE PRODUCT TABLE FOR SALE WHEN THE ADD BUTTON IS CLICKED;
 $(".tableProducts tbody").on("click", "button.addProduct", function(){
+  // IDEA: prepare the localStorage connection;
+  if (localStorage.getItem("updateProduct") == null) {
+    var idUpdateProduct = [];
+    // NOTE: this is to prevent error if the local storage has never been initiated usually when the web app is first accessed.
+  } else {
+      var idUpdateProduct = JSON.parse(localStorage.getItem("updateProduct"));
+  }
   // first we capture the product id;
   var idProduct = $(this).attr("idProduct");
   var tableId = $(this).parent().parent().parent().parent().parent().attr("id");
-  var otherTable = "#modalTable ";
-  var targetButton = otherTable + "tbody tr td button[idProduct='"+idProduct+"']";
+  if (tableId == "mainTable") {
+    var otherTable = "#modalTable ";
+    var targetButton = otherTable + "tbody tr td button[idProduct='"+idProduct+"']";
+  } else {
+    var otherTable = "#mainTable ";
+    var targetButton = otherTable + "tbody tr td button[idProduct='"+idProduct+"']";
+  }
+
   // console.log("idProduct ", idProduct);// DEBUG: test if id Product does exist;
   console.log("table id", tableId);// DEBUG: active
-  console.log("other table", $(targetButton));// DEBUG: active
+  console.log("other table", $(targetButton).length);// DEBUG: active
 
   // deactivate the button on the product list when already added;
   $(this).removeClass("btn-primary addProduct");
   $(this).addClass("btn-default");
 
-  $(targetButton).removeClass("btn-primary addProduct");
-  $(targetButton).addClass("btn-default");
+  if ($(targetButton).length) {
+    console.log("target button true");// DEBUG: active
+    $(targetButton).removeClass("btn-primary addProduct");
+    $(targetButton).addClass("btn-default");
+  }else {
+    // IDEA: put the changes into the localStorage;
+    idUpdateProduct.push({"tableId":otherTable,"update":"add","idProduct":idProduct});
+    localStorage.setItem("updateProduct", JSON.stringify(idUpdateProduct));
+  }
+
 
   var datos = new FormData();
   datos.append("idProduct", idProduct);
@@ -65,6 +86,12 @@ $(".tableProducts tbody").on("click", "button.addProduct", function(){
         });
         // IDEA: change the button to be deactivated to prevent future addition before restocking!
         $("button.recoverButton[idProduct='"+idProduct+"']").addClass("btn-primary addProduct");
+        if (!$(targetButton).length) {
+          console.log("reverse target button");
+          // IDEA: put the changes into the localStorage;
+          idUpdateProduct.push({"tableId":otherTable,"update":"remove","idProduct":idProduct});
+          localStorage.setItem("updateProduct", JSON.stringify(idUpdateProduct));
+        }
 
         return;
       }
@@ -104,22 +131,31 @@ $(".salesForm").on("click", "button.removeProduct", function(){
 
   var idProduct = $(this).attr("idProduct");
   // NOTE: using the idProduct we will search the add button that has the attribute idProduct attribute with the value of the idProduct variable;
-  if (localStorage.getItem("removedProduct") == null) {
-    var idRemovedProduct = [];
+  if (localStorage.getItem("updateProduct") == null) {
+    var idUpdateProduct = [];
     // NOTE: this is to prevent error if the local storage has never been initiated usually when the web app is first accessed.
   } else {
-      var idRemovedProduct = JSON.parse(localStorage.getItem("removedProduct"));
+      var idUpdateProduct = JSON.parse(localStorage.getItem("updateProduct"));
   }
 
 
   // IDEA: if the product is already viewed just change the add button back to active but don't update the local storage;
-  if ($("button.recoverButton[idProduct='"+idProduct+"']").length) {
-    $("button.recoverButton[idProduct='"+idProduct+"']").removeClass("btn-default");
-    $("button.recoverButton[idProduct='"+idProduct+"']").addClass("btn-primary addProduct");
+  if ($("#mainTable tbody tr td button[idProduct='"+idProduct+"']").length) {
+    $("#mainTable tbody tr td button[idProduct='"+idProduct+"']").removeClass("btn-default");
+    $("#mainTable tbody tr td button[idProduct='"+idProduct+"']").addClass("btn-primary addProduct");
   } else {
     // IDEA: if the product canceled is not inview yet just add it into the localStorage to be updated later when viewd;
-    idRemovedProduct.push({"idProduct":idProduct}); // NOTE: this append the latest removed product to the array just in case the tracker does not find it in the first table view;
-    localStorage.setItem("removedProduct", JSON.stringify(idRemovedProduct));
+    idUpdateProduct.push({"tableId":"#mainTable ","update":"remove","idProduct":idProduct});
+    localStorage.setItem("updateProduct", JSON.stringify(idUpdateProduct));
+  }
+
+  if ($("#modalTable tbody tr td button[idProduct='"+idProduct+"']").length) {
+    $("#modalTable tbody tr td button[idProduct='"+idProduct+"']").removeClass("btn-default");
+    $("#modalTable tbody tr td button[idProduct='"+idProduct+"']").addClass("btn-primary addProduct");
+  } else {
+    // IDEA: if the product canceled is not inview yet just add it into the localStorage to be updated later when viewd;
+    idUpdateProduct.push({"tableId":"#modalTable ","update":"remove","idProduct":idProduct});
+    localStorage.setItem("updateProduct", JSON.stringify(idUpdateProduct));
   }
 
   // $(".salesForm").on("click", "button.removeProduct", function()
@@ -128,22 +164,31 @@ $(".salesForm").on("click", "button.removeProduct", function(){
 // NOTE: THIS IS TO HANDLE THE MOMENT THE DATA TABLE WAS RELOADED;
 $(".tableProducts").on("draw.dt", function(){
   console.log("drawtable"); // DEBUG:active
-  if (localStorage.getItem("removedProduct") != null) {
-    var listIdProduct = JSON.parse(localStorage.getItem("removedProduct"));
+  if (localStorage.getItem("updateProduct") != null) {
+    var listIdProduct = JSON.parse(localStorage.getItem("updateProduct"));
 
     for (var i = 0; i < listIdProduct.length; i++) {
+      var tableId = listIdProduct[i]["tableId"];
       var idProduct = listIdProduct[i]["idProduct"];
-      if ($("button.recoverButton[idProduct='"+idProduct+"']").length) {
+      var updateAction = listIdProduct[i]["update"];
+      var targetButton = tableId + "tbody tr td button[idProduct='"+idProduct+"']";
+      if ($(targetButton + "[idProduct='"+idProduct+"']").length) {
         // NOTE: the ($("button.recoverButton[idProduct='"+idProduct+"']").length) used to test if the button exist in the view. If the value = 0 means there is none and in JQuery (Javascript) 0 means false in IF test;
-        $("button.recoverButton[idProduct='"+idProduct+"']").removeClass("btn-default");
-        $("button.recoverButton[idProduct='"+idProduct+"']").addClass("btn-primary addProduct");
+        if (updateAction == "remove") {
+          $("button.recoverButton[idProduct='"+idProduct+"']").removeClass("btn-default");
+          $("button.recoverButton[idProduct='"+idProduct+"']").addClass("btn-primary addProduct");
+        } else {
+          $("button.recoverButton[idProduct='"+idProduct+"']").removeClass("btn-primary addProduct");
+          $("button.recoverButton[idProduct='"+idProduct+"']").addClass("btn-default");
+        }
+
         // NOTE: we need to pop the i th data from the array listIdProduct;
-        listIdProduct.splice(i, 1);
+        listIdProduct.splice(i, 1);// BUG: this leap the index thus some orders failed to read! search other method to change the table;
       }
       // --for (var i = 0; i < listIdProduct.length; i++)
     }
     // console.log("listIdProduct", JSON.stringify(listIdProduct));// DEBUG:
-    localStorage.setItem("removedProduct", JSON.stringify(listIdProduct));
+    localStorage.setItem("updateProduct", JSON.stringify(listIdProduct));
 
   }
   // --$(".salesForm").on("draw.dt", function()
