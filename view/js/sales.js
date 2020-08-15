@@ -167,7 +167,8 @@ $(".tableProducts").on("draw.dt", function(){
   if (localStorage.getItem("updateProduct") != null) {
     var listIdProduct = JSON.parse(localStorage.getItem("updateProduct"));
 
-    for (var i = 0; i < listIdProduct.length; i++) {
+    var i=0;
+    while (i < listIdProduct.length) {
       var tableId = listIdProduct[i]["tableId"];
       var idProduct = listIdProduct[i]["idProduct"];
       var updateAction = listIdProduct[i]["update"];
@@ -184,7 +185,9 @@ $(".tableProducts").on("draw.dt", function(){
 
         // NOTE: we need to pop the i th data from the array listIdProduct;
         listIdProduct.splice(i, 1);// BUG: this leap the index thus some orders failed to read! search other method to change the table;
+        i--;
       }
+      i++;
       // --for (var i = 0; i < listIdProduct.length; i++)
     }
     // console.log("listIdProduct", JSON.stringify(listIdProduct));// DEBUG:
