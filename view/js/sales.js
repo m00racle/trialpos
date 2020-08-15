@@ -21,11 +21,19 @@ $(".tableProducts").DataTable( {
 $(".tableProducts tbody").on("click", "button.addProduct", function(){
   // first we capture the product id;
   var idProduct = $(this).attr("idProduct");
+  var tableId = $(this).parent().parent().parent().parent().parent().attr("id");
+  var otherTable = "#modalTable ";
+  var targetButton = otherTable + "tbody tr td button[idProduct='"+idProduct+"']";
   // console.log("idProduct ", idProduct);// DEBUG: test if id Product does exist;
+  console.log("table id", tableId);// DEBUG: active
+  console.log("other table", $(targetButton));// DEBUG: active
 
   // deactivate the button on the product list when already added;
   $(this).removeClass("btn-primary addProduct");
   $(this).addClass("btn-default");
+
+  $(targetButton).removeClass("btn-primary addProduct");
+  $(targetButton).addClass("btn-default");
 
   var datos = new FormData();
   datos.append("idProduct", idProduct);
@@ -119,7 +127,7 @@ $(".salesForm").on("click", "button.removeProduct", function(){
 
 // NOTE: THIS IS TO HANDLE THE MOMENT THE DATA TABLE WAS RELOADED;
 $(".tableProducts").on("draw.dt", function(){
-  // console.log("drawtable"); // DEBUG:
+  console.log("drawtable"); // DEBUG:active
   if (localStorage.getItem("removedProduct") != null) {
     var listIdProduct = JSON.parse(localStorage.getItem("removedProduct"));
 
