@@ -142,7 +142,10 @@ $("#tableProductsForSale").on("draw.dt", function(){
 })
 
 // ADD PRODUCT USING TABLET OR SMALLER DEVICE USING THE ADD PRODUCT BUTTON;
+var numProduct = 0;
 $(".btnAddProduct").click(function(){
+  // IDEA: each time the add product button is pressed the numProduct will be incremented;
+  numProduct++;
   // IDEA: : we will use ajax to call the product table lto the create sell view;
   var datos = new FormData();
   datos.append("bringProducts", "ok");
@@ -162,7 +165,7 @@ $(".btnAddProduct").click(function(){
           '<div class="col-xs-6" style="padding-right:0px">' +
             '<div class="input-group">'+
               '<span class="input-group-addon"><button class="btn btn-danger removeProduct"><i class="fa fa-times"></i></button></span>' +
-            '<select class="form-control newDescriptionProduct" name="newDescriptionProduct"  required>' +
+            '<select class="form-control newDescriptionProduct" id="product'+numProduct+'" name="newDescriptionProduct"  required>' +
               '<option>Select Product</option>' +
             '</select>' +
             '</div>' +
@@ -183,9 +186,16 @@ $(".btnAddProduct").click(function(){
 
       // IDEA: add all the product in the response but in the form of option appended into the select input; remember the class of the select is newDescriptionProduct;
       response.forEach((item, i) => {
-        $(".newDescriptionProduct").append(
-          '<option idProduct="'+item.id+'" value="'+item.id+'">'+item.description+'</option>'
-        )
+        if (item.stock != 0) {
+          // IDEA: we only add the product to the option lixt of the select input if the product still has stocks available, otherwise the product will be omitted;
+          $("#product"+numProduct).append(
+            // IDEA: this time we refer each select input by its id not class, thus it will make each select class more specific;
+
+            '<option idProduct="'+item.id+'" value="'+item.description+'">'+item.description+'</option>'
+          )
+          // --if (item.stock != 0)
+        }
+
       });
 
       // --success: function(response)
