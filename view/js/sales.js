@@ -83,8 +83,11 @@ $("#tableProductsForSale tbody").on("click", "button.addProduct", function(){
           '</div>' +
         '</div>'
       );
+      // IDEA: calculate total price immideately;
+      calculateTotalPrice();
     }
   })
+
   // --$("#tableProductsForSale tbody").on("click", "button.addProduct", function()
 })
 
@@ -113,6 +116,8 @@ $(".salesForm").on("click", "button.removeProduct", function(){
     idRemovedProduct.push({"idProduct":idProduct}); // NOTE: this append the latest removed product to the array just in case the tracker does not find it in the first table view;
     localStorage.setItem("removedProduct", JSON.stringify(idRemovedProduct));
   }
+  // IDEA: calculate total price immideately;
+  calculateTotalPrice();
 
   // $(".salesForm").on("click", "button.removeProduct", function()
 })
@@ -197,10 +202,13 @@ $(".btnAddProduct").click(function(){
         }
 
       });
+      // IDEA: calculate total price immideately;
+      calculateTotalPrice();
 
       // --success: function(response)
     }
   })
+
   // -$(".btnAddProduct").click(function()-
 })
 
@@ -214,7 +222,7 @@ $(".salesForm").on("change", "select.newDescriptionProduct", function(){
   var newProductQuantity = $(this).parent().parent().parent().children(".inputQuantity").children(".newProductQuantity");
 
   // console.log("price parent", newProductPrice);// DEBUG:
-  console.log("idProduct", idProduct);// DEBUG:active
+  // console.log("idProduct", idProduct);// DEBUG:
   var datos = new FormData();
   datos.append("idProduct", idProduct);
 
@@ -237,6 +245,9 @@ $(".salesForm").on("change", "select.newDescriptionProduct", function(){
       $(newProductPrice).attr("productPrice", response["sell_price"]);
       // console.log("price after", newProductPrice);// DEBUG:
       // NOTE: this is to avoid class repetition using the newProductPrice variable that redirect to the parent child relationship from the select input to the text input for the price!
+
+      // IDEA: calculate total price immideately;
+      calculateTotalPrice();
     }
   })
 
@@ -268,5 +279,35 @@ $(".salesForm").on("change", "input.newProductQuantity", function(){
   // // IDEA: the current total price is product quantity (convert first to Number) * product price;
   $(productPriceObject).val(productPrice * Number($(this).val()));
 
+  // IDEA: calculate the sum of all total prices;
+  calculateTotalPrice();
+
   // --$(".salesForm").on("change", "input.newProductQuantity", function()
 })
+
+// FUNCTON TO CALCULATE TOTAL OF ALL PRODUCT PRICE;
+function calculateTotalPrice(){
+  // IDEA: this function will be called each time the user changes quntity, and product sell;
+  var arrayProductObjects = $(".newProductPrice");
+  // console.log("arrayProductObjects", arrayProductObjects);// DEBUG:
+  // console.log("arrayProductObjects length", arrayProductObjects.length);// DEBUG:
+
+  // IDEA: get the price of each product and add it into a list;
+  var arrayProductPrices = [];
+  for (var i = 0; i < arrayProductObjects.length; i++) {
+    arrayProductPrices.push(Number($(arrayProductObjects[i]).val()));
+    // NOTE: this is an object selector to transform it into HTML object use $() for Jquery;
+  }
+
+  var totalSum = arrayProductPrices.reduce(sumTotalPrice);
+
+  // console.log("arrayProductPrices", totalSum);// DEBUG:
+
+  // IDEA: put the sum to the total price input form;
+  $("#newTotalSales").val(totalSum);
+
+  function sumTotalPrice(total, price){
+    return total + price;
+  }
+  // --function calculateTotalPrice()
+}
