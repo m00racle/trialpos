@@ -116,8 +116,14 @@ $(".salesForm").on("click", "button.removeProduct", function(){
     idRemovedProduct.push({"idProduct":idProduct}); // NOTE: this append the latest removed product to the array just in case the tracker does not find it in the first table view;
     localStorage.setItem("removedProduct", JSON.stringify(idRemovedProduct));
   }
-  // IDEA: calculate total price immideately;
-  calculateTotalPrice();
+  // IDEA: if all products removed then set total back to zero otherwise call calculateTotalPrice;
+  if ($(".newProduct").children().length == 0) {
+    // IDEA: just skip the calculation of total price and fill the total price as zero;
+    $("#newTotalSales").val(0);
+  } else {
+    // IDEA: calculate total price immideately;
+    calculateTotalPrice();
+  }
 
   // $(".salesForm").on("click", "button.removeProduct", function()
 })
