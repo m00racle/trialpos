@@ -122,6 +122,8 @@ $(".tableProducts tbody").on("click", "button.addProduct", function(){
           '</div>' +
         '</div>'
       );
+      // IDEA: call the totalPrice function to sum all prices and put it into total price input form;
+      totalPrice();
     }
   })
   // --$(".tableProducts tbody").on("click", "button.addProduct", function()
@@ -160,6 +162,14 @@ $(".salesForm").on("click", "button.removeProduct", function(){
     // IDEA: if the product canceled is not inview yet just add it into the localStorage to be updated later when viewd;
     idUpdateProduct.push({"tableId":"#modalTable ","update":"remove","idProduct":idProduct});
     localStorage.setItem("updateProduct", JSON.stringify(idUpdateProduct));
+  }
+
+  // IDEA: if the remove button only one then we just reverse the totalPrice back to zero;
+  if ($("div.newProduct").children().length == 0) {
+    $("input#newTotalSales").val(0);
+  } else {
+    // IDEA: call the totalPrice function to sum all prices and put it into total price input form;
+    totalPrice();
   }
 
   // $(".salesForm").on("click", "button.removeProduct", function()
@@ -220,9 +230,39 @@ $(".salesForm").on("change", "input.newProductQuantity", function(){
   var objectPrice = $(this).parent().parent().children(".productPrice").children().children(".newProductPrice");
   // console.log("objectPrice", objectPrice);// DEBUG:
   var unitPrice = $(objectPrice).attr("unitPrice");
-  // console.log("unitPrice", unitPrice);// DEBUG: 
+  // console.log("unitPrice", unitPrice);// DEBUG:
 
   // IDEA: put the quntity * unit price to the input objectPrice value;
   $(objectPrice).val(Number($(this).val()) * Number(unitPrice));
+
+  // IDEA: call the totalPrice function to sum all prices and put it into total price input form;
+  totalPrice();
   // --$(".salesForm").on("change", "input.newProductQuantity", function()
 })
+
+// SUM THE PRODUCT PRICE TO FILL THE TOTAL PRICE ;
+function totalPrice(){
+  // IDEA: fetch all individual product price in an array;
+  var objectProductPrice = $(".newProductPrice");
+  // console.log("objectProductPrice", objectProductPrice);// DEBUG:
+
+  // IDEA: iterate all selectors in the objectProductPrice and push it into the array of product price;
+  var totalProductPrice = [];
+  for (var i = 0; i < objectProductPrice.length; i++) {
+    var productPrice = Number($(objectProductPrice[i]).val());
+    totalProductPrice.push(productPrice);
+  }
+  // console.log("totalProductPrice", totalProductPrice);// DEBUG:
+
+  // IDEA: sum all numbers in totalProductPrice using JQuery reduce() function;
+  var totalPrice = totalProductPrice.reduce(sumTotalPrice);
+  // console.log("totalPrice", totalPrice);// DEBUG: 
+
+  // IDEA: put the totalPrice into the input #newTotalSales;
+  $("input#newTotalSales").val(totalPrice);
+
+  function sumTotalPrice(total, num){
+    return total + num;
+  }
+  // --function totalPrice()
+}
