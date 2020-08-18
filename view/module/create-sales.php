@@ -91,16 +91,16 @@
                       <tbody>
                         <tr>
                           <!-- tax and total amount -->
-                          <td style="width:50%">
+                          <td style="width:40%">
                             <div class="input-group">
-                              <input type="number" class="form-control" min="0" id="newSalesTax" name="newSalesTax" placeholder="0" required>
+                              <input type="number" class="form-control input-lg" min="0" id="newSalesTax" name="newSalesTax" placeholder="0" required>
                               <span class="input-group-addon"><i class="fa fa-percent"></i></span>
                             </div>
                           </td>
-                          <td style="width:50%">
+                          <td style="width:60%">
                             <div class="input-group">
-                              <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
-                              <input type="number" class="form-control" id="newTotalSales" name="newTotalSales"  placeholder="00000" required readonly>
+                              <span class="input-group-addon"></span>
+                              <input type="number" class="form-control input-lg" id="newTotalSales" name="newTotalSales"  placeholder="00000" required readonly>
                             </div>
                           </td>
                         </tr>

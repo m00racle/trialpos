@@ -91,7 +91,7 @@ $(".tableProducts tbody").on("click", "button.addProduct", function(){
         // IDEA: change the button to be deactivated to prevent future addition before restocking!
         $("button.recoverButton[idProduct='"+idProduct+"']").addClass("btn-primary addProduct");
         if (!$(targetButton).length) {
-          console.log("reverse target button");
+          // console.log("reverse target button");// DEBUG:
           // IDEA: put the changes into the localStorage;
           idUpdateProduct.push({"tableId":otherTable,"update":"remove","idProduct":idProduct});
           localStorage.setItem("updateProduct", JSON.stringify(idUpdateProduct));
@@ -102,22 +102,22 @@ $(".tableProducts tbody").on("click", "button.addProduct", function(){
 
       // put the response to the appropriate html structure;
       $(".newProduct").append(
-        '<div class="row" style="padding:5px 15px">' +
+        '<div class="row" style="padding:5px 5px">' +
           '<div class="col-xs-6" style="padding-right:0px">' +
             '<div class="input-group">'+
-              '<span class="input-group-addon"><button class="btn btn-danger removeProduct" idProduct="'+idProduct+'"><i class="fa fa-times"></i></button></span>' +
+              '<span class="input-group-addon"><button class="btn btn-danger removeProduct" idProduct="'+idProduct+'"><i class="fa fa-times" style="font-size:15px"></i></button></span>' +
             '<input type="text" class="form-control addProduct" name="addProduct" value="'+description+'" required readonly>' +
             '</div>' +
           '</div>' +
           '<!-- product quantity -->' +
-          '<div class="col-xs-3">' +
+          '<div class="col-xs-2 productQuantity">' +
             '<input type="number" class="form-control newProductQuantity" name="newProductQuantity" min="1" value="1" stock="'+stock+'" required>' +
           '</div>' +
           '<!-- product price -->' +
-          '<div class="col-xs-3" style="padding-left:0px">' +
+          '<div class="col-xs-4 productPrice" style="padding-left:0px">' +
             '<div class="input-group">' +
-              '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>' +
-              '<input type="number" class="form-control newProductPrice" name="newProductPrice" min="1"' + 'value="'+price+'" required readonly>' +
+              '<span class="input-group-addon"></span>' +
+              '<input type="number" class="form-control newProductPrice" name="newProductPrice" min="1" value="'+price+'" unitPrice="'+price+'" required readonly>' +
             '</div>' +
           '</div>' +
         '</div>'
@@ -199,4 +199,30 @@ $(".tableProducts").on("draw.dt", function(){
 
   }
   // --$(".salesForm").on("draw.dt", function()
+})
+
+// UPDATE PRODUCT PRICE WHEN QUANTITY CHANGES;
+$(".salesForm").on("change", "input.newProductQuantity", function(){
+  // console.log("product quantity change");// DEBUG:
+
+  if (Number($(this).val()) > Number($(this).attr("stock"))) {
+    // IDEA: if the stock is not sufficient return the value of the quantity back to 1;
+    $(this).val(1);
+    // IDEA: if the product added larger than the stock available invoke error;
+    Swal.fire({
+      icon: 'error',
+      title: 'Stock maksimal: ' + Number($(this).attr("stock")),
+      text: 'Permintaan anda tidak dapat dipenuhi!',
+      confirmButtonText: 'OK!'
+    });
+  }
+  // IDEA: take the unit price from the input.newProductPrice;
+  var objectPrice = $(this).parent().parent().children(".productPrice").children().children(".newProductPrice");
+  // console.log("objectPrice", objectPrice);// DEBUG:
+  var unitPrice = $(objectPrice).attr("unitPrice");
+  // console.log("unitPrice", unitPrice);// DEBUG: 
+
+  // IDEA: put the quntity * unit price to the input objectPrice value;
+  $(objectPrice).val(Number($(this).val()) * Number(unitPrice));
+  // --$(".salesForm").on("change", "input.newProductQuantity", function()
 })
