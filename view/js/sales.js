@@ -10,6 +10,10 @@
 //   // --$.ajax
 // })
 
+// IDEA: when refreshing the page all must be cleared and all add button must be back to active again. Thus all data in the local storage must be cleared to prevent bugs in the add button on both main and modal data tables.
+var idUpdateProduct = [];
+localStorage.setItem("updateProduct", JSON.stringify(idUpdateProduct));
+
 $(".tableProducts").DataTable( {
         "ajax": "ajax/datatablesalesajax.php",
         "deferRender": true,
