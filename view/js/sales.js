@@ -63,7 +63,7 @@ $("#tableProductsForSale tbody").on("click", "button.addProduct", function(){
 
       // put the response to the appropriate html structure;
       $(".newProduct").append(
-        '<div class="row" style="padding:5px 15px">' +
+        '<div class="row" style="padding:5px 5px">' +
           '<div class="col-xs-6" style="padding-right:0px">' +
             '<div class="input-group">'+
               '<span class="input-group-addon"><button class="btn btn-danger removeProduct" idProduct="'+idProduct+'"><i class="fa fa-times"></i></button></span>' +
@@ -75,10 +75,10 @@ $("#tableProductsForSale tbody").on("click", "button.addProduct", function(){
             '<input type="number" class="form-control newProductQuantity" name="newProductQuantity" min="1" value="1" stock="'+stock+'" required>' +
           '</div>' +
           '<!-- product price -->' +
-          '<div class="col-xs-3" style="padding-left:0px">' +
+          '<div class="col-xs-3 inputPrice" style="padding-left:0px">' +
             '<div class="input-group">' +
               '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>' +
-              '<input type="number" class="form-control newProductPrice" name="newProductPrice" min="1"' + 'value="'+price+'" required readonly>' +
+              '<input type="number" class="form-control newProductPrice" name="newProductPrice" min="1" productPrice="'+price+'" value="'+price+'" required readonly>' +
             '</div>' +
           '</div>' +
         '</div>'
@@ -178,7 +178,7 @@ $(".btnAddProduct").click(function(){
           '<div class="col-xs-3 inputPrice" style="padding-left:0px">' +
             '<div class="input-group">' +
               '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>' +
-              '<input type="number" class="form-control newProductPrice" name="newProductPrice" min="1"' + 'value="" required readonly>' +
+              '<input type="number" class="form-control newProductPrice" name="newProductPrice" min="1" productPrice="" value="" required readonly>' +
             '</div>' +
           '</div>' +
         '</div>'
@@ -191,7 +191,7 @@ $(".btnAddProduct").click(function(){
           $("#product"+numProduct).append(
             // IDEA: this time we refer each select input by its id not class, thus it will make each select class more specific;
 
-            '<option idProduct="'+item.id+'" value="'+item.description+'">'+item.description+'</option>'
+            '<option idProduct="'+item.id+'" value="'+item.id+'">'+item.description+'</option>'
           )
           // --if (item.stock != 0)
         }
@@ -214,7 +214,7 @@ $(".salesForm").on("change", "select.newDescriptionProduct", function(){
   var newProductQuantity = $(this).parent().parent().parent().children(".inputQuantity").children(".newProductQuantity");
 
   // console.log("price parent", newProductPrice);// DEBUG:
-  // console.log("idProduct", idProduct);// DEBUG:
+  console.log("idProduct", idProduct);// DEBUG:active
   var datos = new FormData();
   datos.append("idProduct", idProduct);
 
@@ -234,9 +234,39 @@ $(".salesForm").on("change", "select.newDescriptionProduct", function(){
       // console.log("new Product quantity", newProductQuantity);// DEBUG:
       // IDEA: put the sell_price data into the value of the newProductPrice class;
       $(newProductPrice).val(response["sell_price"]);
+      $(newProductPrice).attr("productPrice", response["sell_price"]);
+      // console.log("price after", newProductPrice);// DEBUG:
       // NOTE: this is to avoid class repetition using the newProductPrice variable that redirect to the parent child relationship from the select input to the text input for the price!
     }
   })
 
   // --$(".salesForm").on("change", "select.newDescriptionProduct", function()
+})
+
+// UPDATE THE PRICE AS THE PRODUCT QUANTITY CHANGES;
+$(".salesForm").on("change", "input.newProductQuantity", function(){
+
+  // IDEA: put stock control; if the new quantitiy is above the stock quantitiy then refuse the input;
+  if (Number($(this).val()) > Number($(this).attr("stock"))) {
+    // return the value to 1;
+    $(this).val(1);
+    // IDEA: give them sweet alert;
+    Swal.fire({
+      icon: 'error',
+      title: 'Stock Tidak Mencukupi! Max: '+$(this).attr("stock"),
+      text: 'permintaan anda tidak dapat dipenuhi!',
+      confirmButtonText: 'OK!'
+    });
+    // --if (productQuantity > $(this).attr("stock"))
+  }
+
+  // IDEA: get the product price from the product price object element that already has attribute productPrice;
+  var productPriceObject = $(this).parent().parent().children(".inputPrice").children().children(".newProductPrice");
+  var productPrice = $(productPriceObject).attr("productPrice");
+  // console.log("product price", productPrice);// DEBUG:
+
+  // // IDEA: the current total price is product quantity (convert first to Number) * product price;
+  $(productPriceObject).val(productPrice * Number($(this).val()));
+
+  // --$(".salesForm").on("change", "input.newProductQuantity", function()
 })
