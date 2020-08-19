@@ -100,7 +100,7 @@
                           <td style="width:60%">
                             <div class="input-group">
                               <span class="input-group-addon"></span>
-                              <input type="text" class="form-control input-lg" id="newTotalSales" name="newTotalSales"  placeholder="00000" required readonly>
+                              <input type="text" class="form-control input-lg" id="newTotalSales" name="newTotalSales"  beforeTax="" placeholder="00000" required readonly>
                             </div>
                           </td>
                         </tr>

@@ -260,12 +260,26 @@ function totalPrice(){
   var totalPrice = totalProductPrice.reduce(sumTotalPrice);
   // console.log("totalPrice", totalPrice);// DEBUG:
 
+  // IDEA: I want to add tax to the equation thus the total Price will be put on the before tax attribute to accomaodate if the tax value is changing;
+  $("input#newTotalSales").attr("beforeTax",totalPrice);
+  var taxValue = $("input#newSalesTax").val();
+
+  var totalAfterTax = (1 + taxValue/100) * totalPrice;
+  // console.log("tax value", totalAfterTax - totalPrice); // DEBUG:
+
   // IDEA: put the totalPrice into the input #newTotalSales;
   $("input#newTotalSales").number(true, 2, ',', '.');
-  $("input#newTotalSales").val(totalPrice);
+  $("input#newTotalSales").val(totalAfterTax);
 
   function sumTotalPrice(total, num){
     return total + num;
   }
   // --function totalPrice()
 }
+
+// HANDLE CHANGES IN TAX INPUT WILL CHANGE THE TOTAL AFTER TAX;
+$(".salesForm").on("change", "input#newSalesTax", function(){
+  // IDEA: all the neccessary calculations are already being presented in the totalPrice function including fetching the tax value and add it into the total price after tax.
+  totalPrice();
+  // --$(".salesForm").on("change", "input#newSalesTax", function()
+})
