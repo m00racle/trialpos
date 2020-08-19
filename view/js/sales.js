@@ -117,11 +117,13 @@ $(".tableProducts tbody").on("click", "button.addProduct", function(){
           '<div class="col-xs-4 productPrice" style="padding-left:0px">' +
             '<div class="input-group">' +
               '<span class="input-group-addon"></span>' +
-              '<input type="number" class="form-control newProductPrice" name="newProductPrice" min="1" value="'+price+'" unitPrice="'+price+'" required readonly>' +
+              '<input type="text" class="form-control newProductPrice" name="newProductPrice"  value="'+price+'" unitPrice="'+price+'" required readonly>' +
             '</div>' +
           '</div>' +
         '</div>'
       );
+      // IDEA: format the number of each price according to JQuery custom format;
+      $("input.newProductPrice").number(true, 2, ',', '.');
       // IDEA: call the totalPrice function to sum all prices and put it into total price input form;
       totalPrice();
     }
@@ -256,9 +258,10 @@ function totalPrice(){
 
   // IDEA: sum all numbers in totalProductPrice using JQuery reduce() function;
   var totalPrice = totalProductPrice.reduce(sumTotalPrice);
-  // console.log("totalPrice", totalPrice);// DEBUG: 
+  // console.log("totalPrice", totalPrice);// DEBUG:
 
   // IDEA: put the totalPrice into the input #newTotalSales;
+  $("input#newTotalSales").number(true, 2, ',', '.');
   $("input#newTotalSales").val(totalPrice);
 
   function sumTotalPrice(total, num){

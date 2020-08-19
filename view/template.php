@@ -63,7 +63,8 @@
   <script src="view/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
   <script src="view/plugins/input-mask/jquery.inputmask.extensions.js"></script>
 
-
+  <!-- JQuery Number Plugin; -->
+  <script src="view/plugins/jqueryNumber/jquery.number.min.js"></script>
 
 </head>
 <!-- DOCUMENT BODY -->
