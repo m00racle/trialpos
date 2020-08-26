@@ -126,6 +126,11 @@ $(".tableProducts tbody").on("click", "button.addProduct", function(){
       $("input.newProductPrice").number(true, 2, ',', '.');
       // IDEA: call the totalPrice function to sum all prices and put it into total price input form;
       totalPrice();
+
+      // IDEA: if the payment is cash auto calculate the chages;
+      if ($("input#newCashPayment").length) {
+        cashChanges();
+      }
     }
   })
   // --$(".tableProducts tbody").on("click", "button.addProduct", function()
@@ -172,6 +177,11 @@ $(".salesForm").on("click", "button.removeProduct", function(){
   } else {
     // IDEA: call the totalPrice function to sum all prices and put it into total price input form;
     totalPrice();
+  }
+
+  // IDEA: if the payment is cash auto calculate the chages;
+  if ($("input#newCashPayment").length) {
+    cashChanges();
   }
 
   // $(".salesForm").on("click", "button.removeProduct", function()
@@ -239,6 +249,11 @@ $(".salesForm").on("change", "input.newProductQuantity", function(){
 
   // IDEA: call the totalPrice function to sum all prices and put it into total price input form;
   totalPrice();
+
+  // IDEA: if the payment is cash auto calculate the chages;
+  if ($("input#newCashPayment").length) {
+    cashChanges();
+  }
   // --$(".salesForm").on("change", "input.newProductQuantity", function()
 })
 
@@ -281,13 +296,18 @@ function totalPrice(){
 $(".salesForm").on("change", "input#newSalesTax", function(){
   // IDEA: all the neccessary calculations are already being presented in the totalPrice function including fetching the tax value and add it into the total price after tax.
   totalPrice();
+
+  // IDEA: if the payment is cash auto calculate the chages;
+  if ($("input#newCashPayment").length) {
+    cashChanges();
+  }
   // --$(".salesForm").on("change", "input#newSalesTax", function()
 })
 
 // HANDLE THE PAYMENT METHOD;
 // IDEA: when the customer payment select input changed then handle the payment according to which method chosen;
 $(".salesForm").on("change", "select#newPaymentMethod", function(){
-  console.log("the choice: ", $(this).val()); // DEBUG: active
+  // console.log("the choice: ", $(this).val()); // DEBUG:
   // IDEA: lock on the payment handler related to this object; is it need to be or not?
   var paymentHandler = $(this).parent().parent().parent().children("#paymentHandler").children();
   // IDEA: switch to each case whenever the method used;
@@ -298,7 +318,7 @@ $(".salesForm").on("change", "select#newPaymentMethod", function(){
       );
       break;
     case "cash":
-      console.log("cashier select cash");// DEBUG: active
+      // console.log("cashier select cash");// DEBUG:
       // IDEA: use cash handler consist of amount paid and change from transaxtion;
       $(paymentHandler).html(
         '<input type="text" class="form-control cashAmount" id="newCashPayment" name="newCashPayment" placeholder="uang dibayar" required>'
@@ -306,7 +326,7 @@ $(".salesForm").on("change", "select#newPaymentMethod", function(){
       $("input#newCashPayment").number(true, 2, ',', '.');
       break;
     case "creditCard":
-      console.log("cashier select credit card");// DEBUG: active
+      // console.log("cashier select credit card");// DEBUG:
       // IDEA: select the credit card provider and then the transaction code;
       $(paymentHandler).html(
         '<select class="form-control" id="creditCardVendor" name="creditCardVendor" required>' +
@@ -320,7 +340,7 @@ $(".salesForm").on("change", "select#newPaymentMethod", function(){
       );
       break;
     case "debitCard":
-      console.log("cashier select debit card");// DEBUG: active
+      // console.log("cashier select debit card");// DEBUG:
       // IDEA: select debit card bank provider and the input transaction code after payment;
       $(paymentHandler).html(
         '<select class="form-control" id="debitCardVendor" name="debitCardVendor" required>' +
@@ -335,7 +355,7 @@ $(".salesForm").on("change", "select#newPaymentMethod", function(){
       break;
 
     case "payApp":
-      console.log("select pay app");// DEBUG: active
+      // console.log("select pay app");// DEBUG:
       // IDEA: select the payment apps and then input its ID and transaction refs;
       $(paymentHandler).html(
         '<select class="form-control" id="payAppVendor" name="payAppVendor" required>' +
@@ -350,7 +370,7 @@ $(".salesForm").on("change", "select#newPaymentMethod", function(){
       break;
 
     default:
-      console.log("other?");// DEBUG: active
+      // console.log("other?");// DEBUG: 
       // IDEA: input the payment method and amunt and reference or note;?
       $(paymentHandler).html(
         '<input type="text" class="form-control" id="newOtherPayment" name="newOtherPayment" placeholder="Note what payment type" required>' +
@@ -364,27 +384,48 @@ $(".salesForm").on("change", "select#newPaymentMethod", function(){
 // HANDLE IF THE PAYMENT HAS CHANGES;
 // IDEA: this change form only happens when there is left over from the payment;
 $(".salesForm").on("change", "input#newCashPayment", function(){
+  cashChanges();
+  // --$(".salesForm").on("change", "input#newCashPayment", function()
+})
+
+// IDEA: the cash payment changes supposed to adapt to any changes from the amount paid to the changes in the total price;
+function cashChanges(){
+  // if ($("input#newCashPayment").length) {
+  //   var test = true;
+  // } else {
+  //   var test = false;
+  // }
+  // console.log("cash payment", test);// DEBUG:
   var totalAfterTax = Number($("input#newTotalSales").val());
-  console.log("totalAfterTax", totalAfterTax);// DEBUG: active
-  var customerPayment = Number($(this).val());
-  console.log("customerPayment", customerPayment);// DEBUG: active
+  // console.log("totalAfterTax", totalAfterTax);// DEBUG:
+  var customerPayment = Number($("input#newCashPayment").val());
+  // console.log("customerPayment", customerPayment);// DEBUG:
   // IDEA: prepare new div to contain the response;
-  $(this).parent().append('<div class="paymentResponse"></div>')
+  $("input#newCashPayment").parent().append('<div class="paymentResponse"></div>')
   // IDEA: if the amount paid by customer is less the total then add message donates payment is not sufficient;
   if (customerPayment < totalAfterTax) {
     // IDEA: remove the div paymentResponse;
-    $(this).parent().children(".paymentResponse").remove();
+    $("input#newCashPayment").parent().children(".paymentResponse").remove();
     // TODO: this need to be upgraded to proper warning!
-    $(this).parent().append(
-      '<div class="paymentResponse">' +
-      '<p>Jumlah Uang dibayarkan kurang!</p>' +
-      '</div>'
-    );
+    if (customerPayment == 0) {
+      $("input#newCashPayment").parent().append(
+        '<div class="paymentResponse">' +
+        '<p>Menunggu Pembayaran</p>' +
+        '</div>'
+      );
+    } else {
+      $("input#newCashPayment").parent().append(
+        '<div class="paymentResponse">' +
+        '<p>Jumlah Uang dibayarkan kurang!</p>' +
+        '</div>'
+      );
+    }
+
   } else if (customerPayment > totalAfterTax) {
     // IDEA: remove the div paymentResponse;
-    $(this).parent().children(".paymentResponse").remove();
+    $("input#newCashPayment").parent().children(".paymentResponse").remove();
 
-    $(this).parent().append(
+    $("input#newCashPayment").parent().append(
       '<div class="paymentResponse">' +
       '<br><label for="newCustomerChange">Kembalian:</label>' +
       '<input type="text" class="form-control cashAmount" id="newCashChange" name="newCashChange" placeholder="0" required readonly>' +
@@ -395,7 +436,7 @@ $(".salesForm").on("change", "input#newCashPayment", function(){
     $("input#newCashChange").val(customerPayment - totalAfterTax);
   } else {
     // IDEA: remove the div paymentResponse;
-    $(this).parent().children(".paymentResponse").remove();
+    $("input#newCashPayment").parent().children(".paymentResponse").remove();
   }
-  // --$(".salesForm").on("change", "input#newCashPayment", function()
-})
+  // --function cashChanges()
+}
