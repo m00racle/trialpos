@@ -114,18 +114,19 @@
                   <div class="col-xs-6" style="padding-right:0px">
                     <div class="input-group">
                       <select class="form-control" id="newPaymentMethod" name="newPaymentMethod" required>
-                        <option value="">Select Payment Method</option>
+                        <option value="">Pilih Metode Pembayaran</option>
                         <option value="cash">Cash</option>
                         <option value="creditCard">Credit Card</option>
                         <option value="debitCard">Debit Card</option>
+                        <option value="payApp">Payment Apps</option>
+                        <option value="other">Pembayaran Lain</option>
                       </select>
                     </div>
                   </div>
-                  <!-- enter transaction code from card transaction -->
-                  <div class="col-xs-6" style="padding-left:0px">
+                  <!-- THIS IS WHERE THE VIEW WILL BE CHANGED ACCORDING TO PAYMENT METHOD -->
+                  <div class="col-xs-6" id="paymentHandler" style="padding-left:0px">
                     <div class="input-group">
-                      <input type="text" class="form-control" id="newTransactionCode" name="newTransactionCode" placeholder="Transaction Code" required>
-                      <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                      <p>Pilih Metode Pembayaran!</p>
                     </div>
                   </div>
                 </div>

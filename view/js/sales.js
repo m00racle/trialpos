@@ -283,3 +283,81 @@ $(".salesForm").on("change", "input#newSalesTax", function(){
   totalPrice();
   // --$(".salesForm").on("change", "input#newSalesTax", function()
 })
+
+// HANDLE THE PAYMENT METHOD;
+// IDEA: when the customer payment select input changed then handle the payment according to which method chosen;
+$(".salesForm").on("change", "select#newPaymentMethod", function(){
+  console.log("the choice: ", $(this).val()); // DEBUG: active
+  // IDEA: lock on the payment handler related to this object; is it need to be or not?
+  var paymentHandler = $(this).parent().parent().parent().children("#paymentHandler").children();
+  // IDEA: switch to each case whenever the method used;
+  switch ($(this).val()) {
+    case "":
+      $(paymentHandler).html(
+        '<p>Pilih Metode Pembayaran!</p>'
+      );
+      break;
+    case "cash":
+      console.log("cashier select cash");// DEBUG: active
+      // IDEA: use cash handler consist of amount paid and change from transaxtion;
+      $(paymentHandler).html(
+        '<input type="text" class="form-control cashAmount" id="newCashPayment" name="newCashPayment" placeholder="uang dibayar" required>' +
+        '<br><label for="newCustomerChange">Kembalian:</label>' +
+        '<input type="text" class="form-control cashAmount" id="newCashChange" name="newCashChange" placeholder="0" required readonly>'
+      );
+      break;
+    case "creditCard":
+      console.log("cashier select credit card");// DEBUG: active
+      // IDEA: select the credit card provider and then the transaction code;
+      $(paymentHandler).html(
+        '<select class="form-control" id="creditCardVendor" name="creditCardVendor" required>' +
+          '<option value="">Pilih Credit Card Provider</option>' +
+          '<option value="visa">Visa</option>' +
+          '<option value="masterCard">Master Card</option>' +
+          '<option value="other">other</option>' +
+        '</select>' +
+        '<br><br><input type="text" class="form-control" id="newCCNumber" name="newCCNumber" placeholder="nomor Credit Card" required>' +
+        '<br><input type="text" class="form-control" id="newCCTransaction" name="newCCTransaction" placeholder="nomor Transaksi" required>'
+      );
+      break;
+    case "debitCard":
+      console.log("cashier select debit card");// DEBUG: active
+      // IDEA: select debit card bank provider and the input transaction code after payment;
+      $(paymentHandler).html(
+        '<select class="form-control" id="debitCardVendor" name="debitCardVendor" required>' +
+          '<option value="">Pilih Debit Card Provider</option>' +
+          '<option value="bca">BCA</option>' +
+          '<option value="mandiri">Mandiri</option>' +
+          '<option value="other">other</option>' +
+        '</select>' +
+        '<br><br><input type="text" class="form-control" id="newDCNumber" name="newDCNumber" placeholder="nomor Debit Card" required>' +
+        '<br><input type="text" class="form-control" id="newDCTransaction" name="newDCTransaction" placeholder="nomor Transaksi" required>'
+      );
+      break;
+
+    case "payApp":
+      console.log("select pay app");// DEBUG: active
+      // IDEA: select the payment apps and then input its ID and transaction refs;
+      $(paymentHandler).html(
+        '<select class="form-control" id="payAppVendor" name="payAppVendor" required>' +
+          '<option value="">Pilih Payment App Provider</option>' +
+          '<option value="gopay">Gopay</option>' +
+          '<option value="ovo">OVO</option>' +
+          '<option value="linkAja">Link Aja</option>' +
+        '</select>' +
+        '<br><br><input type="text" class="form-control" id="newPayAppId" name="newPayAppId" placeholder="ID Payment App" required>' +
+        '<br><input type="text" class="form-control" id="newAppTransaction" name="newAppTransaction" placeholder="nomor Transaksi" required>'
+      );
+      break;
+
+    default:
+      console.log("other?");// DEBUG: active
+      // IDEA: input the payment method and amunt and reference or note;?
+      $(paymentHandler).html(
+        '<input type="text" class="form-control" id="newOtherPayment" name="newOtherPayment" placeholder="Note what payment type" required>' +
+        '<br><br><input type="text" class="form-control" id="newOtherAmount" name="newOtherAmount" placeholder="Jumlah Transaksi" required>' +
+        '<br><br><input type="text" class="form-control" id="newOtherTransaction" name="newOtherTransaction" placeholder="Note refs. transaksi" required>'
+      );
+  }
+  // --$(".salesForm").on("change", "select#newCustomerPayment", function()
+})
