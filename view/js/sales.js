@@ -301,10 +301,9 @@ $(".salesForm").on("change", "select#newPaymentMethod", function(){
       console.log("cashier select cash");// DEBUG: active
       // IDEA: use cash handler consist of amount paid and change from transaxtion;
       $(paymentHandler).html(
-        '<input type="text" class="form-control cashAmount" id="newCashPayment" name="newCashPayment" placeholder="uang dibayar" required>' +
-        '<br><label for="newCustomerChange">Kembalian:</label>' +
-        '<input type="text" class="form-control cashAmount" id="newCashChange" name="newCashChange" placeholder="0" required readonly>'
+        '<input type="text" class="form-control cashAmount" id="newCashPayment" name="newCashPayment" placeholder="uang dibayar" required>'
       );
+      $("input#newCashPayment").number(true, 2, ',', '.');
       break;
     case "creditCard":
       console.log("cashier select credit card");// DEBUG: active
@@ -360,4 +359,43 @@ $(".salesForm").on("change", "select#newPaymentMethod", function(){
       );
   }
   // --$(".salesForm").on("change", "select#newCustomerPayment", function()
+})
+
+// HANDLE IF THE PAYMENT HAS CHANGES;
+// IDEA: this change form only happens when there is left over from the payment;
+$(".salesForm").on("change", "input#newCashPayment", function(){
+  var totalAfterTax = Number($("input#newTotalSales").val());
+  console.log("totalAfterTax", totalAfterTax);// DEBUG: active
+  var customerPayment = Number($(this).val());
+  console.log("customerPayment", customerPayment);// DEBUG: active
+  // IDEA: prepare new div to contain the response;
+  $(this).parent().append('<div class="paymentResponse"></div>')
+  // IDEA: if the amount paid by customer is less the total then add message donates payment is not sufficient;
+  if (customerPayment < totalAfterTax) {
+    // IDEA: remove the div paymentResponse;
+    $(this).parent().children(".paymentResponse").remove();
+    // TODO: this need to be upgraded to proper warning!
+    $(this).parent().append(
+      '<div class="paymentResponse">' +
+      '<p>Jumlah Uang dibayarkan kurang!</p>' +
+      '</div>'
+    );
+  } else if (customerPayment > totalAfterTax) {
+    // IDEA: remove the div paymentResponse;
+    $(this).parent().children(".paymentResponse").remove();
+
+    $(this).parent().append(
+      '<div class="paymentResponse">' +
+      '<br><label for="newCustomerChange">Kembalian:</label>' +
+      '<input type="text" class="form-control cashAmount" id="newCashChange" name="newCashChange" placeholder="0" required readonly>' +
+      '</div>'
+    );
+    // IDEA: if the amount paid is bigger than total after tax then put the change input on the surface and the value is the gap between customerPayment and totalAfterTax;
+    $("input#newCashChange").number(true, 2, ',', '.');
+    $("input#newCashChange").val(customerPayment - totalAfterTax);
+  } else {
+    // IDEA: remove the div paymentResponse;
+    $(this).parent().children(".paymentResponse").remove();
+  }
+  // --$(".salesForm").on("change", "input#newCashPayment", function()
 })
