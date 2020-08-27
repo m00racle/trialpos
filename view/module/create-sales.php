@@ -77,6 +77,8 @@
                 <div class="form-group row newProduct">
                   <!-- uses the jQuery  -->
                 </div>
+                <!-- this is the hidden input to store the JSON data of the transaction -->
+                <input type="hidden" id="hiddenJson" name="hiddenJson" value="">
                 <!-- the button to add products; this is for the mobile device only since in the desktop user can pick the product from the list in the right side of the form-->
                 <button type="button" class="btn btn-default hidden-lg" data-toggle="modal" data-target="#modalAddProduct" data-dismiss="modal">Add Product</button><hr>
                 <div class="row">

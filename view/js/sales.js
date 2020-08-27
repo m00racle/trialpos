@@ -106,7 +106,7 @@ $(".tableProducts tbody").on("click", "button.addProduct", function(){
           '<div class="col-xs-6" style="padding-right:0px">' +
             '<div class="input-group">'+
               '<span class="input-group-addon"><button class="btn btn-danger removeProduct" idProduct="'+idProduct+'"><i class="fa fa-times" style="font-size:15px"></i></button></span>' +
-            '<input type="text" class="form-control addProduct" name="addProduct" value="'+description+'" required readonly>' +
+            '<input type="text" class="form-control addProduct newProductDescription" name="addProduct" idProduct="'+idProduct+'" value="'+description+'" required readonly>' +
             '</div>' +
           '</div>' +
           '<!-- product quantity -->' +
@@ -126,6 +126,9 @@ $(".tableProducts tbody").on("click", "button.addProduct", function(){
       $("input.newProductPrice").number(true, 2, ',', '.');
       // IDEA: call the totalPrice function to sum all prices and put it into total price input form;
       totalPrice();
+
+      // IDEA: make JSON data array with data on the transaction real time;
+      jsonTransaction();
 
       // IDEA: if the payment is cash auto calculate the chages;
       if ($("input#newCashPayment").length) {
@@ -178,6 +181,9 @@ $(".salesForm").on("click", "button.removeProduct", function(){
     // IDEA: call the totalPrice function to sum all prices and put it into total price input form;
     totalPrice();
   }
+
+  // IDEA: make JSON data array with data on the transaction real time;
+  jsonTransaction();
 
   // IDEA: if the payment is cash auto calculate the chages;
   if ($("input#newCashPayment").length) {
@@ -250,6 +256,9 @@ $(".salesForm").on("change", "input.newProductQuantity", function(){
   // IDEA: call the totalPrice function to sum all prices and put it into total price input form;
   totalPrice();
 
+  // IDEA: make JSON data array with data on the transaction real time;
+  jsonTransaction();
+
   // IDEA: if the payment is cash auto calculate the chages;
   if ($("input#newCashPayment").length) {
     cashChanges();
@@ -296,6 +305,9 @@ function totalPrice(){
 $(".salesForm").on("change", "input#newSalesTax", function(){
   // IDEA: all the neccessary calculations are already being presented in the totalPrice function including fetching the tax value and add it into the total price after tax.
   totalPrice();
+
+  // IDEA: make JSON data array with data on the transaction real time;
+  jsonTransaction();
 
   // IDEA: if the payment is cash auto calculate the chages;
   if ($("input#newCashPayment").length) {
@@ -370,7 +382,7 @@ $(".salesForm").on("change", "select#newPaymentMethod", function(){
       break;
 
     default:
-      // console.log("other?");// DEBUG: 
+      // console.log("other?");// DEBUG:
       // IDEA: input the payment method and amunt and reference or note;?
       $(paymentHandler).html(
         '<input type="text" class="form-control" id="newOtherPayment" name="newOtherPayment" placeholder="Note what payment type" required>' +
@@ -439,4 +451,38 @@ function cashChanges(){
     $("input#newCashPayment").parent().children(".paymentResponse").remove();
   }
   // --function cashChanges()
+}
+
+// IDEA: make JSON data array with data on the transaction real time;
+function jsonTransaction(){
+  // IDEA: get all array in each product added to the sales form; the array will get from class .newProductDescription, .newProductQuantity, .newProductPrice;
+
+  var productTransactions = [];
+
+  var productsData = $(".newProductDescription");
+  // console.log("productsData", productsData);// DEBUG:
+  var quantitiesData = $(".newProductQuantity");
+  // console.log("quantitiesData", quantitiesData);// DEBUG:
+  var pricesData = $(".newProductPrice");
+  // console.log("pricesData", pricesData);// DEBUG:
+
+  // IDEA: iterate the whole array of product data and get these data for each product: id, description, quantity, stockLeft, unitPrice, totalPrice for each product on the sales form;
+  for (var i = 0; i < productsData.length; i++) {
+    productTransactions.push({
+      "id":$(productsData[i]).attr("idProduct"),
+      "description":$(productsData[i]).val(),
+      "quantity":$(quantitiesData[i]).val(),
+      "stockLeft":Number($(quantitiesData[i]).attr("stock")) - Number($(quantitiesData[i]).val()),
+      "unitPrice":$(pricesData[i]).attr("unitPrice"),
+      "totalPrice":$(pricesData[i]).val()
+    });
+  }
+
+  // IDEA: stringify the productTransactions to make JSON formatted data;
+  // console.log("productTransactions", JSON.stringify(productTransactions));// DEBUG:
+
+  // IDEA: pick a hidden input to put the JSON data before being uploaded to database later on;
+  $("input#hiddenJson").val(JSON.stringify(productTransactions));
+
+  // --function jsonTransaction()
 }
