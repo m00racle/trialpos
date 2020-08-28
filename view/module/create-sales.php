@@ -95,7 +95,7 @@
                           <!-- tax and total amount -->
                           <td style="width:40%">
                             <div class="input-group">
-                              <input type="number" class="form-control input-lg" min="0" id="newSalesTax" name="newSalesTax" placeholder="0" required>
+                              <input type="number" class="form-control input-lg" min="0" id="newSalesTax" name="newSalesTax" value="0">
                               <span class="input-group-addon"><i class="fa fa-percent"></i></span>
                             </div>
                           </td>
@@ -103,6 +103,8 @@
                             <div class="input-group">
                               <span class="input-group-addon"></span>
                               <input type="text" class="form-control input-lg" id="newTotalSales" name="newTotalSales"  beforeTax="" placeholder="00000" required readonly>
+                              <input type="hidden" name="beforeTaxTotalSales" id="beforeTaxTotalSales" value="">
+                              <input type="hidden" name="plainTotalSales" id="plainTotalSales" value="">
                             </div>
                           </td>
                         </tr>
@@ -124,6 +126,7 @@
                         <option value="other">Pembayaran Lain</option>
                       </select>
                     </div>
+                    <input type="hidden" name="paymentCode" id="paymentCode" value="">
                   </div>
                   <!-- THIS IS WHERE THE VIEW WILL BE CHANGED ACCORDING TO PAYMENT METHOD -->
                   <div class="col-xs-6" id="paymentHandler" style="padding-left:0px">
@@ -139,7 +142,7 @@
               <!-- SUBMIT TO THE ControllerSales class to the ctrCreateSales method -->
               <?php
                 $createSales = new ControllerSales();
-                $createSales -> ctrCreateSales();// BUG: format number from the newTotalPrice still using number format from the javascript number function format;
+                $createSales -> ctrCreateSales();
               ?>
             </form>
           </div>

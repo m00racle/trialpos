@@ -177,6 +177,7 @@ $(".salesForm").on("click", "button.removeProduct", function(){
   // IDEA: if the remove button only one then we just reverse the totalPrice back to zero;
   if ($("div.newProduct").children().length == 0) {
     $("input#newTotalSales").val(0);
+    $("input#plainTotalSales").val(0);
   } else {
     // IDEA: call the totalPrice function to sum all prices and put it into total price input form;
     totalPrice();
@@ -286,6 +287,7 @@ function totalPrice(){
 
   // IDEA: I want to add tax to the equation thus the total Price will be put on the before tax attribute to accomaodate if the tax value is changing;
   $("input#newTotalSales").attr("beforeTax",totalPrice);
+  $("input#beforeTaxTotalSales").val(totalPrice);
   var taxValue = $("input#newSalesTax").val();
 
   var totalAfterTax = (1 + taxValue/100) * totalPrice;
@@ -294,6 +296,8 @@ function totalPrice(){
   // IDEA: put the totalPrice into the input #newTotalSales;
   $("input#newTotalSales").number(true, 2, ',', '.');
   $("input#newTotalSales").val(totalAfterTax);
+  $("input#plainTotalSales").number(true,2);
+  $("input#plainTotalSales").val(totalAfterTax);
 
   function sumTotalPrice(total, num){
     return total + num;
