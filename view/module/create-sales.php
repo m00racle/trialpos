@@ -136,6 +136,11 @@
               <div class="box-footer">
                 <button type="submit" class="btn btn-primary pull-right">Save Sales</button>
               </div>
+              <!-- SUBMIT TO THE ControllerSales class to the ctrCreateSales method -->
+              <?php
+                $createSales = new ControllerSales();
+                $createSales -> ctrCreateSales();// BUG: format number from the newTotalPrice still using number format from the javascript number function format;
+              ?>
             </form>
           </div>
         </div>
