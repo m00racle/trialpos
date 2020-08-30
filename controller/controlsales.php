@@ -23,6 +23,7 @@
         echo 'console.log("net price", '. json_encode( $_POST["beforeTaxTotalSales"] ) .');';
         echo 'console.log("total sales formatted", '. json_encode( $_POST["newTotalSales"] ) .');';
         echo 'console.log("non formatted total sales", '. json_encode( $_POST["plainTotalSales"] ) .');';
+        echo 'console.log("payment code", '. json_encode( $_POST["paymentCode"] ) .');';
         echo '</script>';
         // code...if (isset($_POST["newSeller"]))
       }
