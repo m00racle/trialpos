@@ -80,6 +80,8 @@
       // --static public function modEditDataProduct($table, $data)
     }
 
+    // TODO: MAKE NEW METHOD UPDATE FORM SALES called updateSingleDataProduct; use two items as paramters other than table and then one is reference to the relation and the other reference to whoch atribute to update.
+
     static public function modDeleteProduct($table, $data)
     {
       $stmt = Connection::connect()->prepare("DELETE FROM $table WHERE id = :id");
