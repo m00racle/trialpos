@@ -77,6 +77,7 @@
       $stmt = null;
       // --static public function modEditCustomer($table, $data)
     }
+    // TODO: make a new method to update certain attribute of the customer entity in the customer relation;
 
     static public function modDeleteCustomer($table, $data)
     {

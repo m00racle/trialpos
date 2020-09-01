@@ -22,6 +22,8 @@
       $stmt = null;
       // --static public function modViewSales($table, $item, $value, $order)
     }
+    // TODO: make method to insert new sales entity to the sales realtion;
+    
     // --class ModelSales
   }
 

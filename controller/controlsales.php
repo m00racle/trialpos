@@ -43,7 +43,22 @@
           echo '</script>';// DEBUG: test
 
           // var_dump($productData);// DEBUG:
-          // TODO: get the last sale data (sale here is quntity not in terms of money value) and add to the quantity data in the hiddenJson post array.
+
+          // IDEA: get the initial sales value; then add the quantity sold for the current product and then update the database;
+          $updateSales = $productData["sales"] + $productJsonDecoded[$i]["quantity"];
+          // var_dump($initialSales);// DEBUG:
+          echo '<script>';
+          echo 'console.log("$updateSales",'. json_encode( $updateSales ) .');';
+          echo '</script>';// DEBUG: test
+
+          $response = ModelProduct::updateSingleDataProduct("product", "id", $productJsonDecoded[$i]["id"], "sales", $updateSales);
+
+          // IDEA: update the stock condition using the $productJsonDecoded["stockLeft"] as value;
+          $response = ModelProduct::updateSingleDataProduct("product", "id", $productJsonDecoded[$i]["id"], "stock", $productJsonDecoded[$i]["stockLeft"]);
+
+          // TODO: update customer data on total purchase and last purchase for the customer relation database;
+
+          // TODO: insert the sales data into sales relation (see the php my admin database structure)
 
           // code...for ($i=0; $i < count($productJsonDecoded); $i++)
         }

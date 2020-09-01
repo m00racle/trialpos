@@ -80,7 +80,27 @@
       // --static public function modEditDataProduct($table, $data)
     }
 
-    // TODO: MAKE NEW METHOD UPDATE FORM SALES called updateSingleDataProduct; use two items as paramters other than table and then one is reference to the relation and the other reference to whoch atribute to update.
+    static public function updateSingleDataProduct($table, $idEntity, $idValue, $updateItem, $updateValue)
+    {
+      // IDEA: connect to PDO and prepare the statement;
+      $stmt = Connection::connect()->prepare("UPDATE $table SET $updateItem = :$updateItem WHERE $idEntity = :$idEntity");
+
+      // IDEA: bind parameter;
+      $stmt->bindParam(":".$updateItem, $updateValue, PDO::PARAM_STR);
+      $stmt->bindParam(":".$idEntity, $idValue, PDO::PARAM_STR);
+
+      // IDEA: execute return condition;
+      if ($stmt->execute()) {
+        return "ok";
+      } else {
+        return "error";
+      }
+
+      $stmt->close();
+      $stmt->null;
+
+      // -- static public function updateSingleDataProduct($table, $idEntity, $idValue, $updateItem, $updateValue)
+    }
 
     static public function modDeleteProduct($table, $data)
     {
