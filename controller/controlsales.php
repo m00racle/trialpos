@@ -51,17 +51,22 @@
           echo 'console.log("$updateSales",'. json_encode( $updateSales ) .');';
           echo '</script>';// DEBUG: test
 
-          $response = ModelProduct::updateSingleDataProduct("product", "id", $productJsonDecoded[$i]["id"], "sales", $updateSales);
-
-          // IDEA: update the stock condition using the $productJsonDecoded["stockLeft"] as value;
-          $response = ModelProduct::updateSingleDataProduct("product", "id", $productJsonDecoded[$i]["id"], "stock", $productJsonDecoded[$i]["stockLeft"]);
-
-          // TODO: update customer data on total purchase and last purchase for the customer relation database;
-
-          // TODO: insert the sales data into sales relation (see the php my admin database structure)
+          // IDEA: using specific method to update product from sales to update the product data. Prepare array with stock and sales data with id data as key;
+          $updateProductData = Array('stock' => $productJsonDecoded[$i]["stockLeft"], 'sales' => $updateSales, 'id' => $productJsonDecoded[$i]["id"]);
+          $response = ModelProduct::updateProductFromSales($updateProductData);
 
           // code...for ($i=0; $i < count($productJsonDecoded); $i++)
         }
+
+        // TODO: update customer data on total purchase and last purchase for the customer relation database;
+        $customerData = ModelCustomer::modDataCustomer("customer", "id", $_POST["selectCustomer"]);
+        $totalPurchase = $customerData["total_purchase"] + $_POST["plainTotalSales"];
+        // $transactionDate = date("Y-m-d");
+        $updateCustomer = Array('total_purchase' => $totalPurchase, 'last_purchase' => date("Y-m-d"), 'id' => $_POST["selectCustomer"]);
+        $customerUpdateResponse = ModelCustomer::updateCustomerFromSales($updateCustomer);
+
+        // TODO: insert the sales data into sales relation (see the php my admin database structure)
+
         // code...if (isset($_POST["newSeller"]))
       }
       // static public function ctrCreateSales()

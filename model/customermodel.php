@@ -78,6 +78,26 @@
       // --static public function modEditCustomer($table, $data)
     }
     // TODO: make a new method to update certain attribute of the customer entity in the customer relation;
+    static public function updateCustomerFromSales($data)
+    {
+      // IDEA: this is specific method to handle updates on customer data from sales activity-> parameter $data must provide the last addition of all previous sales plus current total sales; transaction date and id as key;
+      $stmt = Connection::connect()->prepare("UPDATE customer SET total_purchase = :total_purchase, last_purchase = :last_purchase WHERE id = :id");
+
+      // bind parameters;
+      $stmt->bindParam(":total_purchase", data['total_purchase'], PDO::PARAM_STR);
+      $stmt->bindParam(":last_purchase", data['last_purchase'], PDO::PARAM_STR);
+      $stmt->bindParam(":id", data['id'], PDO::PARAM_STR);
+
+      if ($stmt->execute()) {
+        return "ok";
+      } else {
+        return "error";
+      }
+
+      $stmt->close();
+      $stmt = null;
+      // --static public function updateCustomerFromSales($data)
+    }
 
     static public function modDeleteCustomer($table, $data)
     {
