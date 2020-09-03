@@ -84,9 +84,9 @@
       $stmt = Connection::connect()->prepare("UPDATE customer SET total_purchase = :total_purchase, last_purchase = :last_purchase WHERE id = :id");
 
       // bind parameters;
-      $stmt->bindParam(":total_purchase", data['total_purchase'], PDO::PARAM_STR);
-      $stmt->bindParam(":last_purchase", data['last_purchase'], PDO::PARAM_STR);
-      $stmt->bindParam(":id", data['id'], PDO::PARAM_STR);
+      $stmt->bindParam(":total_purchase", $data['total_purchase'], PDO::PARAM_STR);
+      $stmt->bindParam(":last_purchase", $data['last_purchase'], PDO::PARAM_STR);
+      $stmt->bindParam(":id", $data['id'], PDO::PARAM_STR);
 
       if ($stmt->execute()) {
         return "ok";

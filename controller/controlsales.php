@@ -58,14 +58,16 @@
           // code...for ($i=0; $i < count($productJsonDecoded); $i++)
         }
 
-        // TODO: update customer data on total purchase and last purchase for the customer relation database;
         $customerData = ModelCustomer::modDataCustomer("customer", "id", $_POST["selectCustomer"]);
         $totalPurchase = $customerData["total_purchase"] + $_POST["plainTotalSales"];
         // $transactionDate = date("Y-m-d");
         $updateCustomer = Array('total_purchase' => $totalPurchase, 'last_purchase' => date("Y-m-d"), 'id' => $_POST["selectCustomer"]);
         $customerUpdateResponse = ModelCustomer::updateCustomerFromSales($updateCustomer);
 
-        // TODO: insert the sales data into sales relation (see the php my admin database structure)
+        $salesData = Array('code'=> $_POST["newSale"], 'id_customer'=> $_POST["selectCustomer"],
+        'id_seller'=> $_POST["sellerId"], 'product'=> $_POST["hiddenJson"], 'tax'=> $_POST["newSalesTax"], 'net_price'=> $_POST["beforeTaxTotalSales"],
+        'total'=> $_POST["plainTotalSales"], 'method'=> $_POST["paymentCode"]);
+        $salesUpdateResponse = ModelSales::modCreateSales("sales", $salesData);
 
         // code...if (isset($_POST["newSeller"]))
       }

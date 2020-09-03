@@ -65,7 +65,8 @@
                       <button class="btn btn-danger btnDeleteCustomer" delCustomer="'.$value["id"].'"
                       nameCustomer="'.$value["name"].'"><i class="fa fa-times"></i></button>
                     </div>
-                  </td>';
+                  </td>
+                </tr>';
                 // code...foreach ($dataCustomer as $key => $value)
               }
             ?>
