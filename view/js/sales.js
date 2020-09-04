@@ -506,11 +506,11 @@ function transactionCodeRecorder(){
   // IDEA: transaction code is consist of payment tool selection, payment id code, payment transaction code.
   if ($("input#newOtherPayment").length) {
     // IDEA: the other payment is dedicated with other code and then the transaction code if available; but since the other is based on input type text;
-    var transactionCode = $(".selectPayTool").val() + ';' + $(".transactionPayTool").val();
+    var transactionCode = $(".selectPayTool").val() + '-' + $(".transactionPayTool").val();
     $("input#paymentCode").val(transactionCode);
   } else {
     // IDEA: this is  the code from the card or app;
-    var transactionCode = $(".selectPayTool").val() + ';' + $(".idPayTool").val() + ';' + $(".transactionPayTool").val();
+    var transactionCode = $(".selectPayTool").val() + '-' + $(".transactionPayTool").val();
     $("input#paymentCode").val(transactionCode);
   }
   // -- function transactionCodeRecorder()
