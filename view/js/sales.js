@@ -1,6 +1,6 @@
 // LOAD THE DYNAMIC DATA TABLE;
 // $.ajax({
-//   url: "ajax/datatablesalesajax.php",
+//   url: "ajax/managesalesajax.php",
 //   success:function(response){
 //     console.log("response",response); // NOTE: debug initial syntax test!
 //
@@ -13,6 +13,15 @@
 // IDEA: when refreshing the page all must be cleared and all add button must be back to active again. Thus all data in the local storage must be cleared to prevent bugs in the add button on both main and modal data tables.
 var idUpdateProduct = [];
 localStorage.setItem("updateProduct", JSON.stringify(idUpdateProduct));
+
+$("#manageSalesData").DataTable( {
+        "ajax": "ajax/managesalesajax.php",
+        "deferRender": true,
+        "retrieve": true,
+        "processing": true,
+        "order": [[ 0, "desc" ]]
+    } );
+// NOTE: in the #manageSalesData table remove the .tables from its class attribute since it creates confusion bug!; also note that we use "order": to set the order of the data list descending according to the 0th column!
 
 $(".tableProducts").DataTable( {
         "ajax": "ajax/datatablesalesajax.php",

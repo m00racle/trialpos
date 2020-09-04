@@ -26,7 +26,7 @@
       </div>
       <div class="box-body">
         <!-- here we will write the table of all users; -->
-        <table class="table table-bordered table-striped dt-responsive tables">
+        <table class="table table-bordered table-striped dt-responsive" id="manageSalesData">
           <!-- the table classes are from the plugin -->
           <thead>
             <tr>
@@ -41,34 +41,7 @@
               <th>Action</th>
             </tr>
           </thead>
-          <tbody>
-            <?php
-              // IDEA: call the sales data and presented here;
-              $allSalesData = ControllerSales::ctrDataSales(null,null);
-              foreach ($allSalesData as $key => $value) {
-                echo '
-                <tr>
-                  <td>'.$value["id"].'</td>
-                  <td>'.$value["code"].'</td>
-                  <td>'.$value["id_customer"].'</td>
-                  <td>'.$value["id_seller"].'</td>
-                  <td>'.$value["method"].'</td>
-                  <td>'.$value["net_price"].'</td>
-                  <td>'.$value["total"].'</td>
-                  <td>'.$value["date"].'</td>
-                  <td>
-                    <div class="btn-group">
-                      <button class="btn btn-warning"><i class="fa fa-print"></i></button>
-                      <button class="btn btn-danger"><i class="fa fa-times"></i></button>
-                    </div>
-                  </td>
-                </tr>
-                ';
-                // code...foreach ($allSalesData as $key => $value)
-              }
-            ?>
-            
-          </tbody>
+
         </table>
       </div>
       <!-- /.box-body -->
