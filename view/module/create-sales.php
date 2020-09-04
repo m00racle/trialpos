@@ -120,9 +120,9 @@
                       <select class="form-control" id="newPaymentMethod" name="newPaymentMethod" required>
                         <option value="">Pilih Metode Pembayaran</option>
                         <option value="cash">Cash</option>
-                        <option value="creditCard">Credit Card</option>
-                        <option value="debitCard">Debit Card</option>
-                        <option value="payApp">Payment Apps</option>
+                        <option value="CC">Credit Card</option>
+                        <option value="DC">Debit Card</option>
+                        <option value="App">Payment Apps</option>
                         <option value="other">Pembayaran Lain</option>
                       </select>
                     </div>

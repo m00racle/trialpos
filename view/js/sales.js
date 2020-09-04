@@ -351,7 +351,7 @@ $(".salesForm").on("change", "select#newPaymentMethod", function(){
       $("input#newCashPayment").number(true, 2, ',', '.');
       $("input#paymentCode").val("cash");
       break;
-    case "creditCard":
+    case "CC":
       // console.log("cashier select credit card");// DEBUG:
       // IDEA: select the credit card provider and then the transaction code;
       $(paymentHandler).html(
@@ -361,11 +361,11 @@ $(".salesForm").on("change", "select#newPaymentMethod", function(){
           '<option value="masterCard">Master Card</option>' +
           '<option value="other">other</option>' +
         '</select>' +
-        '<br><br><input type="text" class="form-control idPayTool" id="newCCNumber" name="newCCNumber" placeholder="nomor Credit Card" required>' +
-        '<br><input type="text" class="form-control transactionPayTool" id="newCCTransaction" name="newCCTransaction" placeholder="nomor Transaksi" required>'
+        '<br><br>' +
+        '<input type="text" class="form-control transactionPayTool" id="newCCTransaction" name="newCCTransaction" placeholder="nomor Transaksi" required>'
       );
       break;
-    case "debitCard":
+    case "DC":
       // console.log("cashier select debit card");// DEBUG:
       // IDEA: select debit card bank provider and the input transaction code after payment;
       $(paymentHandler).html(
@@ -375,12 +375,12 @@ $(".salesForm").on("change", "select#newPaymentMethod", function(){
           '<option value="mandiri">Mandiri</option>' +
           '<option value="other">other</option>' +
         '</select>' +
-        '<br><br><input type="text" class="form-control idPayTool" id="newDCNumber" name="newDCNumber" placeholder="nomor Debit Card" required>' +
-        '<br><input type="text" class="form-control transactionPayTool" id="newDCTransaction" name="newDCTransaction" placeholder="nomor Transaksi" required>'
+        '<br><br>' +
+        '<input type="text" class="form-control transactionPayTool" id="newDCTransaction" name="newDCTransaction" placeholder="nomor Transaksi" required>'
       );
       break;
 
-    case "payApp":
+    case "App":
       // console.log("select pay app");// DEBUG:
       // IDEA: select the payment apps and then input its ID and transaction refs;
       $(paymentHandler).html(
@@ -390,8 +390,8 @@ $(".salesForm").on("change", "select#newPaymentMethod", function(){
           '<option value="ovo">OVO</option>' +
           '<option value="linkAja">Link Aja</option>' +
         '</select>' +
-        '<br><br><input type="text" class="form-control idPayTool" id="newPayAppId" name="newPayAppId" placeholder="ID Payment App" required>' +
-        '<br><input type="text" class="form-control transactionPayTool" id="newAppTransaction" name="newAppTransaction" placeholder="nomor Transaksi" required>'
+        '<br><br>' +
+        '<input type="text" class="form-control transactionPayTool" id="newAppTransaction" name="newAppTransaction" placeholder="nomor Transaksi" required>'
       );
       break;
 
@@ -510,7 +510,7 @@ function transactionCodeRecorder(){
     $("input#paymentCode").val(transactionCode);
   } else {
     // IDEA: this is  the code from the card or app;
-    var transactionCode = $(".selectPayTool").val() + '-' + $(".transactionPayTool").val();
+    var transactionCode = $("#newPaymentMethod").val() + '-' + $(".selectPayTool").val() + '-' + $(".transactionPayTool").val();
     $("input#paymentCode").val(transactionCode);
   }
   // -- function transactionCodeRecorder()
