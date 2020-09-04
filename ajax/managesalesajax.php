@@ -18,11 +18,12 @@
       // IDEA: make the $salesData into table structure in JSON format;
       $dataJson = '{
         "data": [';
+        if (count($salesData) > 0) {
           for ($i=0; $i < count($salesData) ; $i++) {
             $value = $salesData[$i];
             $actionButtons = "<div class='btn-group'>".
-              "<button class='btn btn-warning'><i class='fa fa-print'></i></button>".
-              "<button class='btn btn-danger'><i class='fa fa-times'></i></button>".
+              "<button class='btn btn-warning' idSales='".$value["id"]."'><i class='fa fa-print'></i></button>".
+              "<button class='btn btn-danger' idSales='".$value["id"]."'><i class='fa fa-times'></i></button>".
             "</div>";
             $dataJson .= '[
               "'.$value["id"].'",
@@ -38,6 +39,8 @@
             // code...for ($i=0; $i < count($salesData) ; $i++)
           }
           $dataJson = substr($dataJson,0,-1);
+          // code...if (count($salesData) > 0)
+        }
 
         $dataJson .=']
       }';
