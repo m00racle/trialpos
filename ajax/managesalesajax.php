@@ -17,7 +17,7 @@
     {
       // IDEA: fetch all sales data; use descending order to make the latest transaction viewed on top of the list;
       $salesData = ControllerSales::ctrDataSales(null,null,$order="DESC");
-      // var_dump($salesData);// DEBUG: test
+      // var_dump($salesData);// DEBUG:
 
       // IDEA: make the $salesData into table structure in JSON format;
       $dataJson = '{
@@ -30,8 +30,11 @@
             $customerName = $customerData["name"];
             $userData = UserController::ctrDataUser("userid", $value["id_seller"]);
             $userName = $userData["username"];
+
+            // IDEA: button settings for each relation entity; there are print, edit, and delete transaction;
             $actionButtons = "<div class='btn-group'>".
-              "<button class='btn btn-warning' idSales='".$value["id"]."'><i class='fa fa-print'></i></button>".
+              "<button class='btn btn-info' idSales='".$value["id"]."'><i class='fa fa-print'></i></button>".
+              "<button class='btn btn-warning' idSales='".$value["id"]."'><i class='fa fa-pencil'></i></button>".
               "<button class='btn btn-danger' idSales='".$value["id"]."'><i class='fa fa-times'></i></button>".
             "</div>";
             $dataJson .= '[
