@@ -1,4 +1,5 @@
 <?php
+  require_once "connectdb.php";
   //this model the object: product
   /**
    * Class model product;
@@ -77,6 +78,49 @@
       $stmt = null;
 
       // --static public function modEditDataProduct($table, $data)
+    }
+
+    static public function updateSingleDataProduct($table, $idEntity, $idValue, $updateItem, $updateValue)
+    {
+      // IDEA: connect to PDO and prepare the statement;
+      $stmt = Connection::connect()->prepare("UPDATE $table SET $updateItem = :$updateItem WHERE $idEntity = :$idEntity");
+
+      // IDEA: bind parameter;
+      $stmt->bindParam(":".$updateItem, $updateValue, PDO::PARAM_STR);
+      $stmt->bindParam(":".$idEntity, $idValue, PDO::PARAM_STR);
+
+      // IDEA: execute return condition;
+      if ($stmt->execute()) {
+        return "ok";
+      } else {
+        return "error";
+      }
+
+      $stmt->close();
+      $stmt->null;
+
+      // -- static public function updateSingleDataProduct($table, $idEntity, $idValue, $updateItem, $updateValue)
+    }
+
+    static public function updateProductFromSales($data)
+    {
+      // IDEA: this is specialized method to handle the updates when sales is saved. Here we will only update two attributes for the product entity -> parameter $data (stock, sales, id);
+      $stmt = Connection::connect()->prepare("UPDATE product SET stock = :stock, sales = :sales WHERE id = :id");
+      // IDEA: bind parameters;
+      $stmt->bindParam(":stock", $data['stock'], PDO::PARAM_STR);
+      $stmt->bindParam(":sales", $data['sales'], PDO::PARAM_STR);
+      $stmt->bindParam(":id", $data['id'], PDO::PARAM_STR);
+
+      // IDEA: execute return condition;
+      if ($stmt->execute()) {
+        return "ok";
+      } else {
+        return "error";
+      }
+
+      $stmt->close();
+      $stmt->null;
+      // -- static public function updateProductFromSales($data, $idKey)
     }
 
     static public function modDeleteProduct($table, $data)
