@@ -531,3 +531,17 @@ $(".salesForm").on("change", ".transactionPayTool", function(){
   transactionCodeRecorder();
   // -- $(".salesForm").on("change", ".selectPayTool", function()
 })
+
+/*************************************************************
+*THIS IS THE PART OF JS FOR THE MANAGE SALES MODULE          *
+*WE WILL MOSTLY MAKE THE PRINT SECTION FIRST                 *
+**************************************************************/
+
+// MANAGE SALES: PRINT SALES MODULE
+$(document).on("click", ".btnPrintSales", function(){
+  var idSales = $(this).attr("idSales");
+  console.log("idSales", idSales);// DEBUG: test
+
+  // IDEA: we use the window.open() function to open new tab with pdf printed page to be able to make it printed;
+  window.open("extension/TCPDF/examples/example_001.php?idSales="+idSales,"_blank");
+})
