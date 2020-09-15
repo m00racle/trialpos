@@ -53,7 +53,6 @@ $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 $pdf->SetMargins(5, 5, 5); // NOTE: I change this to test the margins in real life example;
 
 // set auto page breaks
-// TODO: learn more about this? since we do not use bottom margin and our paper is roll and continuous?
 $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
 
 // set image scale factor
