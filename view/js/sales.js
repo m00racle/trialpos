@@ -543,5 +543,5 @@ $(document).on("click", ".btnPrintSales", function(){
   console.log("idSales", idSales);// DEBUG: test
 
   // IDEA: we use the window.open() function to open new tab with pdf printed page to be able to make it printed;
-  window.open("extension/TCPDF/examples/example_002.php?idSales="+idSales,"_blank");
+  window.open("extension/TCPDF/examples/receiptPOS.php?idSales="+idSales,"_blank");
 })
