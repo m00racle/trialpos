@@ -329,7 +329,13 @@ $(".salesForm").on("change", "input#newSalesTax", function(){
   // --$(".salesForm").on("change", "input#newSalesTax", function()
 })
 
-// HANDLE THE PAYMENT METHOD;
+/* // TODO: need to change the payment handler so that the cash payment can also brought the total payment and changes from the customers
+*
+* HANDLE THE PAYMENT METHOD;
+* // IDEA: I think we can make some JSON object in terms of payment data just to make it more usable later on!
+*
+*/
+
 // IDEA: when the customer payment select input changed then handle the payment according to which method chosen;
 $(".salesForm").on("change", "select#newPaymentMethod", function(){
   // console.log("the choice: ", $(this).val()); // DEBUG:

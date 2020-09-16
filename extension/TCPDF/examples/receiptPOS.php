@@ -45,7 +45,7 @@
     // var_dump($salesData);// DEBUG:
     // var_dump($productList);// DEBUG:
 
-    /* // IDEA: decide the format of the print pdf result;
+    /* // TODO: decide the format of the print pdf result; try to make custom size to avoid page breaking!
     *
     * page size : A7 (the closest to the 80 mm rolls)
     * margins : 5 mm (left, top, right)
@@ -72,7 +72,7 @@
     // IDEA: set monospaced font style; by default courier
     $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 
-    // IDEA: set margins (header and page);
+    // IDEA: set margins (page);
     $pdf->SetMargins(5, 5, 5); // NOTE: I change this to test the margins in real life example; in mm
 
     // set default font subsetting mode
@@ -88,14 +88,14 @@
     // This method has several options, check the source code documentation for more information.
     $pdf->AddPage();
 
-    $logo = <<<EOD
+    $header = <<<EOD
     <img src="images/logoFinalBW4.jpg" style="width:70px;height:70px;margin:0px;padding:0;">
     <p style="margin:0px;padding:0;font-size:5px;">
       Jl. Kebon Agung Km.5<br>
       Tlogoadi, Cebongan, Mlati, Sleman
     </p>
     EOD;
-    /* // TODO: add data for customer data and user data;
+    /* //  add data for customer data and user data;
     *
     * The customer data use the data from the customer database;
     * The data that will be used is customer name.
@@ -105,6 +105,19 @@
     * Then username will be just placed in the Kasir: [username]
     *
     */
+
+    // var_dump($salesData["id_seller"]); // DEBUG:
+    $userName = (UserController::ctrDataUser("userid", $salesData["id_seller"]))["username"];
+    // var_dump($userData); // DEBUG:
+    $customerName = (ControllerCustomer::ctrDataCustomer("id", $salesData["id_customer"]))["name"];
+    // var_dump($customerData); // DEBUG:
+
+    $partyData = <<<EOD
+    <p style="margin:0px;padding:0;text-align:left;font-size:8px;">
+      Yth. Tn/Ny/Sdr. $customerName <br>
+      Kasir: $userName
+    </p>
+    EOD;
 
     /* // IDEA: add iteration for i to the JSON data encoded into array
     *
@@ -155,8 +168,25 @@
     </tr>
     <table/>';
 
+    /* // TODO: set the payment method data and fix the cash payment data!
+    *
+    * // NOTE: To make this payment data inside the receipt POS I need to modify the sales payment in js file!
+    * If the payment is in cash I need to add the full amount of the customer payment!
+    * Then if the payment from the customer is higher than total price then I need to capture the change
+    * Then the change need to be printed also in the receipt POS!
+    *
+    */
+
+    // IDEA: bottom part of the receiptPOS;
+    $footer = <<<EOD
+    <hr>
+    <p style="margin:0px;padding:0;font-size:8px;">
+      Terima Kasih atas Kunjungan Anda
+    </p>
+    EOD;
+
     // IDEA: concatenante all contents;
-    $html = $logo.$table;
+    $html = $header.$partyData.$table.$footer;
 
     // Print text
     // $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, 'C', true);
