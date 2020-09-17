@@ -26,7 +26,7 @@
     // TODO: make method to insert new sales entity to the sales realtion;
     static public function modCreateSales($table, $data)
     {
-      $stmt = Connection::connect()->prepare("INSERT INTO $table(code, id_customer, id_seller, product, tax, net_price, total, method) VALUES (:code, :id_customer, :id_seller, :product, :tax, :net_price, :total, :method)");
+      $stmt = Connection::connect()->prepare("INSERT INTO $table(code, id_customer, id_seller, product, tax, net_price, total, method, method_json) VALUES (:code, :id_customer, :id_seller, :product, :tax, :net_price, :total, :method, :method_json)");
       // bind parameters
       $stmt->bindParam(":code", $data['code'], PDO::PARAM_STR);
       $stmt->bindParam(":id_customer", $data['id_customer'], PDO::PARAM_STR);
@@ -36,6 +36,7 @@
       $stmt->bindParam(":net_price", $data['net_price'], PDO::PARAM_STR);
       $stmt->bindParam(":total", $data['total'], PDO::PARAM_STR);
       $stmt->bindParam(":method", $data['method'], PDO::PARAM_STR);
+      $stmt->bindParam(":method_json", $data['method_json'], PDO::PARAM_STR);
 
       // test the execute;
       if ($stmt->execute()) {

@@ -127,6 +127,7 @@
                       </select>
                     </div>
                     <input type="hidden" name="paymentCode" id="paymentCode" value="">
+                    <input type="hidden" name="paymentJson" id="paymentJson" value="">
                   </div>
                   <!-- THIS IS WHERE THE VIEW WILL BE CHANGED ACCORDING TO PAYMENT METHOD -->
                   <div class="col-xs-6" id="paymentHandler" style="padding-left:0px">

@@ -27,6 +27,8 @@
         // echo 'console.log("payment code", '. json_encode( $_POST["paymentCode"] ) .');';
         // echo '</script>';// DEBUG:
 
+        // TODO: control the cash payment if the amount paid is higher than the total after tax.
+
         // IDEA: update the product data on the database;
         // NOTE: to make use of the $_POST["hiddenJson"] JSON format we need to decode it first back to PHP array; please don't use JSON parse method since parse is for Javascript; for PHP the JSON use json_encode and json_decode; CAUTION: when using json_decode in PHP always add second parameter true to ensure the decode was converted to associative array;
         $productJsonDecoded = json_decode($_POST["hiddenJson"], true);
@@ -66,7 +68,7 @@
 
         $salesData = Array('code'=> $_POST["newSale"], 'id_customer'=> $_POST["selectCustomer"],
         'id_seller'=> $_POST["sellerId"], 'product'=> $_POST["hiddenJson"], 'tax'=> $_POST["newSalesTax"], 'net_price'=> $_POST["beforeTaxTotalSales"],
-        'total'=> $_POST["plainTotalSales"], 'method'=> $_POST["paymentCode"]);
+        'total'=> $_POST["plainTotalSales"], 'method'=> $_POST["paymentCode"], 'method_json'=>$_POST["paymentJson"]);
         $salesUpdateResponse = ModelSales::modCreateSales("sales", $salesData);
 
         // IDEA: handle the final transaction data update/create. Handle the message and redirect to the manage-sales page;
