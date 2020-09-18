@@ -45,7 +45,7 @@
     // var_dump($salesData);// DEBUG:
     // var_dump($productList);// DEBUG:
 
-    /* // TODO: decide the format of the print pdf result; try to make custom size to avoid page breaking!
+    /* // NOTE: decide the format of the print pdf result; try to make custom size to avoid page breaking!
     *
     * page size : A7 (the closest to the 80 mm rolls)
     * margins : 5 mm (left, top, right)
@@ -165,10 +165,9 @@
       <td align="left">Total</td>
       <td></td>
       <td align="right">'.number_format($salesData["total"], 2, ",", ".").'</td>
-    </tr>
-    <table/>';
+    </tr>';
 
-    /* // TODO: set the payment method data and fix the cash payment data!
+    /* // NOTE: set the payment method data and fix the cash payment data!
     *
     * // NOTE: To make this payment data inside the receipt POS I need to modify the sales payment in js file!
     * If the payment is in cash I need to add the full amount of the customer payment!
@@ -177,9 +176,61 @@
     *
     */
 
+    $paymentData = (json_decode($salesData["method_json"],true))[0];
+    // var_dump($paymentData); // TEMP:
+
+    if ($paymentData["method"] == "cash") {
+      /* IDEA: cash payment need to be defined the amount the customer paid and the change (if any) that the customer receive.
+      *
+      * The number must be formatted like the finance format with . as thousand separator and add 2 decimals
+      *
+      */
+
+      $table .='
+      <tr>
+        <td align="left">Pembayaran: cash</td>
+        <td></td>
+        <td align="right">'.number_format($paymentData["amount"], 2, ",", ".").'</td>
+      </tr>
+      <tr>
+        <td align="left">Kembali: </td>
+        <td></td>
+        <td align="right">'.number_format($paymentData["change"], 2, ",", ".").'</td>
+      </tr>
+      <table/>
+      <hr>';
+
+      // code...if ($paymentData["method"] == "cash")
+    } else {
+      /* NOTE: the payment need to be processed with the method, provider, reference;
+      *
+      * // IDEA: for now the method will only consist of code only. but in the future this can be modified to include the real name of the method!
+      */
+
+      $table .='
+      <tr>
+        <td align="left">Pembayaran: '.$paymentData["method"].'</td>
+        <td></td>
+        <td align="right"></td>
+      </tr>
+      <tr>
+        <td align="left">Provider: '.$paymentData["provider"].'</td>
+        <td></td>
+        <td align="right"></td>
+      </tr>
+      <tr>
+        <td align="left">Ref: '.number_format($paymentData["code"], 0, ",", "-").'</td>
+        <td></td>
+        <td align="right"></td>
+      </tr>
+      <table/>
+      <hr>';
+
+      // else of if ($paymentData["method"] == "cash")
+    }
+
     // IDEA: bottom part of the receiptPOS;
     $footer = <<<EOD
-    <hr>
     <p style="margin:0px;padding:0;font-size:8px;">
       Terima Kasih atas Kunjungan Anda
     </p>
