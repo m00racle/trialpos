@@ -73,7 +73,18 @@
     $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 
     // IDEA: set margins (page);
-    $pdf->SetMargins(5, 5, 5); // NOTE: I change this to test the margins in real life example; in mm
+    $pdf->SetMargins(5, 1, 5); // NOTE: I change this to test the margins in real life example; in mm
+
+    /* NOTE: this is we trying to set non page break;
+    *
+    * this is the best solution for the moment since I cannot find anything to make infinite page length or the ability to make exact page length for certain receipt data;
+    *
+    * // WARNING: this might caused a bug when printing using thermal roll printer since the break will make some white spaces between page breaks and the unused page portion.
+    *
+    * // IDEA: make function to calculate the length of the paper needed then using the setPageFormat function $format that can be set to make custom page size;
+    *
+    */
+    $pdf->setAutoPageBreak(true);
 
     // set default font subsetting mode
     $pdf->setFontSubsetting(true);

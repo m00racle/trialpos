@@ -551,7 +551,7 @@ function transactionCodeRecorder(){
     $("input#paymentJson").val(JSON.stringify(transactionJson));
     $("input#paymentCode").val(transactionCode);
   }
-  console.log("paymentJson", $("input#paymentJson").val()); // DEBUG: test
+  // console.log("paymentJson", $("input#paymentJson").val()); // DEBUG:
   // -- function transactionCodeRecorder()
 }
 
@@ -584,7 +584,7 @@ $(".salesForm").on("change", "#newCashPayment", function(){
 // MANAGE SALES: PRINT SALES MODULE
 $(document).on("click", ".btnPrintSales", function(){
   var idSales = $(this).attr("idSales");
-  console.log("idSales", idSales);// DEBUG: test
+  // console.log("idSales", idSales);// DEBUG:
 
   // IDEA: we use the window.open() function to open new tab with pdf printed page to be able to make it printed;
   window.open("extension/TCPDF/examples/receiptPOS.php?idSales="+idSales,"_blank");
