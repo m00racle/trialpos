@@ -40,59 +40,61 @@
     $idSales = $_GET["idSales"];
     $salesData = ControllerSales::ctrDataSales("id", $idSales);
     $productList = json_decode($salesData["product"],true);
-    // NOTE: CAUTION the json_decode must use second parameter to be true to return Array and not Standard Object!!
+    // WARNING: The json_decode must use second parameter to be true to return Array and not Standard Object!!
 
-    // var_dump($salesData);// DEBUG:
-    // var_dump($productList);// DEBUG:
+    // var_dump($salesData);// TEMP:
+    // var_dump($productList);// TEMP:
 
-    /* // NOTE: decide the format of the print pdf result; try to make custom size to avoid page breaking!
+    /*
+    * // IDEA: make function to calculate the length of the paper needed then using the setPageFormat function $format that can be set to make custom page size;
     *
-    * page size : A7 (the closest to the 80 mm rolls)
+    * // NOTE: decide the format of the print pdf result; try to make custom size to avoid page breaking!
+    *
+    * page size : we use custom page size = array($pageWidth, $pageHeight)
     * margins : 5 mm (left, top, right)
     * logo on header : under consideration; learn more on locating the header logo from the example_001.php;
     * header margin: if considered will be 5 mm
     *
+    * If in the future other features need to be pronted in the receipt as long as it is not relative in list or array just adjust the $pageBase number;
     */
+    $pageWidth = 74; // NOTE: in mm as specified later in PDF_UNIT;
+    $pageBase = 95; // NOTE: in mm this is the base height of the page; (witrhout the product sold list)
+    $pageHeight = $pageBase + 5 * count($productList); // NOTE: in mm this is the space in the product table;
+    // var_dump($pageHeight);// TEMP:
+
 
     // IDEA: instantiate new TCPDF object;
-    $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, 'A7', true, 'UTF-8', false);
+    $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, array($pageWidth, $pageHeight), true, 'UTF-8', false);
 
     // IDEA: set document info;
     $pdf->SetCreator(PDF_CREATOR);
     $pdf->SetTitle('POS receipt');
     $pdf->SetSubject('POS Receipt');
 
-    // IDEA: set header and footer (no footer for this time)
+    // IDEA: set header and footer (no header & footer for this time)
 
     $pdf->setPrintFooter(false);
     $pdf->setPrintHeader(false);
-    // $pdf->SetHeaderData('logoFinalBW3.jpg', 10, '', '');
-    // $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
 
     // IDEA: set monospaced font style; by default courier
     $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 
     // IDEA: set margins (page);
-    $pdf->SetMargins(5, 1, 5); // NOTE: I change this to test the margins in real life example; in mm
+    $pdf->SetMargins(5, 5, 5); // NOTE: the 5 mm all margins is better since less than that the upper logo was cutted.
 
-    /* NOTE: this is we trying to set non page break;
+    // NOTE: this set the auto page break if the content is longer than the page height; this is redundant since we use cudtom size that adapt with the content length of the page; thus we set this to false;
+    $pdf->setAutoPageBreak(false);
+    // WARNING: if there are additional content/features to the  receipt then test it first using long list (array) of products to ensure the printed view. If some pert of the content is failed to be shown in the printed view this is because we set page break to false thus the system will not add another page to cover the rest of the content. In this case edit the $pageBase;
+
+    /* // NOTE: Set font
     *
-    * this is the best solution for the moment since I cannot find anything to make infinite page length or the ability to make exact page length for certain receipt data;
+    * dejavusans is a UTF-8 Unicode font, included as monospaced type of font family this font is often used in the receipt from POS machines.
+    * this kind of font is best for the thermal paper printer and small thermal paper roll paper.
     *
-    * // WARNING: this might caused a bug when printing using thermal roll printer since the break will make some white spaces between page breaks and the unused page portion.
-    *
-    * // IDEA: make function to calculate the length of the paper needed then using the setPageFormat function $format that can be set to make custom page size;
-    *
+    * if you only need to print standard ASCII chars, you can use core fonts like helvetica or times to reduce file size.
     */
-    $pdf->setAutoPageBreak(true);
-
-    // set default font subsetting mode
     $pdf->setFontSubsetting(true);
 
-    // Set font
-    // dejavusans is a UTF-8 Unicode font, if you only need to
-    // print standard ASCII chars, you can use core fonts like
-    // helvetica or times to reduce file size.
     $pdf->SetFont('dejavusans', '', 8);
 
     // Add a page
@@ -117,11 +119,11 @@
     *
     */
 
-    // var_dump($salesData["id_seller"]); // DEBUG:
+    // var_dump($salesData["id_seller"]); // TEMP:
     $userName = (UserController::ctrDataUser("userid", $salesData["id_seller"]))["username"];
-    // var_dump($userData); // DEBUG:
+    // var_dump($userData); // TEMP:
     $customerName = (ControllerCustomer::ctrDataCustomer("id", $salesData["id_customer"]))["name"];
-    // var_dump($customerData); // DEBUG:
+    // var_dump($customerData); // TEMP:
 
     $partyData = <<<EOD
     <p style="margin:0px;padding:0;text-align:left;font-size:8px;">
