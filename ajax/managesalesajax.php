@@ -33,9 +33,9 @@
 
             // IDEA: button settings for each relation entity; there are print, edit, and delete transaction;
             $actionButtons = "<div class='btn-group'>".
-              "<button class='btn btn-info' idSales='".$value["id"]."'><i class='fa fa-print'></i></button>".
-              "<button class='btn btn-warning' idSales='".$value["id"]."'><i class='fa fa-pencil'></i></button>".
-              "<button class='btn btn-danger' idSales='".$value["id"]."'><i class='fa fa-times'></i></button>".
+              "<button class='btn btn-info btnPrintSales' idSales='".$value["id"]."'><i class='fa fa-print'></i></button>".
+              "<button class='btn btn-warning btnEditSales' idSales='".$value["id"]."'><i class='fa fa-pencil'></i></button>".
+              "<button class='btn btn-danger btnDeleteSales' idSales='".$value["id"]."'><i class='fa fa-times'></i></button>".
             "</div>";
             $dataJson .= '[
               "'.$value["id"].'",

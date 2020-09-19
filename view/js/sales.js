@@ -329,7 +329,13 @@ $(".salesForm").on("change", "input#newSalesTax", function(){
   // --$(".salesForm").on("change", "input#newSalesTax", function()
 })
 
-// HANDLE THE PAYMENT METHOD;
+/* // TODO: need to change the payment handler so that the cash payment can also brought the total payment and changes from the customers
+*
+* HANDLE THE PAYMENT METHOD;
+* // IDEA: I think we can make some JSON object in terms of payment data just to make it more usable later on!
+*
+*/
+
 // IDEA: when the customer payment select input changed then handle the payment according to which method chosen;
 $(".salesForm").on("change", "select#newPaymentMethod", function(){
   // console.log("the choice: ", $(this).val()); // DEBUG:
@@ -349,7 +355,6 @@ $(".salesForm").on("change", "select#newPaymentMethod", function(){
         '<input type="text" class="form-control cashAmount" id="newCashPayment" name="newCashPayment" placeholder="uang dibayar" required>'
       );
       $("input#newCashPayment").number(true, 2, ',', '.');
-      $("input#paymentCode").val("cash");
       break;
     case "CC":
       // console.log("cashier select credit card");// DEBUG:
@@ -501,18 +506,52 @@ function jsonTransaction(){
   // --function jsonTransaction()
 }
 
-// IDEA: build dedicated function to record the transaction CODE
+/* IDEA: build dedicated function to record the transaction CODE
+*
+* here there are two kinds of records one in string and the other is the JSON format
+* When using JSON format the decoding made the data failed to be transformed to view in the Ajax data table;
+*
+*/
 function transactionCodeRecorder(){
-  // IDEA: transaction code is consist of payment tool selection, payment id code, payment transaction code.
+  // IDEA: record all transaction data;
+  var transactionJson = [];
   if ($("input#newOtherPayment").length) {
     // IDEA: the other payment is dedicated with other code and then the transaction code if available; but since the other is based on input type text;
     var transactionCode = $(".selectPayTool").val() + '-' + $(".transactionPayTool").val();
+    var transactionJson = [{
+      "method":"other",
+      "provider":$(".selectPayTool").val(),
+      "code":$(".transactionPayTool").val()
+    }];
+    $("input#paymentJson").val(JSON.stringify(transactionJson));
     $("input#paymentCode").val(transactionCode);
-  } else {
+  } else if ($("input#newCashPayment").length) {
+    // IDEA: handles the transaction record on the cash payment;
+    if ($("input#newCashChange").length) {
+      var change = Number($("input#newCashChange").val());
+    } else {
+      var change = 0;
+    }
+    var transactionCode = "cash - " + $("#newCashPayment").val();
+    var transactionJson = [{
+      "method":"cash",
+      "amount":Number($("#newCashPayment").val()),
+      "change":change
+    }];
+    $("input#paymentJson").val(JSON.stringify(transactionJson));
+    $("input#paymentCode").val(transactionCode);
+  }else {
     // IDEA: this is  the code from the card or app;
     var transactionCode = $("#newPaymentMethod").val() + '-' + $(".selectPayTool").val() + '-' + $(".transactionPayTool").val();
+    var transactionJson = [{
+      "method":$("#newPaymentMethod").val(),
+      "provider":$(".selectPayTool").val(),
+      "code":$(".transactionPayTool").val()
+    }];
+    $("input#paymentJson").val(JSON.stringify(transactionJson));
     $("input#paymentCode").val(transactionCode);
   }
+  // console.log("paymentJson", $("input#paymentJson").val()); // DEBUG:
   // -- function transactionCodeRecorder()
 }
 
@@ -530,4 +569,23 @@ $(".salesForm").on("change", ".idPayTool", function(){
 $(".salesForm").on("change", ".transactionPayTool", function(){
   transactionCodeRecorder();
   // -- $(".salesForm").on("change", ".selectPayTool", function()
+})
+
+$(".salesForm").on("change", "#newCashPayment", function(){
+  transactionCodeRecorder();
+  // -- $(".salesForm").on("change", ".selectPayTool", function()
+})
+
+/*********************************************************
+*THIS IS THE PART OF JS FOR THE MANAGE SALES MODULE
+*WE WILL MOSTLY MAKE THE PRINT SECTION FIRST
+**/
+
+// MANAGE SALES: PRINT SALES MODULE
+$(document).on("click", ".btnPrintSales", function(){
+  var idSales = $(this).attr("idSales");
+  // console.log("idSales", idSales);// DEBUG:
+
+  // IDEA: we use the window.open() function to open new tab with pdf printed page to be able to make it printed;
+  window.open("extension/TCPDF/examples/receiptPOS.php?idSales="+idSales,"_blank");
 })
