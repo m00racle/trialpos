@@ -37,7 +37,7 @@
                     allowOutsideClick: false
                   }).then((result) => {
                     if (result.value) {
-                        window.location = 'customer';
+                        window.location = 'index.php?route=customer';
                     }
                   })
                     </script>";
@@ -69,7 +69,7 @@
               allowOutsideClick: true
             }).then((result) => {
               if (result.value) {
-                window.location = 'customer';
+                window.location = 'index.php?route=customer';
               }
             })
               </script>";
@@ -109,7 +109,7 @@
                         'phone' => $_POST["editCustomerPhone"],
                         'address' => $_POST["editCustomerAddress"],
                         'birthdate' => $_POST["editCustomerBirthDate"]);
-          // echo "<script>console.log(".json_encode($data).")</script>"; // NOTE: debug
+          // echo "<script>console.log(".json_encode($data).")</script>"; // TEMP:
           $response = ModelCustomer::modEditCustomer("customer", $data);
 
           if ($response == "ok") {
@@ -122,7 +122,7 @@
               allowOutsideClick: false
             }).then((result) => {
               if (result.value) {
-                  window.location = 'customer';
+                  window.location = 'index.php?route=customer';
               }
             })
               </script>";
@@ -168,7 +168,7 @@
     static public function ctrDeleteCustomer()
     {
       if (isset($_GET["idCustomer"])) {
-        // echo "<script>console.log('id', ".json_encode($_GET["idCustomer"]).")</script>";// DEBUG: 
+        // echo "<script>console.log('id', ".json_encode($_GET["idCustomer"]).")</script>";// TEMP:
         $response = ModelCustomer::modDeleteCustomer("customer", $_GET["idCustomer"]);
 
         if ($response == "ok") {
@@ -181,7 +181,7 @@
             allowOutsideClick: true
           }).then((result) => {
             if (result.value) {
-                window.location = 'customer';
+                window.location = 'index.php?route=customer';
             }
           })
             </script>";
@@ -196,7 +196,7 @@
             allowOutsideClick: true
           }).then((result) => {
             if (result.value) {
-                window.location = 'customer';
+                window.location = 'index.php?route=customer';
             }
           })
             </script>";

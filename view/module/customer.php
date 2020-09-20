@@ -6,7 +6,7 @@
       <small>Control Panel</small>
     </h1>
     <ol class="breadcrumb">
-      <li><a href="dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><a href="index.php?route=dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
 
       <li class="active">Customer Management</li>
     </ol>
@@ -45,7 +45,7 @@
             <?php
               // fetch all customer data to be presented
               $dataCustomer = ControllerCustomer::ctrDataCustomer(null, null);
-              // echo "<script>console.log('dataCustomer,".json_encode($dataCustomer)."')</script>";// DEBUG:
+              // echo "<script>console.log('dataCustomer,".json_encode($dataCustomer)."')</script>";// TEMP:
               foreach ($dataCustomer as $key => $value) {
                 echo '
                 <tr>

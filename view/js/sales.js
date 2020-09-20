@@ -2,7 +2,7 @@
 // $.ajax({
 //   url: "ajax/managesalesajax.php",
 //   success:function(response){
-//     console.log("response",response); // NOTE: debug initial syntax test!
+//     console.log("response",response); // TEMP: initial syntax test!
 //
 //     // --success:function(response)
 //   }
@@ -50,16 +50,16 @@ $(".tableProducts tbody").on("click", "button.addProduct", function(){
     var targetButton = otherTable + "tbody tr td button[idProduct='"+idProduct+"']";
   }
 
-  // console.log("idProduct ", idProduct);// DEBUG:
-  // console.log("table id", tableId);// DEBUG:
-  // console.log("other table", $(targetButton).length);// DEBUG:
+  // console.log("idProduct ", idProduct);// TEMP:
+  // console.log("table id", tableId);// TEMP:
+  // console.log("other table", $(targetButton).length);// TEMP:
 
   // deactivate the button on the product list when already added;
   $(this).removeClass("btn-primary addProduct");
   $(this).addClass("btn-default");
 
   if ($(targetButton).length) {
-    // console.log("target button true");// DEBUG:
+    // console.log("target button true");// TEMP:
     $(targetButton).removeClass("btn-primary addProduct");
     $(targetButton).addClass("btn-default");
   }else {
@@ -71,7 +71,7 @@ $(".tableProducts tbody").on("click", "button.addProduct", function(){
 
   var datos = new FormData();
   datos.append("idProduct", idProduct);
-  // console.log("idProductData", datos.get("idProduct"));// DEBUG:
+  // console.log("idProductData", datos.get("idProduct"));// TEMP:
 
   // use the product ajax to send the idProduct and get the response in JSON on the specific product;
   $.ajax({
@@ -83,7 +83,7 @@ $(".tableProducts tbody").on("click", "button.addProduct", function(){
     processData: false,
     dataType: "json",
     success: function(response){
-      // console.log("response", response); // DEBUG:
+      // console.log("response", response); // TEMP:
       var description = response["description"];
       var stock = response["stock"];
       var price = response["sell_price"];
@@ -100,7 +100,7 @@ $(".tableProducts tbody").on("click", "button.addProduct", function(){
         // IDEA: change the button to be deactivated to prevent future addition before restocking!
         $("button.recoverButton[idProduct='"+idProduct+"']").addClass("btn-primary addProduct");
         if (!$(targetButton).length) {
-          // console.log("reverse target button");// DEBUG:
+          // console.log("reverse target button");// TEMP:
           // IDEA: put the changes into the localStorage;
           idUpdateProduct.push({"tableId":otherTable,"update":"remove","idProduct":idProduct});
           localStorage.setItem("updateProduct", JSON.stringify(idUpdateProduct));
@@ -205,7 +205,7 @@ $(".salesForm").on("click", "button.removeProduct", function(){
 
 // NOTE: THIS IS TO HANDLE THE MOMENT THE DATA TABLE WAS RELOADED;
 $(".tableProducts").on("draw.dt", function(){
-  // console.log("drawtable"); // DEBUG:
+  // console.log("drawtable"); // TEMP:
   if (localStorage.getItem("updateProduct") != null) {
     var listIdProduct = JSON.parse(localStorage.getItem("updateProduct"));
 
@@ -232,7 +232,7 @@ $(".tableProducts").on("draw.dt", function(){
       i++;
       // --while (i < listIdProduct.length)
     }
-    // console.log("listIdProduct", JSON.stringify(listIdProduct));// DEBUG:
+    // console.log("listIdProduct", JSON.stringify(listIdProduct));// TEMP:
     localStorage.setItem("updateProduct", JSON.stringify(listIdProduct));
 
   }
@@ -241,7 +241,7 @@ $(".tableProducts").on("draw.dt", function(){
 
 // UPDATE PRODUCT PRICE WHEN QUANTITY CHANGES;
 $(".salesForm").on("change", "input.newProductQuantity", function(){
-  // console.log("product quantity change");// DEBUG:
+  // console.log("product quantity change");// TEMP:
 
   if (Number($(this).val()) > Number($(this).attr("stock"))) {
     // IDEA: if the stock is not sufficient return the value of the quantity back to 1;
@@ -256,9 +256,9 @@ $(".salesForm").on("change", "input.newProductQuantity", function(){
   }
   // IDEA: take the unit price from the input.newProductPrice;
   var objectPrice = $(this).parent().parent().children(".productPrice").children().children(".newProductPrice");
-  // console.log("objectPrice", objectPrice);// DEBUG:
+  // console.log("objectPrice", objectPrice);// TEMP:
   var unitPrice = $(objectPrice).attr("unitPrice");
-  // console.log("unitPrice", unitPrice);// DEBUG:
+  // console.log("unitPrice", unitPrice);// TEMP:
 
   // IDEA: put the quntity * unit price to the input objectPrice value;
   $(objectPrice).val(Number($(this).val()) * Number(unitPrice));
@@ -280,7 +280,7 @@ $(".salesForm").on("change", "input.newProductQuantity", function(){
 function totalPrice(){
   // IDEA: fetch all individual product price in an array;
   var objectProductPrice = $(".newProductPrice");
-  // console.log("objectProductPrice", objectProductPrice);// DEBUG:
+  // console.log("objectProductPrice", objectProductPrice);// TEMP:
 
   // IDEA: iterate all selectors in the objectProductPrice and push it into the array of product price;
   var totalProductPrice = [];
@@ -288,11 +288,11 @@ function totalPrice(){
     var productPrice = Number($(objectProductPrice[i]).val());
     totalProductPrice.push(productPrice);
   }
-  // console.log("totalProductPrice", totalProductPrice);// DEBUG:
+  // console.log("totalProductPrice", totalProductPrice);// TEMP:
 
   // IDEA: sum all numbers in totalProductPrice using JQuery reduce() function;
   var totalPrice = totalProductPrice.reduce(sumTotalPrice);
-  // console.log("totalPrice", totalPrice);// DEBUG:
+  // console.log("totalPrice", totalPrice);// TEMP:
 
   // IDEA: I want to add tax to the equation thus the total Price will be put on the before tax attribute to accomaodate if the tax value is changing;
   $("input#newTotalSales").attr("beforeTax",totalPrice);
@@ -300,7 +300,7 @@ function totalPrice(){
   var taxValue = $("input#newSalesTax").val();
 
   var totalAfterTax = (1 + taxValue/100) * totalPrice;
-  // console.log("tax value", totalAfterTax - totalPrice); // DEBUG:
+  // console.log("tax value", totalAfterTax - totalPrice); // TEMP:
 
   // IDEA: put the totalPrice into the input #newTotalSales;
   $("input#newTotalSales").number(true, 2, ',', '.');
@@ -338,7 +338,7 @@ $(".salesForm").on("change", "input#newSalesTax", function(){
 
 // IDEA: when the customer payment select input changed then handle the payment according to which method chosen;
 $(".salesForm").on("change", "select#newPaymentMethod", function(){
-  // console.log("the choice: ", $(this).val()); // DEBUG:
+  // console.log("the choice: ", $(this).val()); // TEMP:
   // IDEA: lock on the payment handler related to this object; is it need to be or not?
   var paymentHandler = $(this).parent().parent().parent().children("#paymentHandler").children();
   // IDEA: switch to each case whenever the method used;
@@ -349,7 +349,7 @@ $(".salesForm").on("change", "select#newPaymentMethod", function(){
       );
       break;
     case "cash":
-      // console.log("cashier select cash");// DEBUG:
+      // console.log("cashier select cash");// TEMP:
       // IDEA: use cash handler consist of amount paid and change from transaxtion;
       $(paymentHandler).html(
         '<input type="text" class="form-control cashAmount" id="newCashPayment" name="newCashPayment" placeholder="uang dibayar" required>'
@@ -357,7 +357,7 @@ $(".salesForm").on("change", "select#newPaymentMethod", function(){
       $("input#newCashPayment").number(true, 2, ',', '.');
       break;
     case "CC":
-      // console.log("cashier select credit card");// DEBUG:
+      // console.log("cashier select credit card");// TEMP:
       // IDEA: select the credit card provider and then the transaction code;
       $(paymentHandler).html(
         '<select class="form-control selectPayTool" id="creditCardVendor" name="creditCardVendor" required>' +
@@ -371,7 +371,7 @@ $(".salesForm").on("change", "select#newPaymentMethod", function(){
       );
       break;
     case "DC":
-      // console.log("cashier select debit card");// DEBUG:
+      // console.log("cashier select debit card");// TEMP:
       // IDEA: select debit card bank provider and the input transaction code after payment;
       $(paymentHandler).html(
         '<select class="form-control selectPayTool" id="debitCardVendor" name="debitCardVendor" required>' +
@@ -386,7 +386,7 @@ $(".salesForm").on("change", "select#newPaymentMethod", function(){
       break;
 
     case "App":
-      // console.log("select pay app");// DEBUG:
+      // console.log("select pay app");// TEMP:
       // IDEA: select the payment apps and then input its ID and transaction refs;
       $(paymentHandler).html(
         '<select class="form-control selectPayTool" id="payAppVendor" name="payAppVendor" required>' +
@@ -401,7 +401,7 @@ $(".salesForm").on("change", "select#newPaymentMethod", function(){
       break;
 
     default:
-      // console.log("other?");// DEBUG:
+      // console.log("other?");// TEMP:
       // IDEA: input the payment method and amunt and reference or note;?
       $(paymentHandler).html(
         '<input type="text" class="form-control selectPayTool" id="newOtherPayment" name="newOtherPayment" placeholder="Note what payment type" required>' +
@@ -426,11 +426,11 @@ function cashChanges(){
   // } else {
   //   var test = false;
   // }
-  // console.log("cash payment", test);// DEBUG:
+  // console.log("cash payment", test);// TEMP:
   var totalAfterTax = Number($("input#newTotalSales").val());
-  // console.log("totalAfterTax", totalAfterTax);// DEBUG:
+  // console.log("totalAfterTax", totalAfterTax);// TEMP:
   var customerPayment = Number($("input#newCashPayment").val());
-  // console.log("customerPayment", customerPayment);// DEBUG:
+  // console.log("customerPayment", customerPayment);// TEMP:
   // IDEA: prepare new div to contain the response;
   $("input#newCashPayment").parent().append('<div class="paymentResponse"></div>')
   // IDEA: if the amount paid by customer is less the total then add message donates payment is not sufficient;
@@ -479,11 +479,11 @@ function jsonTransaction(){
   var productTransactions = [];
 
   var productsData = $(".newProductDescription");
-  // console.log("productsData", productsData);// DEBUG:
+  // console.log("productsData", productsData);// TEMP:
   var quantitiesData = $(".newProductQuantity");
-  // console.log("quantitiesData", quantitiesData);// DEBUG:
+  // console.log("quantitiesData", quantitiesData);// TEMP:
   var pricesData = $(".newProductPrice");
-  // console.log("pricesData", pricesData);// DEBUG:
+  // console.log("pricesData", pricesData);// TEMP:
 
   // IDEA: iterate the whole array of product data and get these data for each product: id, description, quantity, stockLeft, unitPrice, totalPrice for each product on the sales form;
   for (var i = 0; i < productsData.length; i++) {
@@ -498,7 +498,7 @@ function jsonTransaction(){
   }
 
   // IDEA: stringify the productTransactions to make JSON formatted data;
-  // console.log("productTransactions", JSON.stringify(productTransactions));// DEBUG:
+  // console.log("productTransactions", JSON.stringify(productTransactions));// TEMP:
 
   // IDEA: pick a hidden input to put the JSON data before being uploaded to database later on;
   $("input#hiddenJson").val(JSON.stringify(productTransactions));
@@ -551,7 +551,7 @@ function transactionCodeRecorder(){
     $("input#paymentJson").val(JSON.stringify(transactionJson));
     $("input#paymentCode").val(transactionCode);
   }
-  // console.log("paymentJson", $("input#paymentJson").val()); // DEBUG:
+  // console.log("paymentJson", $("input#paymentJson").val()); // TEMP:
   // -- function transactionCodeRecorder()
 }
 
@@ -584,7 +584,7 @@ $(".salesForm").on("change", "#newCashPayment", function(){
 // MANAGE SALES: PRINT SALES MODULE
 $(document).on("click", ".btnPrintSales", function(){
   var idSales = $(this).attr("idSales");
-  // console.log("idSales", idSales);// DEBUG:
+  // console.log("idSales", idSales);// TEMP:
 
   // IDEA: we use the window.open() function to open new tab with pdf printed page to be able to make it printed;
   window.open("extension/TCPDF/examples/receiptPOS.php?idSales="+idSales,"_blank");

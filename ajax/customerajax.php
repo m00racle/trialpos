@@ -34,7 +34,7 @@
 
   // object for preparing edit customer modal;
   if (isset($_POST["idCustomer"])) {
-    // echo "<script>console.log(".json_encode($_POST["idCustomer"]).")</script>"; // NOTE: debug
+    // echo "<script>console.log(".json_encode($_POST["idCustomer"]).")</script>"; // TEMP:
     $editor = new AjaxCustomer();
     $editor -> ajaxPrepareEdit($_POST["idCustomer"]);
     // code...if (isset($_POST["idCustomer"]))

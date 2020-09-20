@@ -1,5 +1,5 @@
 <header class="main-header">
-  <a href="dashboard" class="logo">
+  <a href="index.php?route=dashboard" class="logo">
     <!-- mini logo for sidebar mini 50x50 pixels -->
     <span class="logo-mini">
       <img src="view/img/template/logomini.png"
@@ -30,7 +30,7 @@
               <ul class="dropdown-menu">
                 <li class="user-body">
                   <div class="pull-right">
-                    <a href="logout" class="btn btn-default btn-flat">Keluar Akun</a>
+                    <a href="index.php?route=logout" class="btn btn-default btn-flat">Keluar Akun</a>
                   </div>
                 </li>
               </ul>

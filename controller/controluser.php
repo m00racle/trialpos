@@ -91,7 +91,7 @@
                       allowOutsideClick: false
                     }).then((result) => {
                       if (result.value) {
-                        window.location.replace('dashboard')
+                        window.location.replace('index.php?route=dashboard')
                       }
                     })
                   });
@@ -304,7 +304,7 @@
               allowOutsideClick: true
             }).then((result) => {
               if (result.value) {
-                  window.location = 'user';
+                  window.location = 'index.php?route=user';
               }
             })
               </script>";
@@ -336,7 +336,7 @@
             allowOutsideClick: true
           }).then((result) => {
             if (result.value) {
-                window.location = 'user';
+                window.location = 'index.php?route=user';
             }
           })
             </script>";
@@ -467,7 +467,7 @@
                 allowOutsideClick: true
               }).then((result) => {
                 if (result.value) {
-                    window.location = 'user';
+                    window.location = 'index.php?route=user';
                 }
               })
                 </script>";
@@ -506,7 +506,7 @@
               allowOutsideClick: true
             }).then((result) => {
               if (result.value) {
-                  window.location = 'user';
+                  window.location = 'index.php?route=user';
               }
             })
               </script>";
@@ -542,7 +542,7 @@
             allowOutsideClick: true
           }).then((result) => {
             if (result.value) {
-                window.location = 'user';
+                window.location = 'index.php?route=user';
             }
           })
             </script>";
@@ -582,7 +582,7 @@
             allowOutsideClick: true
           }).then((result) => {
             if (result.value) {
-                window.location = 'user';
+                window.location = 'index.php?route=user';
             }
           })
             </script>";

@@ -29,7 +29,7 @@
             $route = "";
             if (isset($_FILES["newPictProduct"]["tmp_name"])
                 && $_FILES["newPictProduct"]["tmp_name"] != null) {
-              // echo "<script>console.log(".json_encode($_FILES["newPictProduct"]["tmp_name"]).")</script>"; // NOTE: debug
+              // echo "<script>console.log(".json_encode($_FILES["newPictProduct"]["tmp_name"]).")</script>"; // TEMP:
               list($width, $height) = getimagesize($_FILES["newPictProduct"]["tmp_name"]);
               $newWidth = 500;
               $newHeight = 500;
@@ -84,7 +84,7 @@
                             'buy_price' => $_POST["newBuyingPrice"],
                             'sell_price' => $_POST["newSellingPrice"]);
 
-            // echo "<script>console.log(".json_encode($trials).")</script>"; // DEBUG:
+            // echo "<script>console.log(".json_encode($trials).")</script>"; // TEMP:
             $response = ModelProduct::modAddProduct($table, $trials);
 
             if ($response == "ok") {
@@ -97,7 +97,7 @@
                 allowOutsideClick: false
               }).then((result) => {
                 if (result.value) {
-                    window.location = 'product';
+                    window.location = 'index.php?route=product';
                 }
               })
                 </script>";
@@ -112,7 +112,7 @@
                 allowOutsideClick: true
               }).then((result) => {
                 if (result.value) {
-                    window.location = 'product';
+                    window.location = 'index.php?route=product';
                 }
               })
                 </script>";
@@ -131,7 +131,7 @@
             allowOutsideClick: true
           }).then((result) => {
             if (result.value) {
-                window.location = 'product';
+                window.location = 'index.php?route=product';
             }
           })
             </script>";
@@ -209,7 +209,7 @@
                               'stock' => $_POST["editStock"],
                               'buy_price' => $_POST["editBuyingPrice"],
                               'sell_price' => $_POST["editSellingPrice"]);
-          // echo "<script>console.log(".json_encode($editTrials).")</script>"; // DEBUG:
+          // echo "<script>console.log(".json_encode($editTrials).")</script>"; // TEMP:
           $response = ModelProduct::modEditDataProduct($table, $editTrials);
 
           if ($response == "ok") {
@@ -222,7 +222,7 @@
               allowOutsideClick: true
             }).then((result) => {
               if (result.value) {
-                  window.location = 'product';
+                  window.location = 'index.php?route=product';
               }
             })
               </script>";
@@ -237,7 +237,7 @@
               allowOutsideClick: true
             }).then((result) => {
               if (result.value) {
-                  window.location = 'product';
+                  window.location = 'index.php?route=product';
               }
             })
               </script>";
@@ -255,7 +255,7 @@
             allowOutsideClick: true
           }).then((result) => {
             if (result.value) {
-                window.location = 'product';
+                window.location = 'index.php?route=product';
             }
           })
             </script>";
@@ -293,7 +293,7 @@
             allowOutsideClick: true
           }).then((result) => {
             if (result.value) {
-                window.location = 'product';
+                window.location = 'index.php?route=product';
             }
           })
             </script>";

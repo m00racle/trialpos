@@ -30,7 +30,7 @@
               allowOutsideClick: false
             }).then((result) => {
               if (result.value) {
-                  window.location = 'category';
+                  window.location = 'index.php?route=category';
               }
             })
               </script>";
@@ -67,7 +67,7 @@
             allowOutsideClick: true
           }).then((result) => {
             if (result.value) {
-                window.location = 'category';
+                window.location = 'index.php?route=category';
             }
           })
             </script>";
@@ -115,7 +115,7 @@
             allowOutsideClick: true
           }).then((result) => {
             if (result.value) {
-                window.location = 'category';
+                window.location = 'index.php?route=category';
             }
           })
             </script>";
@@ -165,7 +165,7 @@
             allowOutsideClick: true
           }).then((result) => {
             if (result.value) {
-                window.location = 'category';
+                window.location = 'index.php?route=category';
             }
           })
             </script>";
@@ -181,7 +181,7 @@
             allowOutsideClick: true
           }).then((result) => {
             if (result.value) {
-                window.location = 'category';
+                window.location = 'index.php?route=category';
             }
           })
             </script>";

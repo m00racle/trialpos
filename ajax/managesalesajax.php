@@ -17,7 +17,7 @@
     {
       // IDEA: fetch all sales data; use descending order to make the latest transaction viewed on top of the list;
       $salesData = ControllerSales::ctrDataSales(null,null,$order="DESC");
-      // var_dump($salesData);// DEBUG:
+      // var_dump($salesData);// TEMP:
 
       // IDEA: make the $salesData into table structure in JSON format;
       $dataJson = '{

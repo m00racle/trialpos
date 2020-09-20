@@ -4,27 +4,27 @@
     <!-- Sidebar user panel -->
     <ul class="sidebar-menu">
       <li class="active">
-        <a href="dashboard">
+        <a href="index.php?route=dashboard">
           <i class="fa fa-home"></i><span>Dashboard</span>
         </a>
       </li>
       <li>
-        <a href="user">
+        <a href="index.php?route=user">
           <i class="fa fa-user"></i><span>User</span>
         </a>
       </li>
       <li>
-        <a href="category">
+        <a href="index.php?route=category">
           <i class="fa fa-th"></i><span>Category</span>
         </a>
       </li>
       <li>
-        <a href="product">
+        <a href="index.php?route=product">
           <i class="fa fa-product-hunt"></i><span>Products</span>
         </a>
       </li>
       <li>
-        <a href="customer">
+        <a href="index.php?route=customer">
           <i class="fa fa-users"></i><span>Customer</span>
         </a>
       </li>
@@ -38,17 +38,17 @@
         </a>
         <ul class="treeview-menu">
           <li>
-            <a href="manage-sales">
+            <a href="index.php?route=manage-sales">
               <i class="fa fa-circle-o"></i><span>Manage Sales</span>
             </a>
           </li>
           <li>
-            <a href="create-sales">
+            <a href="index.php?route=create-sales">
               <i class="fa fa-circle-o"></i><span>Create Sales</span>
             </a>
           </li>
           <li>
-            <a href="sales-report">
+            <a href="index.php?route=sales-report">
               <i class="fa fa-circle-o"></i><span>Sales Report</span>
             </a>
           </li>

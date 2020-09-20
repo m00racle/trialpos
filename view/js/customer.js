@@ -4,7 +4,7 @@ $('#newCustomerName').change(function(){
 
   var datos = new FormData();
   datos.append("customerName", customerName);
-  // console.log("datos", datos.get("customerName"));// DEBUG:
+  // console.log("datos", datos.get("customerName"));// TEMP:
 
   $.ajax({
     url:"ajax/customerajax.php",
@@ -15,7 +15,7 @@ $('#newCustomerName').change(function(){
     processData: false,
     dataType: "json",
     success: function(response){
-      // console.log("response", response);// DEBUG:
+      // console.log("response", response);// TEMP:
       var newDocId = Number(response[0]["doc_id"]) + 1;
 
       $("#newDocumentId").val(newDocId);
@@ -26,11 +26,11 @@ $('#newCustomerName').change(function(){
 // EDIT CUSTOMER;
 $(document).on("click", ".btnEditCustomer", function(){
   var idCustomer = $(this).attr("idCustomer");
-  // console.log("idCustomer", idCustomer);// DEBUG:
+  // console.log("idCustomer", idCustomer);// TEMP:
 
   var datos = new FormData();
   datos.append("idCustomer", idCustomer);
-  // console.log("datos", datos.get("idCustomer"));// DEBUG:
+  // console.log("datos", datos.get("idCustomer"));// TEMP:
 
   $.ajax({
     url: "ajax/customerajax.php",
@@ -41,7 +41,7 @@ $(document).on("click", ".btnEditCustomer", function(){
     processData: false,
     dataType: "json",
     success: function(response){
-      // console.log("response", response);// DEBUG:
+      // console.log("response", response);// TEMP:
       $("#editCustomerName").val(response["name"]);
       $("#editDocumentId").val(response["doc_id"]);
       $("#editCustomerEmail").val(response["email"]);

@@ -6,7 +6,7 @@
       <small>Control Panel</small>
     </h1>
     <ol class="breadcrumb">
-      <li><a href="dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><a href="index.php?route=dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
 
       <li class="active">Sales Management</li>
     </ol>
@@ -18,7 +18,7 @@
     <!-- Default box -->
     <div class="box">
       <div class="box-header with-border">
-        <a href="create-sales">
+        <a href="index.php?route=create-sales">
         <button class="btn btn-primary">Kasir</button>
          </a>
          <!-- /.ini bootstrap modal untuk add user -->

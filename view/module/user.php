@@ -49,11 +49,11 @@
 
               $userData = UserController::ctrDataUser($item, $value);
 
-              // var_dump($userData); // NOTE: for debug only!
-              // echo "<br>"; // NOTE: for debug!
+              // var_dump($userData); // TEMP:
+              // echo "<br>"; // TEMP:
               foreach ($userData as $key => $data) {
                 // code...
-                // var_dump($data['username']); // NOTE: debug!
+                // var_dump($data['username']); // TEMP:
                 echo '<tr>
                   <td>'.$data["userid"].'</td>
                   <td>'.$data["fullname"].'</td>

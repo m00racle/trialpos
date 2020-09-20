@@ -60,14 +60,14 @@ $(document).on("click", ".btnEditUser", function() {
   //capture the inputs using the HTML attribute idUser;
   var idUser = $(this).attr("idUser");
 
-  // console.log("idUser", idUser); // NOTE: debug;
+  // console.log("idUser", idUser); // NOTE: TEMP;
 
   // instatntiate new class FormData();
   var datos = new FormData();
 
   // append userid which is stored in idUser variable;
   datos.append('idUser', idUser); // NOTE: remember here userid is idUser;
-  // console.log("datos", datos.get("idUser")); // NOTE: debug!
+  // console.log("datos", datos.get("idUser")); // NOTE: TEMP!
 
   $.ajax({
     url:"ajax/userajax5.php",
@@ -78,7 +78,7 @@ $(document).on("click", ".btnEditUser", function() {
     processData: false,
     dataType: "json",
     success: function(response){
-      // console.log("response", response); // NOTE: debug!
+      // console.log("response", response); // NOTE: TEMP!
       $("#editName").val(response["fullname"]);
       // NOTE: the #editName denotes the input id not the name!
       // NOTE: the response is just an array form of the data from the database thus the key of

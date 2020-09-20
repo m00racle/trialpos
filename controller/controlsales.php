@@ -25,14 +25,14 @@
         // echo 'console.log("total sales formatted", '. json_encode( $_POST["newTotalSales"] ) .');';
         // echo 'console.log("non formatted total sales", '. json_encode( $_POST["plainTotalSales"] ) .');';
         // echo 'console.log("payment code", '. json_encode( $_POST["paymentCode"] ) .');';
-        // echo '</script>';// DEBUG:
+        // echo '</script>';// TEMP:
 
         // IDEA: control the cash payment if the amount paid is higher than the total after tax.
         $transactionJsonDecoded = (json_decode($_POST["paymentJson"],true))[0];
         // echo '<script>';
         // echo 'console.log("transactionJsonDecoded",'. json_encode( $transactionJsonDecoded) .');';
         // echo 'console.log("transData",'. json_encode( $transactionJsonDecoded["method"]) .');';
-        // echo '</script>';// DEBUG:
+        // echo '</script>';// TEMP:
 
         if ($transactionJsonDecoded["method"]=="cash" && $transactionJsonDecoded["amount"] < $_POST["plainTotalSales"]) {
           // IDEA: the cash paid by customer is less than total after tax meaning I need to take action and decline the transaction plus give error warning
@@ -59,21 +59,21 @@
           for ($i=0; $i < count($productJsonDecoded); $i++) {
             // echo '<script>';
             // echo 'console.log("$productSampleData id",'. json_encode( $productJsonDecoded[$i]["id"] ) .');';
-            // echo '</script>';// DEBUG:
+            // echo '</script>';// TEMP:
 
             $productData = ModelProduct::modViewProduct("product","id",$productJsonDecoded[$i]["id"]);
             // echo '<script>';
             // echo 'console.log("$productData",'. json_encode( $productData ) .');';
-            // echo '</script>';// DEBUG:
+            // echo '</script>';// TEMP:
 
-            // var_dump($productData);// DEBUG:
+            // var_dump($productData);// TEMP:
 
             // IDEA: get the initial sales value; then add the quantity sold for the current product and then update the database;
             $updateSales = $productData["sales"] + $productJsonDecoded[$i]["quantity"];
-            // var_dump($initialSales);// DEBUG:
+            // var_dump($initialSales);// TEMP:
             // echo '<script>';
             // echo 'console.log("$updateSales",'. json_encode( $updateSales ) .');';
-            // echo '</script>';// DEBUG:
+            // echo '</script>';// TEMP:
 
             // IDEA: using specific method to update product from sales to update the product data. Prepare array with stock and sales data with id data as key;
             $updateProductData = Array('stock' => $productJsonDecoded[$i]["stockLeft"], 'sales' => $updateSales, 'id' => $productJsonDecoded[$i]["id"]);
@@ -104,7 +104,7 @@
                       allowOutsideClick: true
                     }).then((result) => {
                       if (result.value) {
-                          window.location = 'manage-sales';
+                          window.location = 'index.php?route=manage-sales';
                       }
                     })
                       </script>";

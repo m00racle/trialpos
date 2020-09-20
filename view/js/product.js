@@ -3,7 +3,7 @@
 // $.ajax({
 //   url: "ajax/datatableproductsajax.php",
 //   success:function(response){
-//     console.log("response",response); // NOTE: debug initial syntax test!
+//     console.log("response",response); // TEMP:
 //
 //     // --success:function(response)
 //   }
@@ -22,11 +22,11 @@ $('#productTable').DataTable( {
 // SET PRODUCT CODE BASED ON THE SUPPLIER NAME;
 $(".newSupplier").change(function(){
   var idSupplier = $(this).val();
-  // console.log("idSupplier", idSupplier); // NOTE: debug
+  // console.log("idSupplier", idSupplier); // TEMP
 
   var datos = new FormData();
   datos.append("idSupplier", idSupplier);
-  // console.log("datos ", datos);// NOTE: debug
+  // console.log("datos ", datos);// TEMP
 
   $.ajax({
     url:"ajax/productajax.php",
@@ -43,7 +43,7 @@ $(".newSupplier").change(function(){
         var newCode = Number(response["code"]) + 1;
       }
 
-      // console.log("new code", newCode);// NOTE: debug
+      // console.log("new code", newCode);// TEMP
       $(".newCode").val(newCode);
     }
   })
@@ -53,7 +53,7 @@ $(".newSupplier").change(function(){
 
 // CALCULATE PERCENTAGE;
 $(".percentage").click(function(){
-  // console.log($(this).prop("checked"));// NOTE: debug;
+  // console.log($(this).prop("checked"));// TEMP;
   if ($(this).prop("checked")) {
     $(".newSellingPrice").attr("readonly", true);
     $(".newPercentage").attr("readonly", false);
@@ -81,7 +81,7 @@ $(".newBuyingPrice").change(function(){
   if ($(".percentage").prop("checked")) {
     var buy = $(this).val();
     var margin = $(".newPercentage").val()/100;
-    // console.log(margin);// NOTE: debug;
+    // console.log(margin);// TEMP;
     $(".newSellingPrice").val(buy/(1-margin));
   } else {
     if ($(".newSellingPrice").val()!="") {
@@ -202,7 +202,7 @@ $(document).on("click", ".btnEditProduct", function(){
 
 // percentage function of edit modal;
 $("#editCheckPercent").click(function(){
-  // console.log($(this).prop("checked"));// NOTE: debug;
+  // console.log($(this).prop("checked"));// TEMP;
   if ($(this).prop("checked")) {
     $("#editSellingPrice").attr("readonly", true);
     $("#editPercentage").attr("readonly", false);
@@ -230,7 +230,7 @@ $("#editBuyingPrice").change(function(){
   if ($("#editCheckPercent").prop("checked")) {
     var buy = $(this).val();
     var margin = $("#editPercentage").val()/100;
-    // console.log(margin);// NOTE: debug;
+    // console.log(margin);// TEMP;
     $("#editSellingPrice").val(buy/(1-margin));
   } else {
     if ($("#editSellingPrice").val()!="") {
