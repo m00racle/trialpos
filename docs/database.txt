@@ -1,0 +1,132 @@
+Database keywords:
+Keyword: Data Integrity
+Entity Integrity
+Referential Integrity
+Domain Integrity
+
+Relation in math terms
+
+Relation vs relationship in database is not related at all
+
+data type (number, date, text) three most general category of data type
+
+there another types but derived from those three.
+
+database char type vs text.
+
+foreign key constraint
+
+parent vs child relation: child cannot exist without parent.
+
+database keywords:
+data vs Database
+special kind of database called relational Database
+DBMS (database management system) vs RDBMS (Relational DBMS)
+
+Null (data type)
+anomalies (database) vs Integrity (database)
+
+Database Design terms
+Entity (database): what the database is stored about (user data, sales data)
+Attributes (database): things the database store about the entity;
+Relation (database/math): table=> connection between two sets of data.
+Tuple (database/math): row of the relation table. represent one specific entity (object instantiation of data);
+table: physical representation of a relation. with its rows and columns
+
+This is older terms:
+file (database) = table (relation)
+record (database) = row (tuple)
+field (database) =  columns (Attributes)
+
+Values (database): the data stored in one specific row at one specific column.=Cell in excel term.
+Entry (database) = row (tuple)
+schema: drawn out structure of the database
+
+normalization (database)=> this is a new term learn more. Steps to fix anomalies and maintain integrity.
+Naming convention (database)=>consistency along the works
+Keys (database)=>something unique in a table which used to make connections to other tables.
+
+SQL (Structured Query Language)
+DDL (Data Definition Language) part of SQL define the structure of the database
+DML (Data Manipulation Language);
+SQL Keywords : SELECT, UPDATE, ALTER etc. preferably write them in capital letters.
+
+joins = connect more than one tables (usually two) to create new table. NOTE: this is only a view the combined table is not really an instances stored in the database server.
+when the instances is in the view level it will not be persisted thus after done used it will be destroyed.
+
+ATOMIC VALUE (database) = the value stores just one thing! (each columns must only about one thing!) NOTE: this is a best practice example for long name to be break to first, middle and last names.
+
+RELATIONSHIP (DATABASE)
+NOTE: rather than store all data in one big table it advisable to contain it in numerous table to make data to be more manageable.
+
+One to one vs One to Many vs Many to Many (database relationship types);
+QUESTION: If this one to one relation will it be one relation only(one table for both entity relation?)
+
+One to Many Relationship: example=> this is the confusing part. example is comment and user relation. The user can make multiple comment but one specific instance of comment can only be traced back to one user only.
+
+QUESTION: what about the student (entity) to class (entity) relation? This is many to many relationship; since one instance of student can take multiple instances of class (entity) and one instance of class (entity) can have more than one instances of student (entity);
+
+REVIEW: Many to Many Relationship=> This more confusing on the example side. But the main idea is all instances of each entity can have multiple relationship with instances on the other side of their entity relation.
+WARNING: many to many relationship will not work in the relational database (well by default anyways), the types that work (out of the box that is) are one to one and one to many relationship.
+
+Design One to One Relationship;
+REVIEW: the attribute will be exclusive to one entity thus the other entity will be better converted to an attribute to one of the two entity thus we can make it into one table (relation).
+QUESTION: is there any scenario where we have to make separate relation (table) for two entities which have one to one relationship?
+The answer is yes there will be. This is when the second entity of the relation has additional data that exclusive to their primary key rather than to the first entity primary key.
+EXAMPLE: person and social number card relationship; this is an exclusive one to one relationship. But when the social number entity will save data on the issue date of the card for periodic changes and checking then it will be better to make two relations of person and social security relations and connect them by the social security PK as FK in the holder relation as Social security number attribute.
+
+IDEA: Design One to Many relationship
+HACK: make two relations with foreign key to the single (One side) of the One to Many relationship. this is also known as Parent Child relationship.
+REVIEW: parent child relationship.
+
+QUESTION: how to use two relations (tables) to make both useful relations?
+
+QUESTION: how to differentiate the one to many to one to one relationships?
+HACK: well the main difference is if both relations have foreign keys that refer to the other side of the table then it is one to one relationship, if in the parent table does not have foreign key refer to child table then it is one to many relationship!
+
+IDEA: Parent and Child relationship
+HACK: the primary key of the Parent is the foreign key in the Child.
+
+IDEA: Designing Many to Many relationship
+HACK: break them apart into two One to Many Relationship. (M:N) -> (1:N) + (1:M)! Use the intermediary or junction table.
+REVIEW: the intermediary positioned between M and N table. Then the intermediary will list the M primary key and N primary key as foreign keys. If one row from M is deleted then it can put the constraint to delete all data in intermediary table which has foreign key = M primary key to the deleted row.
+NOTE: here is some example of designing the many to many relationship diagram https://drawio-app.com/entity-relationship-diagrams-with-draw-io/. Pay attention to the entity example there is one example where the associative entity is showed. The associative entity is drawn with dashed outline on the box and connector.
+
+IDEA: Introduction to Keys
+REVIEW: this is already pretty clear what key is? the main idea is to use or add if necessary a unique attribute that cannot be duplicated to other row of the relation entity. The key to certain data entity row cannot be changed ever and never have null value.
+NOTE: natural key is the key that supplied with the real entity data (for example in some case is email as key to a user data). The opposite of the natural is synthetic key which added by the database but not originated from the user entity data.
+
+IDEA: Primary Key Indexes
+REVIEW: this indexing is collection of keys in a relation that will make the DBMS much easier to find the rest of the data based on that specific key. This will be very helpful when user want to seek data to certain entity. Also useful when user want to make join relation.
+WARNING: all keys in the relational database in many SQL based DBMS must be indexed to be used properly. This includes foreign keys in the relation also.
+
+IDEA: Foreign Keys
+REVIEW: the definition is already clear. But there is another thing that makes this kind of key very useful especially when coupled with look up table. The foreign key is the reference ID from one relation to another relation (most likely in one to many relationship) which the foreign key will refer to parent or one relation side. Thus in order to change the data of any relation data we only need to change one row of the parent relation to affect the whole other data in many relation side. Plus the designer can add foreign key constraint to prevent null values and unauthorized SQL injection also handles delete process for certain data in parent relation.
+NOTE: the foreign key name in one relation does not have to be the same as the primary key which it referred to.
+HACK: keys protect the data integrity, keeps everything unique, improve database functionalities by increasing processing speed and less the process for updates. Allows added complexity also.
+
+IDEA: Look up tables
+REVIEW: this is often misunderstood as parent table since by definition this will work mostly in one to many relationship. Unfortunately many designers thought that parent is the more important data and the child has only additional attributes. But the look up table reverse this dogma since look up consist of attributes that added to the main relation but the look up is the one side in the one to many relation. This is where the foreign key will play major role.
+
+IDEA: Super key and candidate keys.
+REVIEW: This where I think I have it all wrong. Super Key is all the column in the database that can be used as key. While candidate key is the least number of combination of columns that can served as key.
+NOTE: Sometimes when the designer want to use natural data attribute to make a key there are none. However a  combination of few non key attributes (columns) can make such natural key.
+HACK: First and Last Name are not a good candidate for a key. But First, Last, Date of Birth and Address might do the job, even it is not recommended since address can be easily changes throughout the life of the individual.
+
+IDEA: Foreign Key
+REVIEW: the keyword is Reference. learn more about SQL reference.
+NOTE: A relation can have multiple foreign keys but each column of that foreign keys can only reference to specific one primary key of a relation. Meaning no foreign key can have more than one relation PK as its reference!
+
+IDEA: Non Null Keys
+REVIEW: when it comes to primary key it must not be Null thus it is a must that the designer put Non Null attribute type when it comes to the Primary Key attribute (column). On the other hand foreign key is not the same as Primary key even to the primary key it is referred to. There are cases where the designer can allow user to put null there if the entry is not mandatory. Therefore in some cases the Non Null type is not implemented to some foreign keys. But if the entry is mandatory for the user to fill then the designer can make the foreign key attribute to be Non Null type. 
+
+IDEA: Foreign Key Constraint 
+REVIEW: to keep the Referential Integrity. Ensure the update related to all relations with reference to the parent. Or invoke error if the child has updates that failed to find any reference to the parent. THIS IS IMPORTANT SINCE THE INFORMATION ABOUT THIS RESTRICTION IS VERY LIMITED ACROSS THE INTERNET!
+HACK: there are ON DELETE and ON UPDATE constraints.
+NOTE: there are many kinds of constraint implementations (RESTRICT, CASCADE, SET NULL)
+WARNING: RESTRICT will halt all changes (ON DELETE and/or ON UPDATE) TO THE PRIMARY KEY!!! the main keyword here is to the primary key. When ON DELETE this might gets a little blurry since you will delete the entire row in the prent table with the specific PK and if that PK is a reference to a FK in one or more child relation then it will throw an error and the delete process will be halted. This give an impression that the delete of each column in that row will throw this error which is wrong! This is proven when it comes to ON UPTADE constraint set to RESTRICT. When the PK is changed its value then the if that PK is a reference to FK in one or more child relation then it will invoke errors and halted the update. But if other columns in the parent table (relation) is updated then it will not invoke any error since the data is referenced and not showed in the child relation. CASCADE will on the other hand follow suit, ON DELETE when the PK and its row in the parent relation is deleted then the rows on the child relation(s) will also be deleted (PAY ATTENTION TO THE WHOLE ROW DELETED) the ON UPDATE will on this case the update on the PK value will also update the value of the FK that has reference to the updated PK. SET NULL means when we delete the PK row in the parent relation the FK in which related to that PK will set to NULL. THIS IS IMPORTANT: same happens ON UPDATE! When the PK value is changed the FK will be set to NULL!! UNLIKE CASCADE!! 
+WARNING: to implement SET NULL type of restriction both ON UPDATE and ON DELETE the FK must not be set to have NON NULL characteristics.
+COMBAK: Referential Integrity
+
+IDEA: Simple Key, Composite Key, Compound Key
+REVIEW:
