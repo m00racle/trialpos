@@ -124,7 +124,7 @@ IDEA: Foreign Key Constraint
 REVIEW: to keep the Referential Integrity. Ensure the update related to all relations with reference to the parent. Or invoke error if the child has updates that failed to find any reference to the parent. THIS IS IMPORTANT SINCE THE INFORMATION ABOUT THIS RESTRICTION IS VERY LIMITED ACROSS THE INTERNET!
 HACK: there are ON DELETE and ON UPDATE constraints.
 NOTE: there are many kinds of constraint implementations (RESTRICT, CASCADE, SET NULL)
-WARNING: RESTRICT will halt all changes (ON DELETE and/or ON UPDATE) TO THE PRIMARY KEY!!! the main keyword here is to the primary key. When ON DELETE this might gets a little blurry since you will delete the entire row in the prent table with the specific PK and if that PK is a reference to a FK in one or more child relation then it will throw an error and the delete process will be halted. This give an impression that the delete of each column in that row will throw this error which is wrong! This is proven when it comes to ON UPTADE constraint set to RESTRICT. When the PK is changed its value then the if that PK is a reference to FK in one or more child relation then it will invoke errors and halted the update. But if other columns in the parent table (relation) is updated then it will not invoke any error since the data is referenced and not showed in the child relation. CASCADE will on the other hand follow suit, ON DELETE when the PK and its row in the parent relation is deleted then the rows on the child relation(s) will also be deleted (PAY ATTENTION TO THE WHOLE ROW DELETED) the ON UPDATE will on this case the update on the PK value will also update the value of the FK that has reference to the updated PK. SET NULL meant when we delete the PK row in the parent relation the FK in which related to that PK will set to NULL. THIS IS IMPORTANT: same happens ON UPDATE! When the PK value is changed the FK will be set to NULL!! UNLIKE CASCADE!!
+WARNING: RESTRICT will halt all changes (ON DELETE and/or ON UPDATE) TO THE PRIMARY KEY!!! the main keyword here is to the primary key. When ON DELETE this might gets a little blurry since you will delete the entire row in the parent table with the specific PK and if that PK is a reference to a FK in one or more child relation then it will throw an error and the delete process will be halted. This give an impression that the delete of each column in that row will throw this error which is wrong! This is proven when it comes to ON UPTADE constraint set to RESTRICT. When the PK is changed its value then the if that PK is a reference to FK in one or more child relation then it will invoke errors and halted the update. But if other columns in the parent table (relation) is updated then it will not invoke any error since the data is referenced and not showed in the child relation. CASCADE will on the other hand follow suit, ON DELETE when the PK and its row in the parent relation is deleted then the rows on the child relation(s) will also be deleted (PAY ATTENTION TO THE WHOLE ROW DELETED) the ON UPDATE will on this case the update on the PK value will also update the value of the FK that has reference to the updated PK. SET NULL meant when we delete the PK row in the parent relation the FK in which related to that PK will set to NULL. THIS IS IMPORTANT: same happens ON UPDATE! When the PK value is changed the FK will be set to NULL!! UNLIKE CASCADE!!
 WARNING: to implement SET NULL type of restriction both ON UPDATE and ON DELETE the FK must not be set to have NON NULL characteristics.
 COMBAK: Referential Integrity
 
@@ -135,3 +135,46 @@ COMBAK: learn more on the Composite and Compound in designing Many to Many Relat
 COMBAK: Learn how to make Compound and/or Composite Keys in the DBMS such as SQL.
 NOTE: mostly Composite and Compound Keys are used in the intermediary relations.
 HACK: some DBMS cannot work well with Compound and/or Composite keys thus they will use surrogate ID in it to cover for them.
+
+IDEA: Entity Relationship Modelings
+REVIEW: Basically this is talking about the ways to draw the design of a Database which is a model in this case. Such as PEFD for Chemical Engineers this is the standards of Database engineer use to document their idea on how the database system is designed. In short this teach us how to draw a diagram to model database entities.
+COMBAK: EER Model, ERD Model, ER model, which of course ER is Entity Relationship
+COMBAK: data definition Language (DDL)
+HACK: to draw a relation is mostly a rectangle with the relation (table) name on it. The mostly it will consist of attributes names with its properties and/or restrictions;
+COMBAK: read more on this attribute restrictions on SQL standards here: https://www.w3schools.com/sql/sql_constraints.asp.
+
+IDEA: Cardinality
+REVIEW: Relationship between data in one database relation to other relation which can be one to one, one to many, and many to many relationships.
+WARNING: since one to one relationship is prone to make into one relation as an attribute and meanwhile many to many relationships will require intermediary relation meaning the Cardinality most likely will only dealt with one to many relationships.
+HACK: this is usually represented by a line (dashed or solid) with crest to indicate one side and spread end to indicate many side.
+
+IDEA: Modality
+REVIEW: This define the relationship whether the cild's FK is required or can be null.
+WARNING: This is related to FK only!!! meaning all row in the child relation must have FK referenced to the parent table if the modality of that relationship is one (1 or crest in the relationship line). On the other hand if the modality is zero then rows can exist in the child relation with FK is null meaning that row does not have reference to the parent relation.
+HACK: this usually defined on the front of the child relation line with 0 or 1 (crest) WHICH can be translated the relation of one to (zero to many) for null able child relation FK and one to (at least one to many) for not null child relations.
+
+IDEA: Intro to Data normalization.
+REVIEW: Process to review the existing database design to come up with the most optimized design.
+COMBAK: There are 1NF, 2NF, 3NF which NF is Normal Form.
+COMBAK: data dependency.
+WARNING: in normalization process the process must undergo 1NF first before 2NF and so on thus if the database is comply to 3NF meaning it is already comply the 1NF and 2NF
+
+IDEA: 1NF (Atomicity)
+REVIEW: atomicity means each column must contain the smallest information as possible (meaning putting JSON data in our case failed to comply with 1NF). And the most important we don't have repeating data for the PK.
+HACK: if the column can be break into smaller details just add more nullable column but if the column data consist same data which is similar in kind (such as multiple email address) means the designer need to add another table (relation) with userID as FK and another column is email.
+
+IDEA: 2NF (Partial dependency)
+REVIEW: In order to have partial dependency we need Composite or Compound key. Since if we only have one PK then we don't need to dependent. This is most useful for many to many relationship since the intermediary table will need compund/composite keys. Partial dependency happens if one attribute (one column) is strongly dependent on one other column not the entire row which consist of key. In the case of composite key which consist of more than one column as key if another column (attribute) only dependent on one of those composite key and not all of those composite key this is called partial dependency.
+QUESTION: what is data dependency?
+COMBAK: if the table has key (for simplicity we just use 1 PK) all the attributes in the table is dependent to that PK to define one single entity (row). For example if there is a person table with PK personID then all attributes such as name, address, phone and email in that table is DEPENDENT to the personID to define a single entity. Even as if the user insert same name, address, etc if there are no Unique as index rule such as no same email allowed then the second entry of entity (row) will be considered as different entity in the database. The second data will dependent also to the second personID as it is different entity.
+QUESTION: What if the person table need to add car (multiple cars allowed)!
+COMBAK: Then we need a separate table for Cars with the owner data on it. However, we cannot use owner's name as the reference to the owner's data since the person's name is dependent on personID not vehicleID thus it need personID as FK on the car table as reference to owner's (person) data.
+HACK: The most practical example is book and author relationship!
+TODO: explain more about the book and author dependency!
+
+IDEA: 3NF (transitive dependency)
+REVIEW: transitive dependency happens when an attribute is dependent to another non PK attribute thus when that non PK attribute is changed the dependent attribute also must change! This is bad when the database relation is updated then when the non PK table is updated and the dependent table is not UPDATED the data integrity will be comprimised since it will consist untrue data.
+HACK: this mostly happen in the case where the table have a column with some data (like rating) and the other column define that column (in this case the rating column). Example being if the rating column only have type number and then the table have another column to define what that number means (ie. 5 means good and 1 mean worst)!
+HACK: to fix this the dependent column must be moved to a different table and the definition can be referenced by ID (surrogate) as PK and that ID can be the FK in the main table. As this is definition the another table should be smaller in size compared to the main table.
+
+ 
