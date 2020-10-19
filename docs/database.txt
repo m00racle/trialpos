@@ -173,8 +173,64 @@ HACK: The most practical example is book and author relationship!
 TODO: explain more about the book and author dependency!
 
 IDEA: 3NF (transitive dependency)
-REVIEW: transitive dependency happens when an attribute is dependent to another non PK attribute thus when that non PK attribute is changed the dependent attribute also must change! This is bad when the database relation is updated then when the non PK table is updated and the dependent table is not UPDATED the data integrity will be comprimised since it will consist untrue data.
+REVIEW: transitive dependency happens when an attribute is dependent to another non PK attribute thus when that non PK attribute is changed the dependent attribute also must change! This is bad when the database relation is updated then when the non PK table is updated and the dependent table is not UPDATED the data integrity will be compromised since it will consist untrue data.
 HACK: this mostly happen in the case where the table have a column with some data (like rating) and the other column define that column (in this case the rating column). Example being if the rating column only have type number and then the table have another column to define what that number means (ie. 5 means good and 1 mean worst)!
 HACK: to fix this the dependent column must be moved to a different table and the definition can be referenced by ID (surrogate) as PK and that ID can be the FK in the main table. As this is definition the another table should be smaller in size compared to the main table.
 
- 
+IDEA: Indexes(Clustered, Non Clustered, Composite)
+REVIEW: Index is needed because this will make data searching much faster. However, since this is the middle lane between time and space thus most likely only most accessed columns will be in the index. Most likely the index will contain keys since they should be the most likely searched attributes. However there is also downside of indexing. If we update the table we also must update the index!
+NOTE: indexes usually preferable regardless of its type moreover when using JOIN operation.
+QUESTION: non Clustered index? this kind of index does not really kept data but tells the pointer how to get to the data (example index behind the text book which list the page number of certain topic with keyword in the index) => CAN BE MORE THAN ONE IN DBMS!
+QUESTION: clustered index? this is the actual data but sorted (example like an old phone book where the whole data are sorted alphabetically) => LIMITED TO ONE IN EACH DATABASE make sense since this clustered index sort the whole data thus there can be only one clustered index.
+QUESTION: composite? Index that works on multiple (more than one) columns.
+
+IDEA: Data Types.
+REVIEW: Data types basically what kind of data format stored in each column (attribute). One column (attribute) must contain only one data type.
+WARNING: WHENEVER YOU DEFINE DATABASE columns you MUST define the data type that will consist in that column and that column can ONLY HAVE ONE KND OF DATA TYPE!
+QUESTION: how many types of data are they? Well that's depends on the DBMS but basically they will fall over three basic categories: Date, Numeric, String!
+HACK: String has sub categories CHAR (set in length/the size is defined)-> CHAR(8) meaning it has 8 characters in it or VARCHAR (which does not required size to be defined!) and there also TEXT which more suitable if the String size is large!
+HACK: Date can be: Date Time, Date, Time, and Timestamp... Other are self explanatory. The Timestamp is different one. Time stamp is the exact moment of time something is recorded!
+
+IDEA: Intro to joins
+REVIEW: This is like a presentable view. Since the database must adhere the normalization rules they most likely will be consist of multiple relations (tables) meaning it is good for the data integrity but will be confusing to read by humans. Thus we need joins to present the data in the most user friendly way by joining multiple tables thus the information is easier to read.
+WARNING: to incorporate the join functions we need PK and FK relationships! since to join relations they must have relationship between them.
+NOTE: here we officially start to the new chapter called Data Manipulation Language (DML).
+
+IDEA: Inner Join
+REVIEW: Inner join just like Venn diagram only show the data that is conjoin between two relations. Join will be used in multiple relations thus in order to run Inner Join the FK on the child relation must have relation in the parent relation! Thus if the FK in child in null even as join includes that column but the ROWS with null FK will not be shown in the Join result! Vice Versa is also true. If there are PK that does not have FK in child that row of data will also be omitted!
+NOTE: If there are two relations one is the Customer relation and the other is Credit relation. The relationship is one to many with Customer relation as the parent and the FK in the Credit relation is referring to CustomerID PK in the Customer relation. However, the FK is set to allow NULL value. Meaning one customer can have multiple cards, one card can only have one customer, but there are cards that presented in the Credit relation that does not have customer to own them!. When this scenario is joined using inner join, only the card with FK that are not NULL will be shown in the result! The data from cards that do not have owner will be omitted. Vice versa if the Customer does not have Credit Card (the PK of the customer will not be presence in the FK of the child relation) that data will also be omitted from the join result!
+HACK: SELECT <relation.attribute,....(more than one)> FROM <relation that is joined first> INNER JOIN relation that will be joined ON parent.PK = child.FK
+
+IDEA: Inner Join on 3 tables (examples)
+REVIEW: In order to join more than 2 tables using inner join most likely we must cascading the porcess. First inner join two tables and the result will be join to the next table and so on. There are no inner join directly for more than two tables.
+NOTE: this is not really taught in the W3 Schools so pay attention more on this tutorial especially the example.
+COMBAK: three relations users, comments, videos. relationships users 1:many comments; videos 1:many comments. Make inner join that result users.username, comments.comment, videos.title!
+HACK: SELECT users.username, videos.title, comments.comment FROM users INNER JOIN  comments ON users.userID = comments.userID INNER JOIN videos ON videos.videoID = comments.videoID
+NOTE: the INNER JOIN process was delivered twice in one query. But I am certain the order can be changed!
+
+IDEA: Intro to Outer Join
+REVIEW: Outer join basically includes rows that is not qualified with the join constraint which on the other way applicable in the inner join. There are 3 types of outer join: left outer join, right outer join, full outer join.
+
+IDEA: Right outer Join
+REVIEW: this means all rows in the RIGHT table will be in the JOIN result regardless has association to PK in LEFT table.
+QUESTION: which one is the RIGHT relation in the QUERY statement?
+HACK: SELECT <columns,...> FROM <this is the left table> LEFT/RIGHT JOIN <right table> ON <join condition>
+WARNING: Right JOIN is seldom used mostly users will use LEFT JOIN and just swap the left table in the FROM query with the right table after the JOIN query. This is to avoid confusion and maintain consistency.
+
+IDEA: JOIN with NOT NULL Columns
+REVIEW:this is where we learn in order to JOIN we need to consider which table is the most significant and cannot be deleted (for every row) and thus that table is the one you need to be in the most LEFT when using OUTER LEFT JOIN.
+
+IDEA: Outer JOIN Across 3 tables
+REVIEW:
+QUESTION: 3 tables users, comments, videos; relationship: users 1 : many comments many : 1 videos, make LEFT join to Users and then RIGHT JOIN to videos!
+WARNING: the last RIGHT JOIN to the videos will omit all users that not have comment since all comment requires video ID to be posted. This will have the same effect as INNER JOIN of 3 tables in the end!
+HACK: TODO: MAKE THIS QUERY TO GET THE CASE ABOVE!
+
+IDEA: Alias
+REVIEW: In SQL this using the AS query
+HACK: FIND THE EXAMPLE IN W3 => SELECT email AS contact, first_name AS "first name", last_name AS "last name" FROM Users
+
+IDEA: self JOIN
+REVIEW: This is often overlapping in function with SELECT query with WHERE query as qualifier.
+COMBAK: THIS IS GOOD PRACTICAL EXAMPLE IN THE VIDEO BUT TOO LONG TO WRITE ! back to https://www.youtube.com/watch?v=ztHopE5Wnpc&t=28333s
+HACK: most likely the self join requires ALIAS as means to copy the same tables. => SELECT table1.username, table1.birthday, table2.username AS "referral user" FROM users AS table1 JOIN user AS table2 ON table1.refered_by=table2.user_id
