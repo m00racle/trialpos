@@ -28,6 +28,11 @@
           <i class="fa fa-users"></i><span>Customer</span>
         </a>
       </li>
+      <li>
+        <a href="index.php?route=create-sales">
+          <i class="fa fa-circle-o"></i><span>Kasir</span>
+        </a>
+      </li>
       <li class="treeview">
         <!-- this class can have tree view spanned dropdown-->
         <a href="#">
@@ -42,11 +47,7 @@
               <i class="fa fa-circle-o"></i><span>Manage Sales</span>
             </a>
           </li>
-          <li>
-            <a href="index.php?route=create-sales">
-              <i class="fa fa-circle-o"></i><span>Create Sales</span>
-            </a>
-          </li>
+
           <li>
             <a href="index.php?route=sales-report">
               <i class="fa fa-circle-o"></i><span>Sales Report</span>
