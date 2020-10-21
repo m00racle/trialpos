@@ -97,7 +97,7 @@
         <div class="modal-body">
           <div class="box-body">
 
-            <!-- form for add category name-->
+            <!-- form for add supplier name-->
             <div class="form-group">
               <div class="input-group">
                 <!-- form and input groups are classes from bootstrap -->
@@ -174,7 +174,7 @@
         <div class="modal-body">
           <div class="box-body">
 
-            <!-- form for add category name-->
+            <!-- form for add supplier name-->
             <div class="form-group">
               <div class="input-group">
                 <!-- form and input groups are classes from bootstrap -->

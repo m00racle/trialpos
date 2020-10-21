@@ -1,9 +1,9 @@
 <?php
 require_once "../controller/controlproduct.php";
 require_once "../model/productmodel.php";
-// NOTE: since this datatable also includes suppliers we need to add category also;
-require_once "../controller/controlcategory.php";
-require_once "../model/categorymodel.php";
+// NOTE: since this datatable also includes suppliers we need to add supplier also;
+require_once "../controller/controlsupplier.php";
+require_once "../model/suppliermodel.php";
 
   /**
    *

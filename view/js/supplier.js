@@ -8,7 +8,7 @@ $("#newSupplier").change(function(){
   datos.append("validateSup", supName);
 
   $.ajax({
-    url:"ajax/categoryajax.php",
+    url:"ajax/supplierajax.php",
     method: "POST",
     data: datos,
     cache: false,
@@ -33,7 +33,7 @@ $(document).on("click", ".btnEditSupplier", function() {
   datos.append("idSupplier", idSupplier);
 
   $.ajax({
-    url:"ajax/categoryajax.php",
+    url:"ajax/supplierajax.php",
     method: "POST",
     data: datos,
     cache: false,
@@ -67,7 +67,7 @@ $(document).on("click", ".btnDeleteSupplier", function() {
     confirmButtonText: 'Ya, hapus Suppler dan dagangannya!'
     }).then((result) => {
     if (result.value) {
-      window.location = "index.php?route=category&idSupplier="+idSupplier+"&nameSupplier="+nameSupplier;
+      window.location = "index.php?route=supplier&idSupplier="+idSupplier+"&nameSupplier="+nameSupplier;
       }
     })
 

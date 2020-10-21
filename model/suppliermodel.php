@@ -1,5 +1,5 @@
 <?php
-  //this model the object: category
+  //this model the object: supplier
   require_once "connectdb.php";
 
   /**
@@ -8,7 +8,7 @@
   class ModelSupplier
   {
     // CREATE SUPPLIER;
-    static public function mdlCreateCategory($table, $data)
+    static public function mdlCreateSupplier($table, $data)
     {
       $stmt = Connection::connect()->prepare("INSERT INTO $table(supname, status, bankacc, accnum)
               VALUES (:supname, :status, :bankacc, :accnum)");
@@ -30,7 +30,7 @@
       $stmt -> close();
       $stmt = null;
 
-      // --static public function mdlCreateCategory($table, $data)
+      // --static public function mdlCreatesupplier($table, $data)
     }
 
     // VIEW SUPPLIERS;

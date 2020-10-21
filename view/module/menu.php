@@ -14,8 +14,8 @@
         </a>
       </li>
       <li>
-        <a href="index.php?route=category">
-          <i class="fa fa-th"></i><span>Category</span>
+        <a href="index.php?route=supplier">
+          <i class="fa fa-th"></i><span>supplier</span>
         </a>
       </li>
       <li>

@@ -122,7 +122,7 @@
 <!-- ./wrapper -->
 <script src="view/js/template.js"></script>
 <script src="view/js/user.js"></script>
-<script src="view/js/category.js"></script>
+<script src="view/js/supplier.js"></script>
 <script src="view/js/product.js"></script>
 <script src="view/js/customer.js"></script>
 <script src="view/js/sales.js"></script>

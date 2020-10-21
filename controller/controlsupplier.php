@@ -17,7 +17,7 @@
                         'bankacc' => $_POST['newBankAcc'],
                         'accnum' => $_POST['newAccNum'],);
 
-          $response = ModelSupplier::mdlCreateCategory($table, $data);
+          $response = ModelSupplier::mdlCreateSupplier($table, $data);
 
           if ($response == "ok") {
             // code...supplier created;
@@ -30,7 +30,7 @@
               allowOutsideClick: false
             }).then((result) => {
               if (result.value) {
-                  window.location = 'index.php?route=category';
+                  window.location = 'index.php?route=supplier';
               }
             })
               </script>";
@@ -42,7 +42,7 @@
             Swal.fire({
               icon: 'error',
               title: 'Add Supplier: ".$_POST['newSupplier']." Gagal!',
-              text: 'Supplier gagal ditambahkan ke category!',
+              text: 'Supplier gagal ditambahkan ke database!',
               confirmButtonText: 'OK Ulang',
               allowOutsideClick: true
             }).then((result) => {
@@ -67,7 +67,7 @@
             allowOutsideClick: true
           }).then((result) => {
             if (result.value) {
-                window.location = 'index.php?route=category';
+                window.location = 'index.php?route=supplier';
             }
           })
             </script>";
@@ -115,7 +115,7 @@
             allowOutsideClick: true
           }).then((result) => {
             if (result.value) {
-                window.location = 'index.php?route=category';
+                window.location = 'index.php?route=supplier';
             }
           })
             </script>";
@@ -165,7 +165,7 @@
             allowOutsideClick: true
           }).then((result) => {
             if (result.value) {
-                window.location = 'index.php?route=category';
+                window.location = 'index.php?route=supplier';
             }
           })
             </script>";
@@ -181,7 +181,7 @@
             allowOutsideClick: true
           }).then((result) => {
             if (result.value) {
-                window.location = 'index.php?route=category';
+                window.location = 'index.php?route=supplier';
             }
           })
             </script>";

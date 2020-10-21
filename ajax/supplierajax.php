@@ -1,6 +1,6 @@
 <?php
-  require_once "../controller/controlcategory.php";
-  require_once "../model/categorymodel.php";
+  require_once "../controller/controlsupplier.php";
+  require_once "../model/suppliermodel.php";
 
   /**
    * Ajax for handling Suppliers data;

@@ -47,7 +47,7 @@
                   Swal.fire({
                     icon: 'error',
                     title: 'Add Customer: ".$_POST['newCustomerName']." Gagal!',
-                    text: 'Customer gagal ditambahkan ke category!',
+                    text: 'Customer gagal ditambahkan ke database!',
                     confirmButtonText: 'OK Ulang',
                     allowOutsideClick: true
                   }).then((result) => {

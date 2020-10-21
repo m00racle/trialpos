@@ -10,7 +10,7 @@
 //   // --$.ajax
 // })
 
-// IDEA: when refreshing the page all must be cleared and all add button must be back to active again. Thus all data in the local storage must be cleared to prevent bugs in the add button on both main and modal data tables.
+// IDEA: when refreshing the page all must be cleared and all add button must be back to active again. Thus all data in the local storage must be cleared to prevent errors in the add button on both main and modal data tables.
 var idUpdateProduct = [];
 localStorage.setItem("updateProduct", JSON.stringify(idUpdateProduct));
 
@@ -21,7 +21,7 @@ $("#manageSalesData").DataTable( {
         "processing": true,
         "order": [[ 0, "desc" ]]
     } );
-// NOTE: in the #manageSalesData table remove the .tables from its class attribute since it creates confusion bug!; also note that we use "order": to set the order of the data list descending according to the 0th column!
+// NOTE: in the #manageSalesData table remove the .tables from its class attribute since it creates confusion problems!; also note that we use "order": to set the order of the data list descending according to the 0th column!
 
 $(".tableProducts").DataTable( {
         "ajax": "ajax/datatablesalesajax.php",
@@ -291,6 +291,8 @@ function totalPrice(){
   // console.log("totalProductPrice", totalProductPrice);// TEMP:
 
   // IDEA: sum all numbers in totalProductPrice using JQuery reduce() function;
+  // BUG: this will invoke typeError when the size of the array totalProductPrice is empty!
+  // TODO: make if condition that this process will only proceed if the array totalProductPrice is not empty otherwise totalPrice = 0
   var totalPrice = totalProductPrice.reduce(sumTotalPrice);
   // console.log("totalPrice", totalPrice);// TEMP:
 
@@ -329,7 +331,7 @@ $(".salesForm").on("change", "input#newSalesTax", function(){
   // --$(".salesForm").on("change", "input#newSalesTax", function()
 })
 
-/* // TODO: need to change the payment handler so that the cash payment can also brought the total payment and changes from the customers
+/*
 *
 * HANDLE THE PAYMENT METHOD;
 * // IDEA: I think we can make some JSON object in terms of payment data just to make it more usable later on!
@@ -437,7 +439,7 @@ function cashChanges(){
   if (customerPayment < totalAfterTax) {
     // IDEA: remove the div paymentResponse;
     $("input#newCashPayment").parent().children(".paymentResponse").remove();
-    // TODO: this need to be upgraded to proper warning!
+
     if (customerPayment == 0) {
       $("input#newCashPayment").parent().append(
         '<div class="paymentResponse">' +
