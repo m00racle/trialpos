@@ -169,8 +169,8 @@ QUESTION: what is data dependency?
 COMBAK: if the table has key (for simplicity we just use 1 PK) all the attributes in the table is dependent to that PK to define one single entity (row). For example if there is a person table with PK personID then all attributes such as name, address, phone and email in that table is DEPENDENT to the personID to define a single entity. Even as if the user insert same name, address, etc if there are no Unique as index rule such as no same email allowed then the second entry of entity (row) will be considered as different entity in the database. The second data will dependent also to the second personID as it is different entity.
 QUESTION: What if the person table need to add car (multiple cars allowed)!
 COMBAK: Then we need a separate table for Cars with the owner data on it. However, we cannot use owner's name as the reference to the owner's data since the person's name is dependent on personID not vehicleID thus it need personID as FK on the car table as reference to owner's (person) data.
-HACK: The most practical example is book and author relationship!
-TODO: explain more about the book and author dependency!
+HACK: The most practical example is book and author relationship! As the author can writes as many books as he can and one book can have more than one author then it is really hard to make data dependency on Book to the author. Thus it best that books and author are not made onto one relation. This is a case of many to many relationship that it best to use intermediary relation between author and book relations.
+
 
 IDEA: 3NF (transitive dependency)
 REVIEW: transitive dependency happens when an attribute is dependent to another non PK attribute thus when that non PK attribute is changed the dependent attribute also must change! This is bad when the database relation is updated then when the non PK table is updated and the dependent table is not UPDATED the data integrity will be compromised since it will consist untrue data.
@@ -224,7 +224,9 @@ IDEA: Outer JOIN Across 3 tables
 REVIEW:
 QUESTION: 3 tables users, comments, videos; relationship: users 1 : many comments many : 1 videos, make LEFT join to Users and then RIGHT JOIN to videos!
 WARNING: the last RIGHT JOIN to the videos will omit all users that not have comment since all comment requires video ID to be posted. This will have the same effect as INNER JOIN of 3 tables in the end!
-HACK: TODO: MAKE THIS QUERY TO GET THE CASE ABOVE!
+HACK: SELECT comments.comment AS comment, videos.title AS "video title", users.name FROM comments RIGHT JOIN videos ON comments.videoID_FK = videos.videoID_PK RIGHT JOIN users ON comments.userID_FK = users.userID_PK
+NOTE: regarding the WARNING above the RIGHT JOIN on the video will gave effect similar to INNER JOIN since the many comments to one video relationship in nature. However, the next RIGHT JOIN to the user will act more like an OUTER JOIN since there are users that might not submit any comment but will still listed in the end result of the JOIN.
+WARNING: This procedure will emphasis to use comment relation as the main relation since inside this relation will be two FKs which are userID_FK and videoID_FK thus those FKs are present in the ON queries on both sequence of RIGHT JOINs.
 
 IDEA: Alias
 REVIEW: In SQL this using the AS query
