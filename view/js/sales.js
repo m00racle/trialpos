@@ -290,11 +290,14 @@ function totalPrice(){
   }
   // console.log("totalProductPrice", totalProductPrice);// TEMP:
 
-  // IDEA: sum all numbers in totalProductPrice using JQuery reduce() function;
-  // BUG: this will invoke typeError when the size of the array totalProductPrice is empty!
-  // TODO: make if condition that this process will only proceed if the array totalProductPrice is not empty otherwise totalPrice = 0
-  var totalPrice = totalProductPrice.reduce(sumTotalPrice);
-  // console.log("totalPrice", totalPrice);// TEMP:
+  if (totalProductPrice.length > 0) {
+    // IDEA: sum all the numbers inside totalProductPrice;
+    var totalPrice = totalProductPrice.reduce(sumTotalPrice);
+    // console.log("totalPrice", totalPrice);// TEMP:
+  } else {
+    var totalPrice = 0;
+    // else of if (totalProductPrice.length > 0)
+  }
 
   // IDEA: I want to add tax to the equation thus the total Price will be put on the before tax attribute to accomaodate if the tax value is changing;
   $("input#newTotalSales").attr("beforeTax",totalPrice);
