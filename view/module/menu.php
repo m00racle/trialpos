@@ -14,13 +14,23 @@
         </a>
       </li>
       <li>
-        <a href="index.php?route=supplier">
-          <i class="fa fa-th"></i><span>supplier</span>
+        <a href="index.php?route=category">
+          <i class="fa fa-user"></i><span>Category</span>
         </a>
       </li>
       <li>
         <a href="index.php?route=product">
           <i class="fa fa-product-hunt"></i><span>Products</span>
+        </a>
+      </li>
+      <li>
+        <a href="index.php?route=supplier">
+          <i class="fa fa-th"></i><span>Supplier</span>
+        </a>
+      </li>
+      <li>
+        <a href="index.php?route=inventory">
+          <i class="fa fa-th"></i><span>Persediaan</span>
         </a>
       </li>
       <li>

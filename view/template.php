@@ -91,6 +91,7 @@
           $_GET["route"]=="category" ||
           $_GET["route"]=="product" ||
           $_GET["route"]=="supplier" ||
+          $_GET["route"]=="inventory" ||
           $_GET["route"]=="customer" ||
           $_GET["route"]=="manage-sales" ||
           $_GET["route"]=="create-sales" ||
