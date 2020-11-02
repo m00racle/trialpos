@@ -187,6 +187,7 @@ $(document).on("click", ".btnEditProduct", function(){
       $("#editSupplier").html(response["supname"]);
       $("#editCode").val(response["code"]);
       $("#editDescription").val(response["description"]);
+      // TODO: this part is the dynamic data table for the product view module. need to be modified since this is should be in the inventory javascript.
       $("#editStock").val(response["stock"]);
       $("#editBuyingPrice").val(response["buy_price"]);
       $("#editSellingPrice").val(response["sell_price"]);

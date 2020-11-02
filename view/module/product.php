@@ -34,6 +34,7 @@
               <th>Code</th>
               <th>Keterangan</th>
               <th>Supplier</th>
+              <!-- TODO: this part of stock need to be opt out to accomodate new database design -->
               <th>Stock</th>
               <th>HPP</th>
               <th>Harga Jual</th>
@@ -114,7 +115,7 @@
               </div>
             </div>
 
-            <!-- form for add stock-->
+            <!-- form for add stock TODO: this need to be modified if the product stock is not included add stock supposed to be handled in inventory-->
             <div class="form-group">
               <div class="input-group">
                 <!-- form and input groups are classes from bootstrap -->
@@ -243,7 +244,7 @@
               </div>
             </div>
 
-            <!-- form for edit stock-->
+            <!-- form for edit stock TODO: edit stock is also need to be handled by the inventory-->
             <div class="form-group">
               <div class="input-group">
                 <!-- form and input groups are classes from bootstrap -->

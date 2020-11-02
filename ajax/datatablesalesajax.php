@@ -13,13 +13,14 @@
         $productData = ControllerProduct::ctrDataProduct(null,null);
 
         // var_dump($productData);// NOTE: test data product fetch all;
+        // TODO: data JSON need to be modified since in the sales ajax will omit stock data
 
         $dataJson= '{
           "data": [';
           for ($i=0; $i < count($productData); $i++) {
             $image = "<img src='".$productData[$i]["image"]."' ".
             "width='40px'>";
-            
+
             // set action buttons;
             $actionButtons = "<div class='btn-group'><button class='btn btn-primary addProduct recoverButton' idProduct='".$productData[$i]["id"]."'>Add</button></div>";
 

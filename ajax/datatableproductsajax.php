@@ -38,6 +38,7 @@
                   "</div>";
 
             // checking stocks;
+            // TODO: this stock is not needed in the dynamic data table for product. Since the stock is will be handled in the inventory module.
             if ($productData[$i]["stock"] <= 10) {
               $stock = "<button class='btn btn-danger'>".$productData[$i]["stock"]."</button>";
 
@@ -51,6 +52,7 @@
 
               // -- else of if ($productData[$i]["stock"] <= 10)
             }
+            // TODO: the data JSON need to be modified to omit the stock data since this will be handled in the inventory module.
 
             $dataJson .= '[
               "'.$productData[$i]["id"].'",

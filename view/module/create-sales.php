@@ -163,6 +163,7 @@
                   <th>Picture</th>
                   <th>Code</th>
                   <th>Description</th>
+                  <!-- TODO: this part of stock need to be opt out to accomodate new database design -->
                   <th>Stock</th>
                   <th>Action</th>
                 </tr>
@@ -296,6 +297,7 @@
                 <th>Picture</th>
                 <th>Code</th>
                 <th>Description</th>
+                <!-- TODO: this part of stock need to be opt out to accomodate new database design -->
                 <th>Stock</th>
                 <th>Action</th>
               </tr>

@@ -84,6 +84,7 @@ $(".tableProducts tbody").on("click", "button.addProduct", function(){
     dataType: "json",
     success: function(response){
       // console.log("response", response); // TEMP:
+      // TODO: this stock need to be omitted since the stock will be handled in the inventory module.
       var description = response["description"];
       var stock = response["stock"];
       var price = response["sell_price"];
@@ -110,6 +111,7 @@ $(".tableProducts tbody").on("click", "button.addProduct", function(){
       }
 
       // put the response to the appropriate html structure;
+      // TODO: the stock xml structure must be omitted since this will be handled in the inventory module
       $(".newProduct").append(
         '<div class="row" style="padding:5px 5px">' +
           '<div class="col-xs-6" style="padding-right:0px">' +
@@ -245,6 +247,7 @@ $(".salesForm").on("change", "input.newProductQuantity", function(){
 
   if (Number($(this).val()) > Number($(this).attr("stock"))) {
     // IDEA: if the stock is not sufficient return the value of the quantity back to 1;
+    // TODO: this stock handler is not needed need to be omitted or modified if the inventory will handle.
     $(this).val(1);
     // IDEA: if the product added larger than the stock available invoke error;
     Swal.fire({
