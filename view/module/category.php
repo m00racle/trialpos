@@ -2,13 +2,13 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Supplier Management
+      Category Management
       <small>Control Panel</small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
 
-      <li class="active">Supplier Management</li>
+      <li class="active">Category Management</li>
     </ol>
   </section>
 
@@ -19,7 +19,7 @@
     <div class="box">
       <div class="box-header with-border">
         <button class="btn btn-primary"
-         data-toggle="modal" data-target="#modalAddSupplier">Add Supplier</button>
+         data-toggle="modal" data-target="#modalAddCategory">Add Category</button>
          <!-- /.ini bootstrap modal untuk add user -->
 
       </div>
@@ -85,7 +85,7 @@
 </div>
 <!-- this is the modal pop ups; -->
 <!-- Modal -->
-<div id="modalAddSupplier" class="modal fade" role="dialog">
+<div id="modalAddCategory" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -94,7 +94,7 @@
         <!-- modal header -->
         <div class="modal-header" style="background:#3c8dbc; color:white">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Add Supplier</h4>
+          <h4 class="modal-title">Add Category</h4>
         </div>
         <!-- modal body -->
         <div class="modal-body">
@@ -105,7 +105,7 @@
               <div class="input-group">
                 <!-- form and input groups are classes from bootstrap -->
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <input type="text" name="newSupplier" placeholder="insert name" required
+                <input type="text" name="newCategory" placeholder="insert name" required
                   class="form-control input-lg">
               </div>
             </div>
@@ -115,7 +115,7 @@
                 <!-- form and input groups are classes from bootstrap -->
                 <span class="input-group-addon"><i class="fa fa-users"></i></span>
                 <select class="form-control input-lg" name="newStatus">
-                  <option value="">Pilih Tipe Supplier</option>
+                  <option value="">Pilih Tipe Category</option>
                   <option value="inhouse">Sendiri</option>
                   <option value="consignment">Konsinyasi</option>
                   <option value="rent">Sewa</option>
@@ -147,7 +147,7 @@
         <!-- modal footer -->
         <div class="modal-footer">
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
-          <button type="submit" class="btn btn-primary">Save Supplier</button>
+          <button type="submit" class="btn btn-primary">Save Category</button>
         </div>
         <!-- /.end model-content; -->
       </form>
