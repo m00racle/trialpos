@@ -7,9 +7,3 @@ The app is developed to serve as cafe POS which involves:
 
 ## Look At Me First
 Much of the files are already being integrated as one in the git ecosystem. Also The notes is moved into the wiki that specified all project notes in order to accord with the GitHub Documentation.
-
-###User Module
-Done... see wiki
-
-###Category/Supplier module
-Done... see wiki
